@@ -1,6 +1,6 @@
 import './App.scss';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Dashboard from './pages/Dashboard.jsx';
+import Dashboard from './pages/Dashboard/Dashboard.jsx';
 import CreateEvent from './pages/Events/CreateEvent/CreateEvent.jsx';
 import ManageEvents from './pages/Events/ManageEvents/ManageEvents.jsx';
 import Invites from './pages/Invites/Invites.jsx';
@@ -16,20 +16,20 @@ import Footer from './components/Footer/Footer.jsx';
 function App() {
   return (
     <BrowserRouter>
-    <Header element={<Header  />} />
+    <Header />
     <Routes>
       <Route path='/dashboard' element={<Dashboard />} />
       <Route path='/createevent' element={<CreateEvent />} />
       <Route path='/manageevents' element={<ManageEvents />} />
       <Route path='/invites' element={<Invites />} />
-      <Route path='*' element={<NotFound404 />} />
+      {/* <Route path='*' element={<NotFound404 />} /> */}
       <Route path='/editprofile' element={<EditProfile />} />
       <Route path='/profile' element={<Profile />} />
       <Route path='/login' element={<Login />} />
       <Route path='/loginreset' element={<LoginReset />} />
       <Route path='/registration' element={<Registration />} />
     </Routes>
-    <Footer element={<Footer />} />
+    <Footer />
     </BrowserRouter>
   );
 }
