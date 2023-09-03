@@ -1,10 +1,10 @@
 import './EventBox.scss';
 
-const EventBox = ({ event }) => {
+const EventBox = ({ name, date }) => {
     return (
         <div className='event-box'>
-            <h3>{event.name}</h3>
-            <p>Date: {event.date}</p>
+            <h3>{name}</h3>
+            <p>Date: {date}</p>
         </div>
     )
 }

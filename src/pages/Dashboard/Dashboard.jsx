@@ -12,6 +12,8 @@ const Dashboard = () => {
         setEvents([...events, newEvent]);
     };
 
+    console.log(events);
+
     return (
         <div className='dashboard-content'>
             <h1 className='title'>Dashboard</h1>
@@ -24,7 +26,7 @@ const Dashboard = () => {
                     {showForm && <EventForm addEvent={addEvent} setShowForm={setShowForm} />}
                 </div>
                 {events.map((event, index) => (
-                    <EventBox key={index} event={event} />
+                    <EventBox key={index} name={event.name} date={event.date} />
                 ))}
             </div>
         </div>

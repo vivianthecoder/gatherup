@@ -11,17 +11,21 @@ const EventForm = ({ addEvent, setShowForm }) => {
     const [eventTheme, setEventTheme] = useState('');
 
     const handleSubmit = () => {
-        if (eventName && eventDate && eventTime && eventLocation&& guestCount && eventTheme) {
-            addEvent({ name: eventName, date: eventDate, time: eventTime, location: eventLocation, guestsNumber: guestCount, theme: eventTheme }); 
+        if (eventName && eventDate && eventTime && eventLocation && guestCount && eventTheme) {
+            addEvent({ name: eventName, date: eventDate, eventTime: eventTime, eventLocation: eventLocation, guestsNumber: guestCount, theme: eventTheme }); 
 
             axios
-                .post(`https://localhost:3031/dashboard`, {
+                .post(`http://localhost:3031/dashboard`, {
                     eventName: eventName,
                     eventDate: eventDate,
                     eventTime: eventTime,
                     eventLocation: eventLocation,
                     guestsNumber: guestCount,
                     eventTheme: eventTheme,
+                }, {
+                    headers: {
+                        'Content-Type' : 'application/json',
+                    },
                 })
                 .then(response => {
                     console.log('Success', response.data);
