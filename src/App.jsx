@@ -4,7 +4,7 @@ import Dashboard from './pages/Dashboard/Dashboard.jsx';
 import CreateEvent from './pages/Events/CreateEvent/CreateEvent.jsx';
 import ManageEvents from './pages/Events/ManageEvents/ManageEvents.jsx';
 import Invites from './pages/Invites/Invites.jsx';
-import NotFound404 from './pages/NotFound404/NotFound404.jsx';
+// import NotFound404 from './pages/NotFound404/NotFound404.jsx';
 import EditProfile from './pages/Settings/EditProfile/EditProfile.jsx';
 import Profile from './pages/Settings/Profile/Profile.jsx';
 import Login from './pages/UserAuthentication/Login/Login.jsx';
