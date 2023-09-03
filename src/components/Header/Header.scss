@@ -33,7 +33,9 @@ ul {
     padding-inline-start: 0;
     @include tablet {
         padding-inline-start: 40px;
-
+    }
+    @include desktop {
+        gap: 10px;
     }
 }
 
@@ -67,4 +69,8 @@ ul li a {
     height: 50px;
     width: 50px;
     border-radius: 20px;
+    @include desktop {
+        height: 50px;
+        width: 50px;
+    }
 }
