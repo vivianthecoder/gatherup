@@ -1,6 +1,7 @@
 import './Header.scss';
 import { Link, NavLink } from 'react-router-dom';
 import Logo from '../../assets/Logo/Logo1.png';
+import DBIcon from '../../assets/Icons/Home.svg';
 import EditIcon from '../../assets/Icons/Edit.svg';
 import CollabIcon from '../../assets/Icons/User_add.svg';
 import NotifIcon from '../../assets/Icons/Message.svg';
@@ -19,26 +20,32 @@ const Header = () => {
             <nav>
                 <ul>
                     <li>
+                        <NavLink to="/dashboard" activeClassName="active">
+                            <img src={DBIcon} alt='Dashboard Icon' className='navIcon'/> 
+                            <div className='navText'>Dashboard</div>
+                        </NavLink>
+                    </li>
+                    <li>
                         <NavLink to="/eventdetails" activeClassName="active">
-                            <img src={EditIcon} alt='EditEvent' className='navIcon'/> 
+                            <img src={EditIcon} alt='Edit Event Icon' className='navIcon'/> 
                             <div className='navText'>Event Details</div>
                         </NavLink>
                     </li>
                     <li>
                         <NavLink to="/collaborators" activeClassName="active">
-                            <img src={CollabIcon} alt='Collab' className='navIcon'/> 
+                            <img src={CollabIcon} alt='Collaborators Icon' className='navIcon'/> 
                             <div className='navText'>Collaborators</div>
                         </NavLink>
                     </li>
                     <li>
                         <NavLink to="/notifications" activeClassName="active">
-                            <img src={NotifIcon} alt='Notifications' className='navIcon'/> 
+                            <img src={NotifIcon} alt='Notifications Icon' className='navIcon'/> 
                             <div className='navText'>Notifications</div>
                         </NavLink>
                     </li>
                     <li>
                         <NavLink to="/theme&decor" activeClassName="active">
-                            <img src={TDIcon} alt='Theme&Decor' className='navIcon'/> 
+                            <img src={TDIcon} alt='Theme & Decor Icon' className='navIcon'/> 
                             <div className='navText'>Theme & Decor</div>
                         </NavLink>
                     </li>
