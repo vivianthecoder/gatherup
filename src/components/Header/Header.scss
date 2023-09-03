@@ -1,0 +1,70 @@
+@import "../../App.scss";
+
+header {
+    width: 30%;
+    height: 100vh;
+    background-color: #FECD1E;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    height: 60px;
+    width: 110px;
+    border-radius: 20px;
+    display: flex;
+    padding: 15px;
+    margin: auto;
+    @include tablet {
+        height: 90px;
+        width: 190px;
+    }
+    @include desktop {
+        height: 100px;
+        width: 200px;
+    }
+}
+
+ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding-inline-start: 0;
+    @include tablet {
+        padding-inline-start: 40px;
+
+    }
+}
+
+ul li a {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    @include tablet {
+        display: flex;
+        justify-content: flex-start;
+        font-size: 16px;
+    }
+}
+
+.navText {
+    @include mobile {
+        display: none;
+    }
+    @include tablet {
+        display: flex;
+        justify-content: flex-start;
+        padding-left: 10px;
+    }
+}
+
+.navIcon {
+    background-color: white;
+    color: black;
+    height: 50px;
+    width: 50px;
+    border-radius: 20px;
+}
