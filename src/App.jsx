@@ -15,22 +15,24 @@ import Footer from './components/Footer/Footer.jsx';
 
 function App() {
   return (
-    <BrowserRouter>
-    <Header />
-    <Routes>
-      <Route path='/dashboard' element={<Dashboard />} />
-      <Route path='/createevent' element={<CreateEvent />} />
-      <Route path='/manageevents' element={<ManageEvents />} />
-      <Route path='/invites' element={<Invites />} />
-      {/* <Route path='*' element={<NotFound404 />} /> */}
-      <Route path='/editprofile' element={<EditProfile />} />
-      <Route path='/profile' element={<Profile />} />
-      <Route path='/login' element={<Login />} />
-      <Route path='/loginreset' element={<LoginReset />} />
-      <Route path='/registration' element={<Registration />} />
-    </Routes>
-    <Footer />
-    </BrowserRouter>
+    <div className='screen-div'>
+      <BrowserRouter>
+        <Header />
+          <Routes>
+            <Route path='/dashboard' element={<Dashboard />} />
+            <Route path='/createevent' element={<CreateEvent />} />
+            <Route path='/manageevents' element={<ManageEvents />} />
+            <Route path='/invites' element={<Invites />} />
+            {/* <Route path='*' element={<NotFound404 />} /> */}
+            <Route path='/editprofile' element={<EditProfile />} />
+            <Route path='/profile' element={<Profile />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/loginreset' element={<LoginReset />} />
+            <Route path='/registration' element={<Registration />} />
+          </Routes>
+        <Footer />
+      </BrowserRouter>
+    </div>
   );
 }
 
