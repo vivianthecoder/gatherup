@@ -1,5 +1,6 @@
 import './EventForm.scss';
 import { useState } from 'react';
+import axios from 'axios';
 
 const EventForm = ({ addEvent, setShowForm }) => {
     const [eventName, setEventName] = useState('');
@@ -11,15 +12,34 @@ const EventForm = ({ addEvent, setShowForm }) => {
 
     const handleSubmit = () => {
         if (eventName && eventDate && eventTime && eventLocation&& guestCount && eventTheme) {
-            addEvent({ name: eventName, date: eventDate, time: eventTime, location: eventLocation, guestsNumber: guestCount, theme: eventTheme });
-            setEventName('');
-            setEventDate('');
-            setEventTime('');
-            setEventLocation('');
-            setGuestCount('');
-            setEventTheme('');
-            // To close the form
-            setShowForm(false);
+            addEvent({ name: eventName, date: eventDate, time: eventTime, location: eventLocation, guestsNumber: guestCount, theme: eventTheme }); 
+
+            axios
+                .post(`https://localhost:3031/dashboard`, {
+                    eventName: eventName,
+                    eventDate: eventDate,
+                    eventTime: eventTime,
+                    eventLocation: eventLocation,
+                    guestsNumber: guestCount,
+                    eventTheme: eventTheme,
+                })
+                .then(response => {
+                    console.log('Success', response.data);
+
+                    addEvent(response.data);
+
+                    setEventName('');
+                    setEventDate('');
+                    setEventTime('');
+                    setEventLocation('');
+                    setGuestCount('');
+                    setEventTheme('');
+                    // To close the form
+                    setShowForm(false);
+                })
+                .catch(error => {
+                    console.error('Error',  error);
+                })
         }
     };
 
