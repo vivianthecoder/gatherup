@@ -4,6 +4,7 @@ import EventForm from '../../components/Dashboard/EventForm/EventForm';
 import { useState, useEffect } from 'react';
 import AddEventIcon from '../../assets/Icons/Add_square.svg';
 import axios from 'axios';
+import format from 'date-fns/format';
 
 const Dashboard = () => {
     // To create the new event form state
@@ -12,6 +13,11 @@ const Dashboard = () => {
     const [events, setEvents] = useState([]);
     // To display selected event
     const [selectedEvent, setSelectedEvent] = useState(null);
+    const [searchQuery, setSearchQuery] = useState('');
+
+    const handleSearch = (query) => {
+        setSearchQuery(query)
+    };
 
     // To get data from all events
     function eventListRequest() {
@@ -48,25 +54,38 @@ const Dashboard = () => {
 
     return (
         <div className='dashboard-content'>
-            <h1 className='title'>Dashboard</h1>
-            <h2 className='sub-title'>My Events</h2>
-            <div className='event-container'>
-                <div className='event-creation-box'>
-                    <button className='first-add-btn' onClick={() => setShowForm(true)}>
-                        <img src={AddEventIcon} alt='Add Event' className='add-btn' />
-                        <h3>Create Event</h3>
-                    </button>
-                    {showForm && <EventForm addEvent={addEvent} setShowForm={setShowForm} />}
+            <div>
+                <h1 className='title'>Dashboard</h1>
+                <h2 className='sub-title'>My Events</h2>
+                <div className='event-container'>
+                    <div className='event-creation-box'>
+                        <button className='first-add-btn' onClick={() => setShowForm(true)}>
+                            <img src={AddEventIcon} alt='Add Event' className='add-btn' />
+                            <h3>Create Event</h3>
+                        </button>
+                        {showForm && <EventForm addEvent={addEvent} setShowForm={setShowForm} />}
+                    </div>
+                    {events
+                    .filter((event) =>
+                        event.eventName.toLowerCase().includes(searchQuery.toLowerCase())
+                        )
+                    .map((event, index) => (
+                        <EventBox 
+                            key={index} 
+                            eventName={event.eventName} 
+                            eventDate={format(new Date(event.eventDate), 'MMMM d, yyyy')} 
+                            eventTime={event.eventTime}
+                            eventListRequest={eventListRequest}
+                        />
+                    ))}
                 </div>
-                {events.map((event, index) => (
-                    <EventBox 
-                        key={index} 
-                        eventName={event.eventName} 
-                        eventDate={event.eventDate} 
-                        eventTime={event.eventTime}
-                        eventListRequest={eventListRequest}
-                    />
-                ))}
+            </div>
+            <div className='search-bar'>
+                <input
+                    type='text'
+                    placeholder='Search events...'
+                    onChange={(e) => handleSearch(e.target.value)}
+                />
             </div>
         </div>
     );
