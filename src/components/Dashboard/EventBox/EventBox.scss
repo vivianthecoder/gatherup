@@ -2,7 +2,14 @@
 
 .event-box {
     color: black;
-    border: 1px solid #333;
+    border: 1px solid black;
+    border-radius: 20px;
     padding: 10px;
     background: #f0f0f0;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+.event-box:hover {
+    background-color: #FBF4DB;
 }

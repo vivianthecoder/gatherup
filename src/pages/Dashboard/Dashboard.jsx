@@ -38,6 +38,10 @@ const Dashboard = () => {
         }])
     };
 
+    if (!setEvents) {
+        return<p>Loading...</p>
+    };
+
     console.log('Events:', events);
 
     return (

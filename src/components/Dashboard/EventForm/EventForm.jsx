@@ -26,12 +26,12 @@ const EventForm = ({ addEvent, setShowForm }) => {
     const handleSubmit = () => {
         // To check if all form fields are filled
         if (
-            event.name && 
-            event.date && 
-            event.time && 
+            event.eventName && 
+            event.eventDate && 
+            event.eventTime && 
             event.eventLocation && 
             event.guestsNumber && 
-            event.theme
+            event.eventTheme
         ) {
             // To post the data to our server data
             axios
@@ -45,16 +45,15 @@ const EventForm = ({ addEvent, setShowForm }) => {
                     addEvent(response.data);
 
                     setEvent({
-                    eventName: '',
-                    eventDate: '',
-                    eventTime: '',
-                    eventLocation: '',
-                    guestsNumber: '',
-                    eventTheme: ''
+                        eventName: '',
+                        eventDate: '',
+                        eventTime: '',
+                        eventLocation: '',
+                        guestsNumber: '',
+                        eventTheme: ''
                     });
                     // To close the form
                     setShowForm(false);
-                    
                 })
                 .catch(error => {
                     console.error('Error',  error);
