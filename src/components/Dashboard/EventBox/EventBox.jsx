@@ -2,7 +2,6 @@ import { useState } from 'react';
 import './EventBox.scss';
 
 const EventBox = ({ eventName, eventDate, eventTime, eventListRequest }) => {
-
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleDropDown = () => {
@@ -10,7 +9,6 @@ const EventBox = ({ eventName, eventDate, eventTime, eventListRequest }) => {
     };
 
     return (
-        
         <div className='event-box'>
             <button onClick={toggleDropDown} className='dropdown-btn'>
                 ...
@@ -24,10 +22,12 @@ const EventBox = ({ eventName, eventDate, eventTime, eventListRequest }) => {
                     </ul>
                 </div>
             )}
-            <div>
+            <div className='event-box-details'>
                 <h3>{eventName}</h3>
-                <p>Date: {eventDate}</p>
-                <p>Time: {eventTime}</p>
+                <div>
+                    <p>Date: {eventDate}</p>
+                    <p>Time: {eventTime}</p>
+                </div>
             </div>
         </div>
     )
