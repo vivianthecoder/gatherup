@@ -3,12 +3,21 @@
 .dashboard-content {
     display: flex;
     flex-direction: column;
-    padding: 50px;
+    padding: 15px 50px 50px 50px;
 }
 
 .title {
     color:black;
     font-size: 30px;
+    margin: 0px;
+}
+
+.sub-title {
+    color: rgb(0,0,0,0.5);
+    font-size: 18px;
+    border-bottom: rgb(0,0,0,0.5) solid 2px;
+    height: 45px;
+    margin-bottom: 20px;
 }
 
 .event-container {
@@ -19,10 +28,10 @@
 
 .event-creation-box {
     border: 1px solid #333;
+    border-radius: 20px;
     padding: 10px;
     background-color: #f0f0f0;
 }
-
 
 .add-btn {
     background-color: white;

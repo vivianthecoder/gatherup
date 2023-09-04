@@ -3,6 +3,7 @@ import { useState } from 'react';
 import axios from 'axios';
 
 const EventForm = ({ addEvent, setShowForm }) => {
+    // To create a new event object
     const [event, setEvent] = useState({
         eventName: '',
         eventDate:'',
@@ -12,6 +13,7 @@ const EventForm = ({ addEvent, setShowForm }) => {
         eventTheme: ''
     });
 
+    // To handle changes in form fields and update the event object
     const handleChange = (e) => {
         const { name, value } = e.target;
         setEvent({
@@ -20,15 +22,18 @@ const EventForm = ({ addEvent, setShowForm }) => {
         });
     };
 
+    // To handle the submit button clicked in the new event form field
     const handleSubmit = () => {
+        // To check if all form fields are filled
         if (
-            event.name && 
-            event.date && 
-            event.time && 
+            event.eventName && 
+            event.eventDate && 
+            event.eventTime && 
             event.eventLocation && 
             event.guestsNumber && 
-            event.theme
+            event.eventTheme
         ) {
+            // To post the data to our server data
             axios
                 .post(`http://localhost:3031/dashboard`, event, {
                     headers: {
@@ -40,16 +45,15 @@ const EventForm = ({ addEvent, setShowForm }) => {
                     addEvent(response.data);
 
                     setEvent({
-                    eventName: '',
-                    eventDate: '',
-                    eventTime: '',
-                    eventLocation: '',
-                    guestsNumber: '',
-                    eventTheme: ''
+                        eventName: '',
+                        eventDate: '',
+                        eventTime: '',
+                        eventLocation: '',
+                        guestsNumber: '',
+                        eventTheme: ''
                     });
                     // To close the form
                     setShowForm(false);
-                    
                 })
                 .catch(error => {
                     console.error('Error',  error);
