@@ -1,6 +1,8 @@
 @import "../../../App.scss";
 
 .event-box {
+    height: auto;
+    width: 180px;
     color: black;
     border: 1px solid black;
     border-radius: 20px;
@@ -8,8 +10,70 @@
     background: #f0f0f0;
     transition: background-color 0.3s;
     cursor: pointer;
-}
+    display: flex;
+    flex-direction: column;
 
-.event-box:hover {
-    background-color: #FBF4DB;
+    &:hover {
+        background-color: #FBF4DB;
+    }
+
+    .dropdown-btn {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: -10px;
+        padding: 0 10px 5px 0;
+        font-size: 20px;
+        font-weight: 800;
+        border: none;
+        outline: none;
+        background-color: transparent;
+        cursor: pointer;
+    
+        &:hover {
+            color: red;
+        }
+    }
+    
+    .dropdown-btn-menu {
+        display: none;
+        position: absolute;
+    }
+    
+    .dropdown-btn-menu.active {
+        display: block;
+        position: absolute;
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        // z-index: 1;
+        width: 140px;
+        padding: 5px 0;
+    
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            gap: 2px;
+        }
+    
+        li {
+            font-size: 14px;
+            padding: 10px;
+            cursor: pointer;
+    
+            &:hover {
+                font-weight: 600;
+            }
+        }
+    }
+
+    h3 {
+        margin: 0;
+    }
+    
+    p {
+        margin: 0;
+        padding-top: 5px;
+        font-size: 14px;
+    }
 }

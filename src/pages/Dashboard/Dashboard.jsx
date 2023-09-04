@@ -54,7 +54,7 @@ const Dashboard = () => {
                 <div className='event-creation-box'>
                     <button className='first-add-btn' onClick={() => setShowForm(true)}>
                         <img src={AddEventIcon} alt='Add Event' className='add-btn' />
-                        Create Event
+                        <h3>Create Event</h3>
                     </button>
                     {showForm && <EventForm addEvent={addEvent} setShowForm={setShowForm} />}
                 </div>
@@ -63,6 +63,7 @@ const Dashboard = () => {
                         key={index} 
                         eventName={event.eventName} 
                         eventDate={event.eventDate} 
+                        eventTime={event.eventTime}
                         eventListRequest={eventListRequest}
                     />
                 ))}

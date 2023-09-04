@@ -11,25 +11,34 @@
     display: flex;
     align-items: center;
     justify-content: center;
-}
 
-.event-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    background-color: #FBF4DB;
-    padding: 0 20px 20px 20px;
-    border: 1px solid #333;
-}
+    .event-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        background-color: #FBF4DB;
+        padding: 0 20px 20px 20px;
+        border: 1px solid #333;
+        border-radius: 20px;
 
-.exit-btn {
-    background: none;
-    border: none;
-    color: inherit;
-    cursor: pointer;
-    padding: 10px 0 0px 0;
-    font-weight: 800;
-    outline: 0;
-    display: flex;
-    justify-content: flex-end;
+        h3 {
+            margin: -10px 0 0 0;
+        }
+    }
+    
+    .exit-btn {
+        background: none;
+        border: none;
+        color: inherit;
+        cursor: pointer;
+        padding: 10px 0 0px 0;
+        font-weight: 800;
+        outline: 0;
+        display: flex;
+        justify-content: flex-end;
+
+        &:hover {
+            color: red;
+        }
+    }
 }
