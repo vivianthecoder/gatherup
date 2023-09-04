@@ -3,14 +3,15 @@ import EventBox from '../../components/Dashboard/EventBox/EventBox';
 import EventForm from '../../components/Dashboard/EventForm/EventForm';
 import { useState, useEffect } from 'react';
 import AddEventIcon from '../../assets/Icons/Add_square.svg';
-// import { useParams } from 'react-router';
 import axios from 'axios';
 
 const Dashboard = () => {
+    // To create the new event form state
     const [showForm, setShowForm] = useState(false);
+    // To create the events array
     const [events, setEvents] = useState([]);
-    // const { id } = useParams();
 
+    // To get data from all events
     function eventListRequest() {
         axios
             .get(`http://localhost:3031/dashboard`)
@@ -25,6 +26,7 @@ const Dashboard = () => {
         eventListRequest();
     }, []);
 
+    // To push the newEvent object onto the setEvents array with updated fields
     const addEvent = (newEvent) => {
         setEvents([...events, {
             eventName: newEvent.eventName,
