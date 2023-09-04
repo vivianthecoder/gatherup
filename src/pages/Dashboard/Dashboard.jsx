@@ -63,6 +63,7 @@ const Dashboard = () => {
                         key={index} 
                         eventName={event.eventName} 
                         eventDate={event.eventDate} 
+                        eventTime={event.eventTime}
                         eventListRequest={eventListRequest}
                     />
                 ))}

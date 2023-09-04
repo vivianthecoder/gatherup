@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './EventBox.scss';
 
-const EventBox = ({ eventName, eventDate, eventListRequest }) => {
+const EventBox = ({ eventName, eventDate, eventTime, eventListRequest }) => {
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -27,6 +27,7 @@ const EventBox = ({ eventName, eventDate, eventListRequest }) => {
             <div>
                 <h3>{eventName}</h3>
                 <p>Date: {eventDate}</p>
+                <p>Time: {eventTime}</p>
             </div>
         </div>
     )
