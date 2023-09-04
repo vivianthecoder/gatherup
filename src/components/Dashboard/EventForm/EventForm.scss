@@ -15,10 +15,15 @@
     .event-form {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 15px;
         background-color: #FBF4DB;
         padding: 0 20px 20px 20px;
         border: 1px solid #333;
+        border-radius: 20px;
+
+        h3 {
+            margin: -10px 0 0 0;
+        }
     }
     
     .exit-btn {
