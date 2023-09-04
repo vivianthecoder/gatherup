@@ -10,6 +10,8 @@ const Dashboard = () => {
     const [showForm, setShowForm] = useState(false);
     // To create the events array
     const [events, setEvents] = useState([]);
+    // To display selected event
+    const [selectedEvent, setSelectedEvent] = useState(null);
 
     // To get data from all events
     function eventListRequest() {
@@ -47,6 +49,7 @@ const Dashboard = () => {
     return (
         <div className='dashboard-content'>
             <h1 className='title'>Dashboard</h1>
+            <h2 className='sub-title'>My Events</h2>
             <div className='event-container'>
                 <div className='event-creation-box'>
                     <button className='first-add-btn' onClick={() => setShowForm(true)}>
