@@ -27,6 +27,8 @@ const EventDetails = () => {
             <p>Date: {eventDetails.eventDate}</p>
             <p>Time: {eventDetails.eventTime}</p>
             <p>Location: {eventDetails.eventLocation}</p>
+            <p>Attendee #: {eventDetails.guestsCount}</p>
+            <p>Theme & Decor: {eventDetails.eventTheme}</p>
         </div>
     )
 }
