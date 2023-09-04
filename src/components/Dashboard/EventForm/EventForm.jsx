@@ -3,43 +3,53 @@ import { useState } from 'react';
 import axios from 'axios';
 
 const EventForm = ({ addEvent, setShowForm }) => {
-    const [eventName, setEventName] = useState('');
-    const [eventDate, setEventDate] = useState('');
-    const [eventTime, setEventTime] = useState('');
-    const [eventLocation, setEventLocation]= useState('');
-    const [guestCount, setGuestCount] = useState('');
-    const [eventTheme, setEventTheme] = useState('');
+    const [event, setEvent] = useState({
+        eventName: '',
+        eventDate:'',
+        eventTime: '',
+        eventLocation: '',
+        guestsNumber: '',
+        eventTheme: ''
+    });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setEvent({
+            ...event,
+            [name]: value   
+        });
+    };
 
     const handleSubmit = () => {
-        if (eventName && eventDate && eventTime && eventLocation && guestCount && eventTheme) {
-            addEvent({ name: eventName, date: eventDate, eventTime: eventTime, eventLocation: eventLocation, guestsNumber: guestCount, theme: eventTheme }); 
-
+        if (
+            event.name && 
+            event.date && 
+            event.time && 
+            event.eventLocation && 
+            event.guestsNumber && 
+            event.theme
+        ) {
             axios
-                .post(`http://localhost:3031/dashboard`, {
-                    eventName: eventName,
-                    eventDate: eventDate,
-                    eventTime: eventTime,
-                    eventLocation: eventLocation,
-                    guestsNumber: guestCount,
-                    eventTheme: eventTheme,
-                }, {
+                .post(`http://localhost:3031/dashboard`, event, {
                     headers: {
                         'Content-Type' : 'application/json',
                     },
                 })
                 .then(response => {
                     console.log('Success', response.data);
-
                     addEvent(response.data);
 
-                    setEventName('');
-                    setEventDate('');
-                    setEventTime('');
-                    setEventLocation('');
-                    setGuestCount('');
-                    setEventTheme('');
+                    setEvent({
+                    eventName: '',
+                    eventDate: '',
+                    eventTime: '',
+                    eventLocation: '',
+                    guestsNumber: '',
+                    eventTheme: ''
+                    });
                     // To close the form
                     setShowForm(false);
+                    
                 })
                 .catch(error => {
                     console.error('Error',  error);
@@ -54,36 +64,42 @@ const EventForm = ({ addEvent, setShowForm }) => {
                 <input
                     type='text'
                     placeholder='Event Name'
-                    value={eventName}
-                    onChange={(e) => setEventName(e.target.value)}
+                    name='eventName'
+                    value={event.eventName}
+                    onChange={handleChange}
                 />
                 <input  
                     type='date'
-                    value={eventDate}
-                    onChange={(e) => setEventDate(e.target.value)}
+                    name='eventDate'
+                    value={event.eventDate}
+                    onChange={handleChange}
                 />
                 <input  
                     type='time'
-                    value={eventTime}
-                    onChange={(e) => setEventTime(e.target.value)}
+                    name='eventTime'
+                    value={event.eventTime}
+                    onChange={handleChange}
                 />
                 <input  
-                    type='location'
+                    type='text'
                     placeholder='Address'
-                    value={eventLocation}
-                    onChange={(e) => setEventLocation(e.target.value)}
+                    name='eventLocation'
+                    value={event.eventLocation}
+                    onChange={handleChange}
                 />
                 <input  
-                    type='guestsNumber'
+                    type='number'
                     placeholder='Guest Count'
-                    value={guestCount}
-                    onChange={(e) => setGuestCount(e.target.value)}
+                    name='guestsNumber'
+                    value={event.guestsNumber}
+                    onChange={handleChange}
                 />
                 <input  
-                    type='theme'
+                    type='text'
                     placeholder='Theme & Decor'
-                    value={eventTheme}
-                    onChange={(e) => setEventTheme(e.target.value)}
+                    name='eventTheme'
+                    value={event.eventTheme}
+                    onChange={handleChange}
                 />
                 <button onClick={handleSubmit}>Submit</button>
             </div>
