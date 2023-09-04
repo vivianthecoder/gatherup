@@ -31,25 +31,33 @@
     border-radius: 20px;
     padding: 10px;
     background-color: #f0f0f0;
-}
 
-.add-btn {
-    background-color: white;
-    color: black;
-    height: 50px;
-    width: 50px;
-    border-radius: 20px;
-}
+    &:hover {
+        background-color: #FBF4DB;
+    }
 
-.first-add-btn {
-    background-color: none;
-    border: none;
-    margin: 0;
-    padding: 0;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+    .first-add-btn {
+        background-color: transparent;
+        border: none;
+        margin: 0;
+        padding: 0;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    
+        &:hover {
+            background-color: transparent;
+        }
+    }
+
+    .add-btn {
+        background-color: white;
+        color: black;
+        height: 50px;
+        width: 50px;
+        border-radius: 20px;
+    }
 }
