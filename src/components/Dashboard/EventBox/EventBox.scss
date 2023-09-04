@@ -4,7 +4,6 @@
     height: auto;
     width: 180px;
     color: black;
-    border: 1px solid black;
     border-radius: 20px;
     padding: 10px;
     background: #f0f0f0;
@@ -15,6 +14,10 @@
 
     &:hover {
         background-color: #FBF4DB;
+    }
+
+    .event-box-details {
+        align-self: baseline;
     }
 
     .dropdown-btn {

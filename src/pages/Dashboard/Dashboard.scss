@@ -5,6 +5,7 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 15px 50px 50px 50px;
+    width: 70%;
 
     .search-bar {
         display: flex;
@@ -42,7 +43,6 @@
 }
 
 .event-creation-box {
-    border: 1px solid #333;
     border-radius: 20px;
     padding: 10px;
     background-color: #f0f0f0;
