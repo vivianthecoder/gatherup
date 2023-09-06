@@ -84,13 +84,14 @@ const Dashboard = () => {
                             eventName={event.eventName} 
                             eventDate={format(new Date(event.eventDate), 'MMMM d, yyyy')} 
                             eventTime={event.eventTime}
-                            eventListRequest={eventListRequest}
-                            addEvent={addEvent}
+                            eventLocation={event.eventLocation}
+                            guestsNumber={event.guestsNumber}
+                            eventTheme={event.eventTheme}
                         />
                     ))}
 
                     {selectedEvent && (
-                        <EventDetails event={selectedEvent} eventId={selectedEvent.id} onClose={closeEventDetails} />
+                        <EventDetails event={selectedEvent} eventId={selectedEvent.id} closeEventDetails={closeEventDetails} />
                     )}
                 </div>
             </div>

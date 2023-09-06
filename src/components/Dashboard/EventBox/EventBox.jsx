@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import './EventBox.scss';
 import EventDetails from '../EventDetails/EventDetails';
-import format from 'date-fns/format';
 
-const EventBox = ({ eventName, eventDate, eventTime, addEvent, eventListRequest }) => {
+const EventBox = ({ eventName, eventDate, eventTime, eventLocation, guestsNumber, eventTheme }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [showEventDetails, setShowEventDetails] = useState(false);
 
@@ -41,6 +40,9 @@ const EventBox = ({ eventName, eventDate, eventTime, addEvent, eventListRequest 
                             eventName,
                             eventDate,
                             eventTime,
+                            eventLocation,
+                            guestsNumber,
+                            eventTheme,
                         }}
                         closeEventDetails={() => setShowEventDetails(false)}
                     />

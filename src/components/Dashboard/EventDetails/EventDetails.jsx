@@ -7,7 +7,7 @@ const EventDetails = ({ event, eventId, closeEventDetails }) => {
     const [isEditing, setIsEditing] = useState(false);
 
     useEffect(() => {
-        if(event) {
+        if (event) {
             setEventDetails(event)
         } else {
             axios
@@ -39,6 +39,7 @@ const EventDetails = ({ event, eventId, closeEventDetails }) => {
             .then(response => {
                 setEventDetails(response.data)
                 setIsEditing(false)
+                closeEventDetails();
             })
             .catch(error => {
                 console.error('Error updating event data', error);
@@ -50,22 +51,25 @@ const EventDetails = ({ event, eventId, closeEventDetails }) => {
     }
 
     return (
-        <div className='overlay'>
+        <div className='overlay' onClick={(e) => e.stopPropagation()}>
             <div className='event-form'>
-                <button className='exit-btn' onClick={() => closeEventDetails(false)}>X</button>
+                <button className='exit-btn' onClick={closeEventDetails}>
+                    X
+                </button>
                 <h3>{eventDetails.eventName}</h3>
                 {!isEditing ? (
                     <div>
-                        <p>Event Name: {eventDetails.eventName}</p>
                         <p>Date: {eventDetails.eventDate}</p>
                         <p>Time:  {eventDetails.eventTime}</p>
                         <p>Location: {eventDetails.eventLocation}</p>
                         <p>Attendee #: {eventDetails.guestsNumber}</p>
                         <p>Theme & Decor: {eventDetails.eventTheme}</p>
-                        <button className="edit-btn" onClick={handleEditClick}>Edit</button>
+                        <button className="edit-btn" onClick={handleEditClick}>
+                            Edit
+                        </button>
                     </div>
                 ) : ( 
-                    <div>
+                    <div className='edit-mode'>
                         <input
                             type='text'
                             name='eventName'
