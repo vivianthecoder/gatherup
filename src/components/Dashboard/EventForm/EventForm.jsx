@@ -106,7 +106,7 @@ const EventForm = ({ addEvent, setShowForm }) => {
                     value={event.eventTheme}
                     onChange={handleChange}
                 />
-                <button onClick={handleSubmit}>Submit</button>
+                <button className='submit-btn' onClick={handleSubmit}>Submit</button>
             </div>
         </div>
     )

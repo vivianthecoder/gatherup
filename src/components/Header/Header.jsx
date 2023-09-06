@@ -32,9 +32,9 @@ const Header = () => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/collaborators" activeClassName="active">
+                        <NavLink to="/collaborated-events" activeClassName="active">
                             <img src={CollabIcon} alt='Collaborators Icon' className='navIcon'/> 
-                            <div className='navText'>Collaborators</div>
+                            <div className='navText'>Co-Hosted Events</div>
                         </NavLink>
                     </li>
                     <li>
