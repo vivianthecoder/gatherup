@@ -11,9 +11,10 @@ const EventDetails = ({ event, eventId, closeEventDetails }) => {
             setEventDetails(event)
         } else {
             axios
-                .get(`http://localhost:3031/events/${eventId}`)
+                .get(`http://localhost:3031/dashboard/${eventId}`)
                 .then(response => {
-                    setEventDetails(response.data)
+                    const eventWithId = { ...response.data, id: eventId }
+                    setEventDetails(eventWithId)
                 })
                 .catch(error => {
                     console.error('Error fetching data', error)
@@ -35,7 +36,11 @@ const EventDetails = ({ event, eventId, closeEventDetails }) => {
 
     const handleSubmit = () => {
         axios 
-            .put(`http://localhost:3031/events/${eventDetails.id}`, eventDetails)
+            .put(`http://localhost:3031/dashboard/${eventDetails.id}`, eventDetails, {
+                headers: {
+                    'Content-Type' : 'application/json',
+                },
+            })
             .then(response => {
                 setEventDetails(response.data)
                 setIsEditing(false)
@@ -73,37 +78,37 @@ const EventDetails = ({ event, eventId, closeEventDetails }) => {
                         <input
                             type='text'
                             name='eventName'
-                            value={eventDetails.eventName}
+                            value={eventDetails.eventName || ''}
                             onChange={handleChange}
                         />
                         <input
                             type='text'
                             name='eventDate'
-                            value={eventDetails.eventDate}
+                            value={eventDetails.eventDate || ''}
                             onChange={handleChange}
                         />
                         <input
                             type='text'
                             name='eventTime'
-                            value={eventDetails.eventTime}
+                            value={eventDetails.eventTime || ''}
                             onChange={handleChange}
                         />
                         <input
                             type='text'
                             name='eventLocation'
-                            value={eventDetails.eventLocation}
+                            value={eventDetails.eventLocation || ''}
                             onChange={handleChange}
                         />
                         <input
                             type='text'
                             name='guestsNumber'
-                            value={eventDetails.guestsNumber}
+                            value={eventDetails.guestsNumber || ''}
                             onChange={handleChange}
                         />
                         <input
                             type='text'
                             name='eventTheme'
-                            value={eventDetails.eventTheme}
+                            value={eventDetails.eventTheme || ''}
                             onChange={handleChange}
                         />
                         <button className="submit-btn" onClick={handleSubmit}>Submit</button>

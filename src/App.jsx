@@ -19,7 +19,8 @@ function App() {
         <Header />
           <Routes>
             <Route path='/dashboard' element={<Dashboard />} />
-            <Route path='/event/:eventId' element={<EventDetails />} />
+            <Route path='/dashboard/:eventId' element={<EventDetails />} />
+            {/* <Route path='/event/:eventDetailsId' element={<EventDetails />} /> */}
             <Route path='/invites' element={<Invites />} />
             {/* <Route path='*' element={<NotFound404 />} /> */}
             <Route path='/editprofile' element={<EditProfile />} />
