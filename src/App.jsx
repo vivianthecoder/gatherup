@@ -2,8 +2,6 @@ import './App.scss';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Dashboard from './pages/Dashboard/Dashboard.jsx';
 import EventDetails from './components/Dashboard/EventDetails/EventDetails';
-import CreateEvent from './pages/Events/CreateEvent/CreateEvent.jsx';
-import ManageEvents from './pages/Events/ManageEvents/ManageEvents.jsx';
 import Invites from './pages/Invites/Invites.jsx';
 // import NotFound404 from './pages/NotFound404/NotFound404.jsx';
 import EditProfile from './pages/Settings/EditProfile/EditProfile.jsx';
@@ -22,8 +20,6 @@ function App() {
           <Routes>
             <Route path='/dashboard' element={<Dashboard />} />
             <Route path='/event/:eventId' element={<EventDetails />} />
-            <Route path='/createevent' element={<CreateEvent />} />
-            <Route path='/manageevents' element={<ManageEvents />} />
             <Route path='/invites' element={<Invites />} />
             {/* <Route path='*' element={<NotFound404 />} /> */}
             <Route path='/editprofile' element={<EditProfile />} />

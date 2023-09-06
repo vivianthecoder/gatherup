@@ -6,6 +6,9 @@ header {
     background-color: #FECD1E;
     display: flex;
     flex-direction: column;
+    @include mobile {
+        height: auto;
+    }
 }
 
 .logo {
@@ -49,6 +52,10 @@ ul li a {
         display: flex;
         justify-content: flex-start;
         font-size: 16px;
+    }
+
+    &:hover {
+        font-weight: 600;
     }
 }
 

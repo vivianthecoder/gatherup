@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import AddEventIcon from '../../assets/Icons/Add_square.svg';
 import axios from 'axios';
 import format from 'date-fns/format';
+import EventDetails from '../../components/Dashboard/EventDetails/EventDetails';
 
 const Dashboard = () => {
     // To create the new event form state
@@ -14,6 +15,14 @@ const Dashboard = () => {
     // To display selected event
     const [selectedEvent, setSelectedEvent] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
+
+    const showEventDetails = (event) => {
+        setSelectedEvent(event)
+    };
+
+    const closeEventDetails = () => {
+        setSelectedEvent(null)
+    };
 
     const handleSearch = (query) => {
         setSearchQuery(query)
@@ -46,7 +55,7 @@ const Dashboard = () => {
         }])
     };
 
-    if (!setEvents) {
+    if (!events.length) {
         return<p>Loading...</p>
     };
 
@@ -76,8 +85,13 @@ const Dashboard = () => {
                             eventDate={format(new Date(event.eventDate), 'MMMM d, yyyy')} 
                             eventTime={event.eventTime}
                             eventListRequest={eventListRequest}
+                            addEvent={addEvent}
                         />
                     ))}
+
+                    {selectedEvent && (
+                        <EventDetails event={selectedEvent} eventId={selectedEvent.id} onClose={closeEventDetails} />
+                    )}
                 </div>
             </div>
             <div className='search-bar'>
