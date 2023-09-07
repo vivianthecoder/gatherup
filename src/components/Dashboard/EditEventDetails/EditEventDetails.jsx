@@ -7,9 +7,8 @@ const EditEventDetails = ({ event, eventId, onSave, onCancel }) => {
     const [editedEvent, setEditedEvent] = useState(event);
 
     useEffect(() => {
-        if (event) {
-            setEditedEvent(event)
-        } else {
+
+        if (!event) {
             axios
                 .get(`http://localhost:3031/dashboard/${eventId}`)
                 .then(response => {

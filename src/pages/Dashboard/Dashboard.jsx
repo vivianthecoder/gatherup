@@ -10,11 +10,12 @@ import EditEventDetails from '../../components/Dashboard/EditEventDetails/EditEv
 
 const Dashboard = () => {
     // To store state variables
-    const [showForm, setShowForm] = useState(false);
     const [events, setEvents] = useState([]);
     const [selectedEvent, setSelectedEvent] = useState(null);
+    const [showForm, setShowForm] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
     const [isEditEventDetailsVisible, setEditEventDetailsVisible] = useState(false);
+    const [eventDetails, setEventDetails] = useState({});
 
     // Event handlers
     const closeEventDetails = () => {
@@ -24,19 +25,30 @@ const Dashboard = () => {
         setSearchQuery(query)
     };
     const handleSaveEdit =(editedEvent) => {
-        setSelectedEvent(null)
+        axios
+            .put(`http://localhost:3031/dashboard/${editedEvent.id}`, editedEvent, {
+                headers: {
+                    'Content-Type': 'application.json',
+                },
+            })
+            .then((response) => {
+                eventListRequest();        
+                setSelectedEvent(null)
+            })
+            .catch((error) => {
+                console.error('Error updating event data', error)
+            })
     };
 
-    // To get data from all events
+    // // To get event data from all events
     function eventListRequest() {
-        axios
-            .get(`http://localhost:3031/dashboard`)
-            .then(response => {
-                console.log('Successfully received data', response.data)
-                setEvents(response.data)
-            }).catch((error) => console.log('Failed fetching data', error)
-        );
-    }
+         axios
+             .get(`http://localhost:3031/dashboard`)
+             .then(response => {
+                 setEvents(response.data)
+             }).catch((error) => console.log('Failed fetching data', error)
+         );
+     }
 
     // To push the newEvent object onto the setEvents array with updated fields
     const addEvent = (newEvent) => {
@@ -46,19 +58,18 @@ const Dashboard = () => {
             eventTime: newEvent.eventTime,
             eventLocation: newEvent.eventLocation,
             guestsNumber: newEvent.guestsNumber,
-            eventTheme: newEvent.eventTheme 
+            eventTheme: newEvent.eventTheme,
+            eventImage: newEvent.eventImage
         }])
     };
 
     useEffect(() => {
         eventListRequest();
-    }, []);
+    }, [selectedEvent]);
 
     if (!events.length) {
         return<p>Loading...</p>
     };
-
-    console.log('Events:', events);
 
     return (
         <div className='dashboard-content'>
@@ -86,24 +97,25 @@ const Dashboard = () => {
                             eventLocation={event.eventLocation}
                             guestsNumber={event.guestsNumber}
                             eventTheme={event.eventTheme}
+                            eventImage={event.eventImage}
                         />
                     ))}
 
-                    {selectedEvent ? selectedEvent.id && (
+                    {selectedEvent && (
                         <EventDetails 
                             event={selectedEvent} 
                             eventId={selectedEvent.id} 
                             closeEventDetails={closeEventDetails} 
                         />
-                    ) : null }
+                    )}
 
                     {isEditEventDetailsVisible && (
                         <EditEventDetails 
-                            event={selectedEvent} 
-                            eventId={selectedEvent.id} 
-                            closeEventDetails={closeEventDetails} 
+                            event={eventDetails} 
+                            eventId={eventDetails.id} 
                             onSave={handleSaveEdit}
                             onCancel={() => setEditEventDetailsVisible(false)}
+                            closeEventDetails={closeEventDetails} 
                         />
                     )}
                 </div>

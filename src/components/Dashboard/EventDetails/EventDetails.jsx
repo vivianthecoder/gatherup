@@ -8,17 +8,19 @@ const EventDetails = ({ event, eventId, closeEventDetails }) => {
     const [isEditing, setIsEditing] = useState(false);
     // eslint-disable-next-line 
     const [isLoading, setIsLoading] = useState(false);
+    const [selectedImage, setSelectedImage] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
         if (event) {
             setEventDetails(event)
-        } else {
+        } else if (eventId) {
             axios
                 .get(`http://localhost:3031/dashboard/${eventId}`)
                 .then(response => {
-                    const eventWithId = { ...response.data, id: eventId }
-                    setEventDetails(eventWithId)
+                    console.log('response data:', response.data);
+                    const eventWithId = response.data;
+                    setEventDetails({ ...eventWithId, id: eventId });
                 })
                 .catch(error => {
                     console.error('Error fetching data', error)
@@ -26,8 +28,9 @@ const EventDetails = ({ event, eventId, closeEventDetails }) => {
             }
         }, [eventId, event]);
 
+    // To handle the edit button click
     const handleEditClick = () => {
-        setIsEditing(true)
+        setIsEditing(true)  // To enable editing mode
     };
 
     const handleChange = (e) => {
@@ -38,7 +41,23 @@ const EventDetails = ({ event, eventId, closeEventDetails }) => {
         })
     };
 
+    const handleImageChange= (e) => {
+        const file = e.target.files[0];
+        setSelectedImage(file);
+    };
+
+    // To handle the form submission
     const handleSubmit = () => {
+
+        console.log('Updating ID', eventDetails.id);
+        console.log('Sending data', eventDetails);
+
+        const formData = new FormData();
+        formData.append('eventDetails', JSON.stringify(eventDetails));
+        if (selectedImage) {
+            formData.append('eventImage', selectedImage)
+        }
+
         axios 
             .put(`http://localhost:3031/dashboard/${eventDetails.id}`, eventDetails, {
                 headers: {
@@ -74,6 +93,19 @@ const EventDetails = ({ event, eventId, closeEventDetails }) => {
                     X
                 </button>
                 <h2>{eventDetails.eventName}</h2>
+                <div className='img-container'>
+                    <img src={eventDetails.eventImage} alt={eventDetails.eventName}/>
+                    <label className='img-upload-label'>
+                        <input
+                            className='img-upload-input'
+                            type="file"
+                            accept="image/*"
+                            onChange={handleImageChange}
+                        />
+                        Upload Image
+                    </label>
+                </div>
+                
                 <h3>Event Overview</h3>
                 {!isEditing ? (
                     <div>
