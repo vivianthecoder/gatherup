@@ -38,15 +38,15 @@ const Header = () => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/notifications" activeClassName="active">
-                            <img src={NotifIcon} alt='Notifications Icon' className='navIcon'/> 
-                            <div className='navText'>Notifications</div>
+                        <NavLink to="/event-poster" activeClassName="active">
+                            <img src={TDIcon} alt='Create Event Poster Icon' className='navIcon'/> 
+                            <div className='navText'>Create Event Poster</div>
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/theme&decor" activeClassName="active">
-                            <img src={TDIcon} alt='Theme & Decor Icon' className='navIcon'/> 
-                            <div className='navText'>Theme & Decor</div>
+                        <NavLink to="/notifications" activeClassName="active">
+                            <img src={NotifIcon} alt='Notifications Icon' className='navIcon'/> 
+                            <div className='navText'>Notifications</div>
                         </NavLink>
                     </li>
                     <li>

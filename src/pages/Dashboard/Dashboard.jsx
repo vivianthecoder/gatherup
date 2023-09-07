@@ -6,26 +6,25 @@ import AddEventIcon from '../../assets/Icons/Add_square.svg';
 import axios from 'axios';
 import format from 'date-fns/format';
 import EventDetails from '../../components/Dashboard/EventDetails/EventDetails';
+import EditEventDetails from '../../components/Dashboard/EditEventDetails/EditEventDetails';
 
 const Dashboard = () => {
-    // To create the new event form state
+    // To store state variables
     const [showForm, setShowForm] = useState(false);
-    // To create the events array
     const [events, setEvents] = useState([]);
-    // To display selected event
     const [selectedEvent, setSelectedEvent] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
+    const [isEditEventDetailsVisible, setEditEventDetailsVisible] = useState(false);
 
-    const showEventDetails = (event) => {
-        setSelectedEvent(event)
-    };
-
+    // Event handlers
     const closeEventDetails = () => {
         setSelectedEvent(null)
     };
-
     const handleSearch = (query) => {
         setSearchQuery(query)
+    };
+    const handleSaveEdit =(editedEvent) => {
+        setSelectedEvent(null)
     };
 
     // To get data from all events
@@ -39,10 +38,6 @@ const Dashboard = () => {
         );
     }
 
-    useEffect(() => {
-        eventListRequest();
-    }, []);
-
     // To push the newEvent object onto the setEvents array with updated fields
     const addEvent = (newEvent) => {
         setEvents([...events, {
@@ -54,6 +49,10 @@ const Dashboard = () => {
             eventTheme: newEvent.eventTheme 
         }])
     };
+
+    useEffect(() => {
+        eventListRequest();
+    }, []);
 
     if (!events.length) {
         return<p>Loading...</p>
@@ -90,8 +89,22 @@ const Dashboard = () => {
                         />
                     ))}
 
-                    {selectedEvent && (
-                        <EventDetails event={selectedEvent} eventId={selectedEvent.id} closeEventDetails={closeEventDetails} />
+                    {selectedEvent ? selectedEvent.id && (
+                        <EventDetails 
+                            event={selectedEvent} 
+                            eventId={selectedEvent.id} 
+                            closeEventDetails={closeEventDetails} 
+                        />
+                    ) : null }
+
+                    {isEditEventDetailsVisible && (
+                        <EditEventDetails 
+                            event={selectedEvent} 
+                            eventId={selectedEvent.id} 
+                            closeEventDetails={closeEventDetails} 
+                            onSave={handleSaveEdit}
+                            onCancel={() => setEditEventDetailsVisible(false)}
+                        />
                     )}
                 </div>
             </div>

@@ -1,10 +1,14 @@
 import './EventDetails.scss';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const EventDetails = ({ event, eventId, closeEventDetails }) => {
     const [eventDetails, setEventDetails] = useState({});
     const [isEditing, setIsEditing] = useState(false);
+    // eslint-disable-next-line 
+    const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (event) {
@@ -51,8 +55,16 @@ const EventDetails = ({ event, eventId, closeEventDetails }) => {
             })
     };
 
-    if(!eventDetails) {
+    const navigateToEditEvent = () => {
+        navigate(`/dashboard/edit/${eventId}`)
+    };
+
+    if(isLoading) {
         return <div>Loading...</div>
+    }
+
+    if(!eventDetails) {
+        return <div>Data not found...</div>
     }
 
     return (
@@ -61,7 +73,8 @@ const EventDetails = ({ event, eventId, closeEventDetails }) => {
                 <button className='exit-btn' onClick={closeEventDetails}>
                     X
                 </button>
-                <h3>{eventDetails.eventName}</h3>
+                <h2>{eventDetails.eventName}</h2>
+                <h3>Event Overview</h3>
                 {!isEditing ? (
                     <div>
                         <p>Date: {eventDetails.eventDate}</p>
@@ -70,43 +83,49 @@ const EventDetails = ({ event, eventId, closeEventDetails }) => {
                         <p>Attendee #: {eventDetails.guestsNumber}</p>
                         <p>Theme & Decor: {eventDetails.eventTheme}</p>
                         <button className="edit-btn" onClick={handleEditClick}>
-                            Edit
+                            Quick Edit
                         </button>
                     </div>
                 ) : ( 
                     <div className='edit-mode'>
                         <input
                             type='text'
+                            placeholder='Event Name'
                             name='eventName'
                             value={eventDetails.eventName || ''}
                             onChange={handleChange}
                         />
                         <input
                             type='text'
+                            placeholder='Event Date'
                             name='eventDate'
                             value={eventDetails.eventDate || ''}
                             onChange={handleChange}
                         />
                         <input
                             type='text'
+                            placeholder='Event Time'
                             name='eventTime'
                             value={eventDetails.eventTime || ''}
                             onChange={handleChange}
                         />
                         <input
                             type='text'
+                            placeholder='Event Location'
                             name='eventLocation'
                             value={eventDetails.eventLocation || ''}
                             onChange={handleChange}
                         />
                         <input
                             type='text'
+                            placeholder='Guest Count'
                             name='guestsNumber'
                             value={eventDetails.guestsNumber || ''}
                             onChange={handleChange}
                         />
                         <input
                             type='text'
+                            placeholder='Theme & Decor'
                             name='eventTheme'
                             value={eventDetails.eventTheme || ''}
                             onChange={handleChange}
@@ -114,6 +133,11 @@ const EventDetails = ({ event, eventId, closeEventDetails }) => {
                         <button className="submit-btn" onClick={handleSubmit}>Submit</button>
                     </div>
                 )}
+                <button
+                    className='edit-link-btn'
+                    onClick={navigateToEditEvent}>
+                        Edit More Details
+                </button>
             </div>
         </div>
     )
