@@ -65,7 +65,7 @@ const EventForm = ({ addEvent, setShowForm }) => {
         <div className='overlay'>
             <div className='event-form'>
                 <button className='exit-btn' onClick={() => setShowForm(false)}>X</button>
-                <h3>Yay! A New Event</h3>
+                <h2>Yay! A New Event</h2>
                 <input
                     type='text'
                     placeholder='Event Name'

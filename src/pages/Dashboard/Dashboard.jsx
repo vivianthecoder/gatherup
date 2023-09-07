@@ -6,42 +6,49 @@ import AddEventIcon from '../../assets/Icons/Add_square.svg';
 import axios from 'axios';
 import format from 'date-fns/format';
 import EventDetails from '../../components/Dashboard/EventDetails/EventDetails';
+import EditEventDetails from '../../components/Dashboard/EditEventDetails/EditEventDetails';
 
 const Dashboard = () => {
-    // To create the new event form state
-    const [showForm, setShowForm] = useState(false);
-    // To create the events array
+    // To store state variables
     const [events, setEvents] = useState([]);
-    // To display selected event
     const [selectedEvent, setSelectedEvent] = useState(null);
+    const [showForm, setShowForm] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
+    const [isEditEventDetailsVisible, setEditEventDetailsVisible] = useState(false);
+    const [eventDetails, setEventDetails] = useState({});
 
-    const showEventDetails = (event) => {
-        setSelectedEvent(event)
-    };
-
+    // Event handlers
     const closeEventDetails = () => {
         setSelectedEvent(null)
     };
-
     const handleSearch = (query) => {
         setSearchQuery(query)
     };
-
-    // To get data from all events
-    function eventListRequest() {
+    const handleSaveEdit =(editedEvent) => {
         axios
-            .get(`http://localhost:3031/dashboard`)
-            .then(response => {
-                console.log('Successfully received data', response.data)
-                setEvents(response.data)
-            }).catch((error) => console.log('Failed fetching data', error)
-        );
-    }
+            .put(`http://localhost:3031/dashboard/${editedEvent.id}`, editedEvent, {
+                headers: {
+                    'Content-Type': 'application.json',
+                },
+            })
+            .then((response) => {
+                eventListRequest();        
+                setSelectedEvent(null)
+            })
+            .catch((error) => {
+                console.error('Error updating event data', error)
+            })
+    };
 
-    useEffect(() => {
-        eventListRequest();
-    }, []);
+    // // To get event data from all events
+    function eventListRequest() {
+         axios
+             .get(`http://localhost:3031/dashboard`)
+             .then(response => {
+                 setEvents(response.data)
+             }).catch((error) => console.log('Failed fetching data', error)
+         );
+     }
 
     // To push the newEvent object onto the setEvents array with updated fields
     const addEvent = (newEvent) => {
@@ -51,15 +58,18 @@ const Dashboard = () => {
             eventTime: newEvent.eventTime,
             eventLocation: newEvent.eventLocation,
             guestsNumber: newEvent.guestsNumber,
-            eventTheme: newEvent.eventTheme 
+            eventTheme: newEvent.eventTheme,
+            eventImage: newEvent.eventImage
         }])
     };
+
+    useEffect(() => {
+        eventListRequest();
+    }, [selectedEvent]);
 
     if (!events.length) {
         return<p>Loading...</p>
     };
-
-    console.log('Events:', events);
 
     return (
         <div className='dashboard-content'>
@@ -87,11 +97,26 @@ const Dashboard = () => {
                             eventLocation={event.eventLocation}
                             guestsNumber={event.guestsNumber}
                             eventTheme={event.eventTheme}
+                            eventImage={event.eventImage}
                         />
                     ))}
 
                     {selectedEvent && (
-                        <EventDetails event={selectedEvent} eventId={selectedEvent.id} closeEventDetails={closeEventDetails} />
+                        <EventDetails 
+                            event={selectedEvent} 
+                            eventId={selectedEvent.id} 
+                            closeEventDetails={closeEventDetails} 
+                        />
+                    )}
+
+                    {isEditEventDetailsVisible && (
+                        <EditEventDetails 
+                            event={eventDetails} 
+                            eventId={eventDetails.id} 
+                            onSave={handleSaveEdit}
+                            onCancel={() => setEditEventDetailsVisible(false)}
+                            closeEventDetails={closeEventDetails} 
+                        />
                     )}
                 </div>
             </div>

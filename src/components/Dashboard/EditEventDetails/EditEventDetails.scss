@@ -17,28 +17,33 @@
         flex-direction: column;
         gap: 15px;
         background-color: #f0f0f0;
-        padding: 0 40px 40px 40px;
+        padding: 0 20px 20px 20px;
         border: transparent;
         border-radius: 20px;
 
         h2 {
-            margin: -10px 0 0 0;
+            margin: -5px 0 0 0;
+            padding-bottom: 10px;
         }
 
-        h3 {
-            margin: 0 0 -10px 0;
-        }
-
-        .submit-btn {
-            background-color: #FBF4DB;
+        .edit-btn, .save-btn, .submit-btn {
+            // background-color: #FBF4DB;
             cursor: pointer;
-            border: 1px solid gray;
-            border-radius: 20px;
+            // border: 1px solid gray;
+            border-radius: 10px;
             font-weight: 600;
             padding: 5px;
+            // margin-top: 15px;
+            width:100%;
+        }
+
+        .edit-mode {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
     }
-    
+
     .exit-btn {
         background: none;
         border: none;

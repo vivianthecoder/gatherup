@@ -35,7 +35,7 @@ ul {
     gap: 15px;
     padding-inline-start: 0;
     @include tablet {
-        padding-inline-start: 40px;
+        padding-inline-start: 20px;
     }
     @include desktop {
         gap: 10px;
