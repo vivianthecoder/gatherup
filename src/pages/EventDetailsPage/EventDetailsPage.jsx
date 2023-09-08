@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 // import AddEventIcon from '../../assets/Icons/Add_square.svg';
 import axios from 'axios';
 import MainDetails from '../../components/Dashboard/EditEventDetails/MainDetails/MainDetails';
+import FoodAndBev from '../../components/Dashboard/EditEventDetails/FoodAndBev/FoodAndBev';
+import ThemeAndDecor from '../../components/Dashboard/EditEventDetails/ThemeAndDecor/ThemeAndDecor';
 import AttendeeList from '../../components/Dashboard/EditEventDetails/AttendeeList/AttendeeList';
 import Collaborators from '../../components/Dashboard/EditEventDetails/Collaborators/Collaborators';
 import Media from '../../components/Dashboard/EditEventDetails/Media/Media';
@@ -34,6 +36,7 @@ const EventDetailsPage = () => {
            }).catch((error) => console.log(error));
    }
 
+    // To handle clicking event editing nav bar
     const handleNavItemClick = (item) => {
         setSelectedNavItem(item);
     };
@@ -58,6 +61,16 @@ const EventDetailsPage = () => {
                             Main Details
                         </li>
                         <li 
+                        className={`sub-nav-text' sub-nav-text ${selectedNavItem === 'FoodAndBev' ? 'selected' : ''}`}
+                        onClick={() => handleNavItemClick('FoodAndBev')}>
+                            F & B
+                        </li>
+                        <li 
+                        className={`sub-nav-text' sub-nav-text ${selectedNavItem === 'Theme & Decor' ? 'selected' : ''}`}
+                        onClick={() => handleNavItemClick('Media')}>
+                            Theme & Decor
+                        </li>
+                        <li 
                             className={`sub-nav-text' sub-nav-text ${selectedNavItem === 'Attendee List' ? 'selected' : ''}`}
                             onClick={() => handleNavItemClick('Attendee List')}>
                             Attendee List
@@ -78,6 +91,18 @@ const EventDetailsPage = () => {
                 <div className='event-container'>
                     {selectedNavItem === 'Main Details' && (
                         <MainDetails 
+                            event={eventDetails} 
+                            eventId={eventDetails.id} 
+                        />
+                    )}
+                    {selectedNavItem === 'FoodAndBev' && (
+                        <FoodAndBev
+                            event={eventDetails} 
+                            eventId={eventDetails.id} 
+                        />
+                    )}
+                    {selectedNavItem === 'Theme & Decor' && (
+                        <ThemeAndDecor
                             event={eventDetails} 
                             eventId={eventDetails.id} 
                         />

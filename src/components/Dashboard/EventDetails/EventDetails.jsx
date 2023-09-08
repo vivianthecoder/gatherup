@@ -34,6 +34,7 @@ const EventDetails = ({ event, eventId, setSelectedEvent, selectedEvent, eventLi
         setIsEditing(true)  // To enable editing mode
     };
 
+    // To fetch form fields
     const handleChange = (e) => {
         const { name, value } = e.target;
         setEventDetails({
@@ -93,9 +94,9 @@ const EventDetails = ({ event, eventId, setSelectedEvent, selectedEvent, eventLi
                     X
                 </button>
                 <h2>{eventDetails.eventName}</h2>
-                <div className='img-container'>
-                    <img src={eventDetails.eventImage} alt={eventDetails.eventName}/>
-                    <label className='img-upload-label'>
+                {/* <div className='img-container'> */}
+                    {/* <img src={eventDetails.eventImage} alt={eventDetails.eventName}/> */}
+                    {/* <label className='img-upload-label'>
                         <input
                             className='img-upload-input'
                             type="file"
@@ -104,11 +105,13 @@ const EventDetails = ({ event, eventId, setSelectedEvent, selectedEvent, eventLi
                         />
                         Upload Image
                     </label>
-                </div>
+                </div> */}
                 
-                <h3>Event Overview</h3>
+                {/* <h3>Event Overview</h3> */}
                 {!isEditing ? (
                     <div>
+                        <h3 className='event-overview-title'>Event Overview</h3>
+                        <img src={eventDetails.eventImage} alt={eventDetails.eventName}/>
                         <p>Date: {eventDetails.eventDate}</p>
                         <p>Time:  {eventDetails.eventTime}</p>
                         <p>Location: {eventDetails.eventLocation}</p>
@@ -120,6 +123,19 @@ const EventDetails = ({ event, eventId, setSelectedEvent, selectedEvent, eventLi
                     </div>
                 ) : ( 
                     <div className='edit-mode'>
+                        <h3 className='quick-edit-title'>Quick Edit</h3>
+                        <div className='img-container'>
+                        <img src={eventDetails.eventImage} alt={eventDetails.eventName}/>
+                        <label className='img-upload-label'>
+                            <input
+                                className='img-upload-input'
+                                type="file"
+                                accept="image/*"
+                                onChange={handleImageChange}
+                            />
+                            Upload Image
+                        </label>
+                    </div>
                         <input
                             type='text'
                             placeholder='Event Name'

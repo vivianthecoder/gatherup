@@ -4,22 +4,63 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import EditIcon from '../../../../assets/Icons/Edit.svg';
 
-const MainDetails = ({ event, eventId, onSave, eventDetails }) => {
-    const [editedEvent, setEditedEvent] = useState(event);
+const MainDetails = ({ eventId, onSave}) => {
+    const [editedEvent, setEditedEvent] = useState({});
+    const [isEditing, setIsEditing] = useState(false);
 
     useEffect(() => {
-        if (!event) {
+        if(eventId) {
             axios
                 .get(`http://localhost:3031/dashboard/${eventId}`)
                 .then(response => {
-                    const eventWithId = { ...response.data, id: eventId }
-                    setEditedEvent(eventWithId)
+                    const eventWithId = response.data;
+                    setEditedEvent({ ...eventWithId, id: eventId })
                 })
                 .catch(error => {
                     console.error('Error fetching data', error)
                 })
-            }
-        }, [eventId, event]);
+        }
+    }, [eventId])
+
+    // useEffect(() => {
+    //     if (!event) {
+    //         axios
+    //             .get(`http://localhost:3031/dashboard/${eventId}`)
+    //             .then(response => {
+    //                 const eventWithId = { ...response.data, id: eventId }
+    //                 setEditedEvent(eventWithId)
+    //             })
+    //             .catch(error => {
+    //                 console.error('Error fetching data', error)
+    //             })
+    //         }
+    //     }, [eventId, event]);
+
+    // const handleChange = (e) => {
+    //     const { name, value } = e.target;
+    //     setEditedEvent({
+    //         ...editedEvent,
+    //         [name]: value,
+    //     })
+    // };
+
+    // To update the state of event box details after clicking on the EventBox WORKS!
+    // useEffect(() => {
+    //     if (event) {
+    //         setEventDetails(event)
+    //     } else if (eventId) {
+    //         axios
+    //             .get(`http://localhost:3031/dashboard/${eventId}`)
+    //             .then(response => {
+    //                 console.log('response data:', response.data);
+    //                 const eventWithId = response.data;
+    //                 setEventDetails({ ...eventWithId, id: eventId });
+    //             })
+    //             .catch(error => {
+    //                 console.error('Error fetching data', error)
+    //             })
+    //         }
+    //     }, [eventId, event]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -29,8 +70,15 @@ const MainDetails = ({ event, eventId, onSave, eventDetails }) => {
         })
     };
 
+    // To handle the edit button click
+    const handleEditClick = () => {
+        setIsEditing(true)  // To enable editing mode
+    };
+
     const handleSave = () => {
-        onSave(editedEvent)
+        setIsEditing(false);
+        onSave(editedEvent);
+        // onSave(editedEvent);
     };
 
     return (
@@ -48,6 +96,7 @@ const MainDetails = ({ event, eventId, onSave, eventDetails }) => {
                         name='eventName'
                         value={editedEvent.eventName || ''}
                         onChange={handleChange}
+                        disabled={!isEditing}
                     />
                 </label>
                 <label>
@@ -57,6 +106,7 @@ const MainDetails = ({ event, eventId, onSave, eventDetails }) => {
                         name='eventDate'
                         value={editedEvent.eventDate || ''}
                         onChange={handleChange}
+                        disabled={!isEditing}
                     />
                 </label>
                 <label>
@@ -66,6 +116,7 @@ const MainDetails = ({ event, eventId, onSave, eventDetails }) => {
                         name='eventTime'
                         value={editedEvent.eventTime || ''}
                         onChange={handleChange}
+                        disabled={!isEditing}
                     />
                 </label>
                 <label>
@@ -75,6 +126,7 @@ const MainDetails = ({ event, eventId, onSave, eventDetails }) => {
                         name='eventLocation'
                         value={editedEvent.eventLocation || ''}
                         onChange={handleChange}
+                        disabled={!isEditing}
                     />
                 </label>
                 <label>
@@ -84,6 +136,7 @@ const MainDetails = ({ event, eventId, onSave, eventDetails }) => {
                         name='guestsCount'
                         value={editedEvent.guestsCount || ''}
                         onChange={handleChange}
+                        disabled={!isEditing}
                     />
                 </label>
                 <label>
@@ -93,12 +146,18 @@ const MainDetails = ({ event, eventId, onSave, eventDetails }) => {
                         name='eventTheme'
                         value={editedEvent.eventTheme || ''}
                         onChange={handleChange}
+                        disabled={!isEditing}
                     />
                 </label>
+
+                {isEditing ? (
+                    <button className="save-btn" onClick={handleSave}>Save</button>
+                ) : (
+                    <button className="edit-btn" onClick={handleEditClick}>Edit</button>
+                )}
             </form>
             <div className='btn-container'>
-                <button className="save-btn" onClick={handleSave}>Save</button>
-                <button className="next-btn" >Next</button>
+                
             </div>
         </div>
     )
