@@ -1,8 +1,8 @@
-import './EventForm.scss';
+import './NewEventForm.scss';
 import { useState } from 'react';
 import axios from 'axios';
 
-const EventForm = ({ addEvent, setShowForm }) => {
+const NewEventForm = ({ addEvent, setShowForm }) => {
     // To create a new event object
     const [event, setEvent] = useState({
         eventName: '',
@@ -112,4 +112,4 @@ const EventForm = ({ addEvent, setShowForm }) => {
     )
 }
 
-export default EventForm;
+export default NewEventForm;

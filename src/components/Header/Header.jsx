@@ -26,12 +26,6 @@ const Header = () => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/eventdetails" activeClassName="active">
-                            <img src={EditIcon} alt='Edit Event Icon' className='navIcon'/> 
-                            <div className='navText'>Event Details</div>
-                        </NavLink>
-                    </li>
-                    <li>
                         <NavLink to="/collaborated-events" activeClassName="active">
                             <img src={CollabIcon} alt='Collaborators Icon' className='navIcon'/> 
                             <div className='navText'>Co-Hosted Events</div>

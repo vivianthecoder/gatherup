@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const EventDetails = ({ event, eventId, closeEventDetails }) => {
+const EventDetails = ({ event, eventId, setSelectedEvent, selectedEvent, eventListRequest, onUpdateEventData, closeEventDetails }) => {
     const [eventDetails, setEventDetails] = useState({});
     const [isEditing, setIsEditing] = useState(false);
     // eslint-disable-next-line 
@@ -11,6 +11,7 @@ const EventDetails = ({ event, eventId, closeEventDetails }) => {
     const [selectedImage, setSelectedImage] = useState(null);
     const navigate = useNavigate();
 
+    // To update the state of event box details after clicking on the EventBox WORKS!
     useEffect(() => {
         if (event) {
             setEventDetails(event)
@@ -44,22 +45,20 @@ const EventDetails = ({ event, eventId, closeEventDetails }) => {
     const handleImageChange= (e) => {
         const file = e.target.files[0];
         setSelectedImage(file);
+        console.log(setSelectedImage);
     };
 
     // To handle the form submission
     const handleSubmit = () => {
-
-        console.log('Updating ID', eventDetails.id);
-        console.log('Sending data', eventDetails);
-
         const formData = new FormData();
         formData.append('eventDetails', JSON.stringify(eventDetails));
+
         if (selectedImage) {
             formData.append('eventImage', selectedImage)
         }
 
         axios 
-            .put(`http://localhost:3031/dashboard/${eventDetails.id}`, eventDetails, {
+            .put(`http://localhost:3031/dashboard/${eventDetails.eventId}`, eventDetails, {
                 headers: {
                     'Content-Type' : 'application/json',
                 },
@@ -67,6 +66,7 @@ const EventDetails = ({ event, eventId, closeEventDetails }) => {
             .then(response => {
                 setEventDetails(response.data)
                 setIsEditing(false)
+                onUpdateEventData(response.data)
                 closeEventDetails();
             })
             .catch(error => {
@@ -75,7 +75,7 @@ const EventDetails = ({ event, eventId, closeEventDetails }) => {
     };
 
     const navigateToEditEvent = () => {
-        navigate(`/dashboard/edit/${eventId}`)
+        navigate(`/dashboard/edit/${eventDetails.eventId}`)
     };
 
     if(isLoading) {

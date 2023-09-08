@@ -9,6 +9,9 @@ header {
     @include mobile {
         height: auto;
     }
+    @include desktop{
+        height: auto;
+    }
 }
 
 .logo {

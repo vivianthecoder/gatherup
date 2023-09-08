@@ -1,0 +1,18 @@
+.sub-nav-container {
+    display: flex;
+    flex-direction: row;
+    padding-inline-start: 0;
+    gap: 30px;
+    border-bottom: rgb(0,0,0,0.5) solid 2px;
+
+    .sub-nav-text {
+    color: rgb(0,0,0,0.5);
+    font-size: 18px;
+    height: 45px;
+
+    &:hover {
+        font-weight: 700;
+        cursor: pointer;
+    }
+    }
+}
