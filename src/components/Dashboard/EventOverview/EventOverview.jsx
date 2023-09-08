@@ -1,9 +1,9 @@
-import './EventDetails.scss';
+import './EventOverview.scss';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const EventDetails = ({ event, eventId, setSelectedEvent, selectedEvent, eventListRequest, onUpdateEventData, closeEventDetails }) => {
+const EventOverview = ({ event, eventId, setSelectedEvent, selectedEvent, eventListRequest, onUpdateEventData, closeEventDetails }) => {
     const [eventDetails, setEventDetails] = useState({});
     const [isEditing, setIsEditing] = useState(false);
     // eslint-disable-next-line 
@@ -111,7 +111,9 @@ const EventDetails = ({ event, eventId, setSelectedEvent, selectedEvent, eventLi
                 {!isEditing ? (
                     <div>
                         <h3 className='event-overview-title'>Event Overview</h3>
-                        <img src={eventDetails.eventImage} alt={eventDetails.eventName}/>
+                        {eventDetails.eventImage && (
+                            <img src={eventDetails.eventImage} alt={eventDetails.eventName}/>
+                        )}
                         <p>Date: {eventDetails.eventDate}</p>
                         <p>Time:  {eventDetails.eventTime}</p>
                         <p>Location: {eventDetails.eventLocation}</p>
@@ -125,7 +127,9 @@ const EventDetails = ({ event, eventId, setSelectedEvent, selectedEvent, eventLi
                     <div className='edit-mode'>
                         <h3 className='quick-edit-title'>Quick Edit</h3>
                         <div className='img-container'>
-                        <img src={eventDetails.eventImage} alt={eventDetails.eventName}/>
+                        {eventDetails.eventImage && (
+                            <img src={eventDetails.eventImage} alt={eventDetails.eventName}/>
+                        )}
                         <label className='img-upload-label'>
                             <input
                                 className='img-upload-input'
@@ -191,4 +195,4 @@ const EventDetails = ({ event, eventId, setSelectedEvent, selectedEvent, eventLi
     )
 }
 
-export default EventDetails;
+export default EventOverview;

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './EventBox.scss';
-import EventDetails from '../EventDetails/EventDetails';
+import EventOverview from '../EventOverview/EventOverview';
 import axios from 'axios';
 
 const EventBox = ({ events, setEvents, eventId, eventName, eventDate, eventTime, eventLocation, guestsCount, eventTheme, eventImage }) => {
@@ -72,7 +72,7 @@ const EventBox = ({ events, setEvents, eventId, eventName, eventDate, eventTime,
                     <p>Time: {eventTime}</p>
                 </div>
                 {showEventDetails && (
-                    <EventDetails 
+                    <EventOverview 
                         event={{
                             eventId,
                             eventName,
