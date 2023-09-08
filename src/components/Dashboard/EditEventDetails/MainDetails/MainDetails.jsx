@@ -3,23 +3,24 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
 import EditIcon from '../../../../assets/Icons/Edit.svg';
+import { useNavigate } from 'react-router-dom';
 
-const MainDetails = ({ event, eventId, onSave, onCancel, eventDetails }) => {
+const MainDetails = ({ event, eventId, onSave, eventDetails }) => {
     const [editedEvent, setEditedEvent] = useState(event);
 
-    // useEffect(() => {
-    //     if (!event) {
-    //         axios
-    //             .get(`http://localhost:3031/dashboard/${eventId}`)
-    //             .then(response => {
-    //                 const eventWithId = { ...response.data, id: eventId }
-    //                 setEditedEvent(eventWithId)
-    //             })
-    //             .catch(error => {
-    //                 console.error('Error fetching data', error)
-    //             })
-    //         }
-    //     }, [eventId, event]);
+    useEffect(() => {
+        if (!event) {
+            axios
+                .get(`http://localhost:3031/dashboard/${eventId}`)
+                .then(response => {
+                    const eventWithId = { ...response.data, id: eventId }
+                    setEditedEvent(eventWithId)
+                })
+                .catch(error => {
+                    console.error('Error fetching data', error)
+                })
+            }
+        }, [eventId, event]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -98,7 +99,7 @@ const MainDetails = ({ event, eventId, onSave, onCancel, eventDetails }) => {
             </form>
             <div className='btn-container'>
                 <button className="save-btn" onClick={handleSave}>Save</button>
-                <button className="next-btn" onClick={onCancel}>Cancel</button>
+                <button className="next-btn" >Next</button>
             </div>
         </div>
     )

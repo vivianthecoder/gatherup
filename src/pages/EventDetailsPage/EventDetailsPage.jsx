@@ -12,36 +12,30 @@ const EventDetailsPage = () => {
     const [events, setEvents] = useState([]);
     const [selectedEvent, setSelectedEvent] = useState(null);
     const [eventDetails, setEventDetails] = useState({});
+    const [selectedNavItem, setSelectedNavItem] = useState('Main Details');
 
-    // Event handlers
-    const closeEventDetails = () => {
-        setSelectedEvent(null)
-    };
-
-    // To get event data from all events
+    // To get event data from all events from the server
     function eventListRequest() {
-         axios
-             .get(`http://localhost:3031/dashboard`)
-             .then(response => {
-                 setEvents(response.data)
-             }).catch((error) => console.log('Failed fetching data', error)
-         );
-     }
-
-    const handleSaveEdit =(editedEvent) => {
         axios
-            .put(`http://localhost:3031/dashboard/${editedEvent.id}`, editedEvent, {
-                headers: {
-                    'Content-Type': 'application.json',
-                },
-            })
-            .then((response) => {
-                eventListRequest();        
-                setSelectedEvent(response.data)
-            })
-            .catch((error) => {
-                console.error('Error updating event data', error)
-            })
+            .get(`http://localhost:3031/dashboard`)
+            .then(response => {
+                setEvents(response.data)
+            }).catch((error) => console.log('Failed fetching data', error)
+        );
+    }
+
+    // To get event id data from the server and set selected event in array
+   function selectedEventRequest(eventId) {
+       axios
+           .get(`http://localhost:3031/dashboard/${eventId}`)
+           .then(response => {
+               setSelectedEvent(response.data)
+               console.log(response.data)
+           }).catch((error) => console.log(error));
+   }
+
+    const handleNavItemClick = (item) => {
+        setSelectedNavItem(item);
     };
 
     useEffect(() => {
@@ -58,24 +52,54 @@ const EventDetailsPage = () => {
                 <h1 className='title'>NAME OF EVENT</h1>
                 <nav>
                     <ul className='sub-nav-container'>
-                        <li className='sub-nav-text'>Main Details</li>
-                        <li className='sub-nav-text'>Attendee List</li>
-                        <li className='sub-nav-text'>Collaborators</li>
-                        <li className='sub-nav-text'>Media</li>
+                        <li 
+                            className={`sub-nav-text ${selectedNavItem === 'Main Details' ? 'selected' : ''}`}
+                            onClick={() => handleNavItemClick('Main Details')}>
+                            Main Details
+                        </li>
+                        <li 
+                            className={`sub-nav-text' sub-nav-text ${selectedNavItem === 'Attendee List' ? 'selected' : ''}`}
+                            onClick={() => handleNavItemClick('Attendee List')}>
+                            Attendee List
+                        </li>
+                        <li 
+                        className={`sub-nav-text' sub-nav-text ${selectedNavItem === 'Collaborators' ? 'selected' : ''}`}
+                        onClick={() => handleNavItemClick('Collaborators')}>
+                            Collaborators
+                        </li>
+                        <li 
+                        className={`sub-nav-text' sub-nav-text ${selectedNavItem === 'Media' ? 'selected' : ''}`}
+                        onClick={() => handleNavItemClick('Media')}>
+                            Media
+                        </li>
                     </ul>
                 </nav>
 
                 <div className='event-container'>
-                    <MainDetails 
-                        event={eventDetails} 
-                        eventId={eventDetails.id} 
-                        onSave={handleSaveEdit}
-                        // onCancel={() => setEditEventDetailsVisible(false)}
-                        // closeEventDetails={closeEventDetails} 
-                    />
-                    <AttendeeList />
-                    <Collaborators />
-                    <Media />
+                    {selectedNavItem === 'Main Details' && (
+                        <MainDetails 
+                            event={eventDetails} 
+                            eventId={eventDetails.id} 
+                        />
+                    )}
+                    {selectedNavItem === 'Attendee List' && (
+                        <AttendeeList 
+                            event={eventDetails} 
+                            eventId={eventDetails.id} 
+                        />
+                    )}
+                    {selectedNavItem === 'Collaborators' && (
+                        <Collaborators 
+                            event={eventDetails} 
+                            eventId={eventDetails.id} 
+                        />
+                    )}
+                    {selectedNavItem === 'Media' && (
+                        <Media 
+                            event={eventDetails} 
+                            eventId={eventDetails.id} 
+                        />
+                    )}
                 </div>
             </div>
         </div>

@@ -7,10 +7,13 @@ header {
     display: flex;
     flex-direction: column;
     @include mobile {
-        height: auto;
+        height: 100vh;
+    }
+    @include tablet {
+        height: 100vh;
     }
     @include desktop{
-        height: auto;
+        height: 100vh;
     }
 }
 

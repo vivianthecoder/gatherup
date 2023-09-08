@@ -28,7 +28,7 @@ const Header = () => {
                     <li>
                         <NavLink to="/collaborated-events" activeClassName="active">
                             <img src={CollabIcon} alt='Collaborators Icon' className='navIcon'/> 
-                            <div className='navText'>Co-Hosted Events</div>
+                            <div className='navText'>Collaborated Events</div>
                         </NavLink>
                     </li>
                     <li>
@@ -41,12 +41,6 @@ const Header = () => {
                         <NavLink to="/notifications" activeClassName="active">
                             <img src={NotifIcon} alt='Notifications Icon' className='navIcon'/> 
                             <div className='navText'>Notifications</div>
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/guestmanagement" activeClassName="active">
-                            <img src={GMIcon} alt='Guest Management' className='navIcon'/> 
-                            <div className='navText'>Guest Management</div>
                         </NavLink>
                     </li>
                     <li>

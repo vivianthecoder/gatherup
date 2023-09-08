@@ -1,9 +1,8 @@
 import './App.scss';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Dashboard from './pages/Dashboard/Dashboard.jsx';
-// import EditEventDetails from './components/Dashboard/EditEventDetails/EditEventDetails';
 import EventDetailsPage from './pages/EventDetailsPage/EventDetailsPage';
-import NotFound404 from './pages/NotFound404/NotFound404.jsx';
+import NotFound404Page from './pages/NotFound404Page/NotFound404Page.jsx';
 import Header from './components/Header/Header.jsx';
 import Footer from './components/Footer/Footer.jsx';
 
@@ -17,7 +16,7 @@ function App() {
             <Route path='/dashboard' element={<Dashboard />} />
             <Route path='/dashboard/:id' element={<Dashboard />} />
             <Route path='/dashboard/edit/:id' element={<EventDetailsPage />} />
-            <Route path='*' element={<NotFound404 />} />
+            <Route path='*' element={<NotFound404Page />} />
           </Routes>
         <Footer />
       </BrowserRouter>
