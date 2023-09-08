@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
 import EditIcon from '../../../../assets/Icons/Edit.svg';
-import { useNavigate } from 'react-router-dom';
 
 const MainDetails = ({ event, eventId, onSave, eventDetails }) => {
     const [editedEvent, setEditedEvent] = useState(event);
@@ -82,8 +81,8 @@ const MainDetails = ({ event, eventId, onSave, eventDetails }) => {
                     Anticipated Attendee #:
                     <input
                         type='text'
-                        name='guestsNumber'
-                        value={editedEvent.guestsNumber || ''}
+                        name='guestsCount'
+                        value={editedEvent.guestsCount || ''}
                         onChange={handleChange}
                     />
                 </label>

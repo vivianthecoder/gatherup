@@ -3,7 +3,7 @@ import './EventBox.scss';
 import EventDetails from '../EventDetails/EventDetails';
 import axios from 'axios';
 
-const EventBox = ({ events, setEvents, eventId, eventName, eventDate, eventTime, eventLocation, guestsNumber, eventTheme, eventImage }) => {
+const EventBox = ({ events, setEvents, eventId, eventName, eventDate, eventTime, eventLocation, guestsCount, eventTheme, eventImage }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [showEventDetails, setShowEventDetails] = useState(false);
 
@@ -17,7 +17,7 @@ const EventBox = ({ events, setEvents, eventId, eventName, eventDate, eventTime,
         setShowEventDetails(!showEventDetails)
     };
 
-    // To update new event box from the server onto the screen WORKS!
+    // To update new event box details to the server WORKS!
     const updateEventData = (updatedEvent) => {
         const updatedEvents = events.map((eventItem) => {
             if (eventItem.id === updatedEvent.id) {
@@ -27,7 +27,7 @@ const EventBox = ({ events, setEvents, eventId, eventName, eventDate, eventTime,
         })
         setEvents(updatedEvents)
 
-        axios.put(`http://localhost:3031/dashboard/${updatedEvent.id}, updatedEvent`)
+        axios.put(`http://localhost:3031/dashboard/${updatedEvent.id}`, updatedEvent)
             .then(response => {
                 console.log('Event data updated on the server', response.data);
             })
@@ -79,7 +79,7 @@ const EventBox = ({ events, setEvents, eventId, eventName, eventDate, eventTime,
                             eventDate,
                             eventTime,
                             eventLocation,
-                            guestsNumber,
+                            guestsCount,
                             eventTheme,
                             eventImage
                         }}

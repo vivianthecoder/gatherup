@@ -112,7 +112,7 @@ const EventDetails = ({ event, eventId, setSelectedEvent, selectedEvent, eventLi
                         <p>Date: {eventDetails.eventDate}</p>
                         <p>Time:  {eventDetails.eventTime}</p>
                         <p>Location: {eventDetails.eventLocation}</p>
-                        <p>Attendee #: {eventDetails.guestsNumber}</p>
+                        <p>Attendee #: {eventDetails.guestsCount}</p>
                         <p>Theme & Decor: {eventDetails.eventTheme}</p>
                         <button className="edit-btn" onClick={handleEditClick}>
                             Quick Edit
@@ -149,10 +149,10 @@ const EventDetails = ({ event, eventId, setSelectedEvent, selectedEvent, eventLi
                             onChange={handleChange}
                         />
                         <input
-                            type='text'
+                            type='number'
                             placeholder='Guest Count'
-                            name='guestsNumber'
-                            value={eventDetails.guestsNumber || ''}
+                            name='guestsCount'
+                            value={eventDetails.guestsCount || ''}
                             onChange={handleChange}
                         />
                         <input

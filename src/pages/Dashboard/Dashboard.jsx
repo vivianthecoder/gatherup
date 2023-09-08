@@ -56,14 +56,14 @@ const Dashboard = () => {
     //         })
     // };
 
-    // To push the newEvent object onto the setEvents array with updated fields
+    // To push the newEvent object onto the setEvents array with updated fields WORKS!
     const addEvent = (newEvent) => {
         setEvents([...events, {
             eventName: newEvent.eventName,
             eventDate: newEvent.eventDate,
             eventTime: newEvent.eventTime,
             eventLocation: newEvent.eventLocation,
-            guestsNumber: newEvent.guestsNumber,
+            guestsCount: newEvent.guestsCount,
             eventTheme: newEvent.eventTheme,
             eventImage: newEvent.eventImage
         }])
@@ -108,7 +108,7 @@ const Dashboard = () => {
                             eventDate={format(new Date(event.eventDate), 'MMMM d, yyyy')} 
                             eventTime={event.eventTime}
                             eventLocation={event.eventLocation}
-                            guestsNumber={event.guestsNumber}
+                            guestsCount={event.guestsCount}
                             eventTheme={event.eventTheme}
                             eventImage={event.eventImage}
                             events={events}

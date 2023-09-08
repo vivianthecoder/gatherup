@@ -9,7 +9,7 @@ const NewEventForm = ({ addEvent, setShowForm }) => {
         eventDate:'',
         eventTime: '',
         eventLocation: '',
-        guestsNumber: '',
+        guestsCount: '',
         eventTheme: ''
     });
 
@@ -30,7 +30,7 @@ const NewEventForm = ({ addEvent, setShowForm }) => {
             event.eventDate && 
             event.eventTime && 
             event.eventLocation && 
-            event.guestsNumber && 
+            event.guestsCount && 
             event.eventTheme
         ) {
             // To post the data to our server data
@@ -49,7 +49,7 @@ const NewEventForm = ({ addEvent, setShowForm }) => {
                         eventDate: '',
                         eventTime: '',
                         eventLocation: '',
-                        guestsNumber: '',
+                        guestsCount: '',
                         eventTheme: ''
                     });
                     // To close the form
@@ -95,8 +95,8 @@ const NewEventForm = ({ addEvent, setShowForm }) => {
                 <input  
                     type='number'
                     placeholder='Guest Count'
-                    name='guestsNumber'
-                    value={event.guestsNumber}
+                    name='guestsCount'
+                    value={event.guestsCount}
                     onChange={handleChange}
                 />
                 <input  
