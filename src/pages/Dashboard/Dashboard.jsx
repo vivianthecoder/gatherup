@@ -98,7 +98,8 @@ const Dashboard = () => {
                     </div>
                     {events
                     .filter((event) =>
-                        event.eventName && event.eventName.toLowerCase().includes(searchQuery.toLowerCase())
+                        event.eventName && 
+                        event.eventName.toLowerCase().includes(searchQuery.toLowerCase())
                         )
                     .map((event, index) => (
                         <EventBox 
