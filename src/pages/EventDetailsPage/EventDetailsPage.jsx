@@ -28,13 +28,16 @@ const EventDetailsPage = () => {
         );
     }
 
-    // To get event id data from the server and set selected event in array
+   // To get event id data from the server and set selected event in array
    function selectedEventRequest(eventId) {
        axios
            .get(`http://localhost:3031/dashboard/${eventId}`)
            .then(response => {
                setSelectedEvent(response.data)
                console.log(response.data)
+               const eventData = response.data;
+               setFormData(eventData);
+            //    console.log(response.data)
            }).catch((error) => console.log(error));
    }
 
@@ -64,14 +67,7 @@ const EventDetailsPage = () => {
 
     // To fetch selected event id whenever the id is changed W/ selectedEvent
     useEffect(() => {
-        axios
-            .get(`http://localhost:3031/dashboard/${id}`)
-            .then(response => {
-                setEventDetails(response.data)
-            })
-            .catch(error => {
-                console.log(error);
-            })
+        selectedEventRequest(id);
     }, [id]);
 
     // To fetch list of all events from the server
@@ -96,6 +92,18 @@ const EventDetailsPage = () => {
         }
     }, [selectedEvent, selectedNavItem]);
 
+    console.log('formData:',formData);
+
+    // To fetch selected event id whenever the id is changed W/ selectedEvent
+    useEffect(() => {
+        selectedEventRequest(id);
+    }, [id]);
+
+    // To fetch list of all events from the server
+    useEffect(() => {
+        eventListRequest();
+    }, [selectedEvent]);
+
     if (!events.length) {
         return<p>Loading...</p>
     };
@@ -112,13 +120,13 @@ const EventDetailsPage = () => {
                             Main Details
                         </li>
                         <li 
-                        className={`sub-nav-text' sub-nav-text ${selectedNavItem === 'FoodAndBev' ? 'selected' : ''}`}
-                        onClick={() => handleNavItemClick('FoodAndBev')}>
+                            className={`sub-nav-text' sub-nav-text ${selectedNavItem === 'FoodAndBev' ? 'selected' : ''}`}
+                            onClick={() => handleNavItemClick('FoodAndBev')}>
                             F & B
                         </li>
                         <li 
-                        className={`sub-nav-text' sub-nav-text ${selectedNavItem === 'Theme & Decor' ? 'selected' : ''}`}
-                        onClick={() => handleNavItemClick('Theme & Decor')}>
+                            className={`sub-nav-text' sub-nav-text ${selectedNavItem === 'Theme & Decor' ? 'selected' : ''}`}
+                            onClick={() => handleNavItemClick('Theme & Decor')}>
                             Theme & Decor
                         </li>
                         <li 
@@ -127,14 +135,20 @@ const EventDetailsPage = () => {
                             Attendee List
                         </li>
                         <li 
-                        className={`sub-nav-text' sub-nav-text ${selectedNavItem === 'Collaborators' ? 'selected' : ''}`}
-                        onClick={() => handleNavItemClick('Collaborators')}>
+                            className={`sub-nav-text' sub-nav-text ${selectedNavItem === 'Collaborators' ? 'selected' : ''}`}
+                            onClick={() => handleNavItemClick('Collaborators')}>
                             Collaborators
                         </li>
                         <li 
-                        className={`sub-nav-text' sub-nav-text ${selectedNavItem === 'Media' ? 'selected' : ''}`}
-                        onClick={() => handleNavItemClick('Media')}>
+                            className={`sub-nav-text' sub-nav-text ${selectedNavItem === 'Media' ? 'selected' : ''}`}
+                            onClick={() => handleNavItemClick('Media')}>
                             Media
+                        </li>
+                        {/* Hamburger drop down for continued sections */}
+                        <li 
+                            className={`sub-nav-text' sub-nav-text ${selectedNavItem === '...' ? 'selected' : ''}`}
+                            onClick={() => handleNavItemClick('...')}>
+                            ...
                         </li>
                     </ul>
                 </nav>
@@ -149,6 +163,7 @@ const EventDetailsPage = () => {
                             onUpdateEventData={updateEventData}
                             eventId={eventDetails.id} 
                             setEventDetails={setEventDetails}
+                            eventDetails={eventDetails}
                         />
                     )}
                     {selectedNavItem === 'FoodAndBev' && (

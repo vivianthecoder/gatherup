@@ -1,21 +1,25 @@
 import { useState } from 'react';
-import './EventBox.scss';
-import EventOverview from '../EventOverview/EventOverview';
+import './PrintBox.scss';
+import EventOverview from '../Dashboard/EventOverview/EventOverview';
 import axios from 'axios';
 
-const EventBox = ({ events, setEvents, eventId, eventName, eventDate, eventTime, eventLocation, guestsCount, eventTheme, eventImage }) => {
+const PrintBox = ({ events, setEvents, eventId, eventName, eventDate, eventTime, eventLocation, guestsCount, eventTheme, eventImage }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [showEventDetails, setShowEventDetails] = useState(false);
     const [isConfirmDelete, setIsConfirmDelete] = useState(false);
+
+    const handlePrint = () => {
+        window.print();
+    }
 
     // To drop down the top right nav WORKS!
     const toggleDropDown = () => {
         setIsOpen(!isOpen)
     };
 
-    // To display event details after clicking into event box WORKS!
+    // To handle print event when clicking on the box
     const handleEventClick = () => {
-        setShowEventDetails(!showEventDetails)
+        handlePrint();
     };
 
     const confirmDelete = () => {
@@ -26,25 +30,6 @@ const EventBox = ({ events, setEvents, eventId, eventName, eventDate, eventTime,
         setIsConfirmDelete(false);
         setIsOpen(false);
     }
-
-    // To update new event box details to the server WORKS!
-    const updateEventData = (updatedEvent) => {
-        const updatedEvents = events.map((eventItem) => {
-            if (eventItem.id === updatedEvent.id) {
-                return updatedEvent;
-            }
-            return eventItem;
-        })
-        setEvents(updatedEvents)
-
-        axios.put(`http://localhost:3031/dashboard/${updatedEvent.id}`, updatedEvent)
-            .then(response => {
-                console.log('Event data updated on the server', response.data);
-            })
-            .catch(error => {
-                console.error('Error updating event data on the server', error)
-            });
-    };
     
     // To handle deleting an event from the right nav WORKS!
     const deleteEvent = () => {
@@ -100,7 +85,6 @@ const EventBox = ({ events, setEvents, eventId, eventName, eventDate, eventTime,
                             eventTheme,
                             eventImage
                         }}
-                        onUpdateEventData={updateEventData}
                         closeEventDetails={() => setShowEventDetails(false)}
                     />
                 )}
@@ -109,4 +93,4 @@ const EventBox = ({ events, setEvents, eventId, eventName, eventDate, eventTime,
     )
 }
 
-export default EventBox;
+export default PrintBox;

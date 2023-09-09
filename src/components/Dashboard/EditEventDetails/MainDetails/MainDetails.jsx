@@ -1,35 +1,54 @@
 import './MainDetails.scss';
-import { useState } from 'react';
-import { useEffect } from 'react';
+// import { useState } from 'react';
 import axios from 'axios';
 import EditIcon from '../../../../assets/Icons/Edit.svg';
 
-const MainDetails = ({ event, eventId, formData, setFormData, onUpdateEventData }) => {
-    const [eventDetails, setEventDetails] = useState({});
+const MainDetails = ({ events, eventId, eventDetails, setEventDetails, setEvents, formData, setFormData, onUpdateEventData }) => {
+    // const [eventDetails, setEventDetails] = useState({});
+    // const [showEventDetails, setShowEventDetails] = useState(false);
+
+    // To update new event box details to the server WORKS!
+    // const updateEventData = (updatedEvent) => {
+    //     const updatedEvents = events.map((eventItem) => {
+    //         if (eventItem.id === updatedEvent.id) {
+    //             return updatedEvent;
+    //         }
+    //         return eventItem;
+    //     })
+    //     setEvents(updatedEvents)
+
+    //     axios.put(`http://localhost:3031/dashboard/${updatedEvent.id}`, updatedEvent)
+    //         .then(response => {
+    //             console.log('Event data updated on the server', response.data);
+    //         })
+    //         .catch(error => {
+    //             console.error('Error updating event data on the server', error)
+    //         });
+    // };
 
     // To update the state of event box details
-    useEffect(() => {
-        if (event) {
-            setEventDetails(event) 
-        } else if (eventId) {
-            axios
-                .get(`http://localhost:3031/dashboard/${eventId}`)
-                .then(response => {
-                    const eventWithId = response.data;
-                    setEventDetails({ ...eventWithId, id: eventId });
-                    console.log('Fetched event details:', eventWithId);
-                })
-                .catch(error => {
-                    console.error('Error fetching data', error)
-                })
-            }
-        }, [eventId, event]);
+    // useEffect(() => {
+    //     if (event) {
+    //         setEventDetails(event) 
+    //     } else if (eventId) {
+    //         axios
+    //             .get(`http://localhost:3031/dashboard/${eventId}`)
+    //             .then(response => {
+    //                 const eventWithId = response.data;
+    //                 setEventDetails({ ...eventWithId, id: eventId });
+    //                 console.log('Fetched event details:', eventWithId);
+    //             })
+    //             .catch(error => {
+    //                 console.error('Error fetching data', error)
+    //             })
+    //         }
+    //     }, [eventId, event]);
 
     // To handle form field changes
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData({
-            ...formData,
+        setEventDetails({
+            ...eventDetails,
             [name]: value,
         })
     };
@@ -37,13 +56,13 @@ const MainDetails = ({ event, eventId, formData, setFormData, onUpdateEventData 
     // To handle the form submission
     const handleSave = () => {
         axios
-        .put(`http://localhost:3031/dashboard/${formData.eventId}`, formData, {
+        .put(`http://localhost:3031/dashboard/${eventDetails.eventId}`, eventDetails, {
             headers: {
                 'Content-Type' : 'application/json',
             },
         })
         .then((response) => {
-            setFormData(response.data)
+            setEventDetails(response.data)
             onUpdateEventData(response.data)
         })
         .catch((error) => {
@@ -100,6 +119,17 @@ const MainDetails = ({ event, eventId, formData, setFormData, onUpdateEventData 
                         className='input-box'
                         type='text'
                         name='eventLocation'
+                        value={formData.eventLocation || eventDetails.eventLocation || ''}
+                        onChange={handleChange}
+                    />
+                </label>
+
+                <h2>Event Agenda</h2>
+                <label className='agenda-box'>
+                    <input
+                        className='input-box'
+                        type='text'
+                        name='eventAgenda'
                         value={formData.eventLocation || eventDetails.eventLocation || ''}
                         onChange={handleChange}
                     />
