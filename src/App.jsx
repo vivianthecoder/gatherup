@@ -1,10 +1,8 @@
 import './App.scss';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Dashboard from './pages/Dashboard/Dashboard.jsx';
-// import EditEventDetails from './components/Dashboard/EditEventDetails/EditEventDetails';
-import EditEventDetailsPage from './pages/EventDetailsPage/EventDetailsPage';
-import EventDetails from './components/Dashboard/EventDetails/EventDetails';
-import NotFound404 from './pages/NotFound404/NotFound404.jsx';
+import DashboardPage from './pages/DashboardPage/DashboardPage.jsx';
+import EventDetailsPage from './pages/EventDetailsPage/EventDetailsPage';
+import NotFound404Page from './pages/NotFound404Page/NotFound404Page.jsx';
 import Header from './components/Header/Header.jsx';
 import Footer from './components/Footer/Footer.jsx';
 
@@ -14,11 +12,11 @@ function App() {
       <BrowserRouter>
         <Header />
           <Routes>
-            <Route path='/' element={<Dashboard />} />
-            <Route path='/dashboard' element={<Dashboard />} />
-            <Route path='/dashboard/:eventId' component={<EventDetails />} />
-            <Route path='/dashboard/event/:eventDetailsId' element={<EditEventDetailsPage />} />
-            <Route path='*' element={<NotFound404 />} />
+            <Route path='/' element={<DashboardPage />} />
+            <Route path='/dashboard' element={<DashboardPage />} />
+            <Route path='/dashboard/:id' element={<DashboardPage />} />
+            <Route path='/dashboard/edit/:id' element={<EventDetailsPage />} />
+            <Route path='*' element={<NotFound404Page />} />
           </Routes>
         <Footer />
       </BrowserRouter>

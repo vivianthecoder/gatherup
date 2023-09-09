@@ -7,7 +7,16 @@ header {
     display: flex;
     flex-direction: column;
     @include mobile {
-        height: auto;
+        width: auto;
+        height: 100vh;
+    }
+    @include tablet {
+        width: 30%;
+        height: 100vh;
+    }
+    @include desktop{
+        width: 20%;
+        height: 100vh;
     }
 }
 
@@ -19,8 +28,8 @@ header {
     padding: 15px;
     margin: auto;
     @include tablet {
-        height: 90px;
-        width: 190px;
+        height: 70px;
+        width: 160px;
     }
     @include desktop {
         height: 100px;
@@ -28,17 +37,43 @@ header {
     }
 }
 
-ul {
+.nav-container {
     list-style-type: none;
     display: flex;
     flex-direction: column;
     gap: 15px;
     padding-inline-start: 0;
     @include tablet {
-        padding-inline-start: 20px;
+        gap: 20px;
+        padding-left: 20px;
     }
     @include desktop {
         gap: 10px;
+        padding-left: 40px;
+        gap: 30px;
+    }
+
+    .navText {
+        @include mobile {
+            display: none;
+        }
+        @include tablet {
+            display: flex;
+            justify-content: flex-start;
+            padding-left: 10px;
+        }
+    }
+    
+    .navIcon {
+        background-color: white;
+        color: black;
+        height: 50px;
+        width: 50px;
+        border-radius: 20px;
+        @include desktop {
+            height: 42px;
+            width: 42px;
+        }
     }
 }
 
@@ -53,31 +88,13 @@ ul li a {
         justify-content: flex-start;
         font-size: 16px;
     }
+    @include desktop {
+        display: flex;
+        justify-content: flex-start;
+        font-size: 20px;
+    }
 
     &:hover {
         font-weight: 600;
-    }
-}
-
-.navText {
-    @include mobile {
-        display: none;
-    }
-    @include tablet {
-        display: flex;
-        justify-content: flex-start;
-        padding-left: 10px;
-    }
-}
-
-.navIcon {
-    background-color: white;
-    color: black;
-    height: 50px;
-    width: 50px;
-    border-radius: 20px;
-    @include desktop {
-        height: 42px;
-        width: 42px;
     }
 }

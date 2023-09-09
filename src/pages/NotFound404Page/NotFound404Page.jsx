@@ -1,4 +1,4 @@
-import './NotFound404.scss';
+import './NotFound404Page.scss';
 
 const NotFound404 = () => {
     return (

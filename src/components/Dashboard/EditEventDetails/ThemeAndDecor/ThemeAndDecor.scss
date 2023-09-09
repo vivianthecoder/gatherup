@@ -1,0 +1,20 @@
+@import "../../../../App.scss";
+
+.content-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.themeAndDecor-info-box {
+    padding: 10px 0 10px 0;
+    @include mobile {
+        display:flex;
+        flex-direction: row;
+        font-size: 14px;
+    }
+    @include tablet {
+        display:flex;
+        flex-direction: row;
+        font-size: 14px;
+    }
+}

@@ -1,62 +1,190 @@
-import { useEffect, useState } from "react"; 
-import EditEventDetails from "../../components/Dashboard/EditEventDetails/EditEventDetails";
-import axios from "axios";
+import './EventDetailsPage.scss';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import MainDetails from '../../components/Dashboard/EditEventDetails/MainDetails/MainDetails';
+import FoodAndBev from '../../components/Dashboard/EditEventDetails/FoodAndBev/FoodAndBev';
+import ThemeAndDecor from '../../components/Dashboard/EditEventDetails/ThemeAndDecor/ThemeAndDecor';
+import AttendeeList from '../../components/Dashboard/EditEventDetails/AttendeeList/AttendeeList';
+import Collaborators from '../../components/Dashboard/EditEventDetails/Collaborators/Collaborators';
+import Media from '../../components/Dashboard/EditEventDetails/Media/Media';
+import { useParams } from 'react-router-dom';
 
-const EditEventDetailsPage = () => {
+const EventDetailsPage = () => {
+    // To store state variables
+    const [events, setEvents] = useState([]);
+    const [selectedEvent, setSelectedEvent] = useState(null);
+    const [eventDetails, setEventDetails] = useState({});
+    const [formData, setFormData] = useState({});
+    const [selectedNavItem, setSelectedNavItem] = useState('Main Details');
+    const { id } = useParams;
 
-        // To store state variables
-        const [events, setEvents] = useState([]);
-        const [selectedEvent, setSelectedEvent] = useState(null);
-    
-        // Event handlers
-        const closeEventDetails = () => {
-            setSelectedEvent(null)
-        };
-        const handleSaveEdit =(editedEvent) => {
-            axios
-                .put(`http://localhost:3031/dashboard/${editedEvent.id}`, editedEvent, {
-                    headers: {
-                        'Content-Type': 'application.json',
-                    },
-                })
-                .then((response) => {
-                    eventListRequest();        
-                    setSelectedEvent(null)
-                })
-                .catch((error) => {
-                    console.error('Error updating event data', error)
-                })
-        };
-    
-        // To get data from all events
-        function eventListRequest() {
-            axios
-                .get(`http://localhost:3031/dashboard`)
-                .then(response => {
-                    console.log('Successfully received data', response.data)
-                    setEvents(response.data)
-                }).catch((error) => console.log('Failed fetching data', error)
-            );
+    // To get event data from all events from the server
+    function eventListRequest() {
+        axios
+            .get(`http://localhost:3031/dashboard`)
+            .then(response => {
+                setEvents(response.data)
+            }).catch((error) => console.log('Failed fetching data', error)
+        );
+    }
+
+    // To get event id data from the server and set selected event in array
+   function selectedEventRequest(eventId) {
+       axios
+           .get(`http://localhost:3031/dashboard/${eventId}`)
+           .then(response => {
+               setSelectedEvent(response.data)
+               console.log(response.data)
+           }).catch((error) => console.log(error));
+   }
+
+    // To update new event details to the server WORKS!
+    const updateEventData = (updatedEvent) => {
+        const updatedEvents = events.map((eventItem) => {
+            if (eventItem.id === updatedEvent.id) {
+                return updatedEvent;
+            }
+            return eventItem;
+        })
+        setEvents(updatedEvents)
+
+        axios.put(`http://localhost:3031/dashboard/${updatedEvent.id}`, updatedEvent)
+            .then(response => {
+                console.log('Event data updated on the server', response.data);
+            })
+            .catch(error => {
+                console.error('Error updating event data on the server', error)
+            });
+    };
+
+    // To handle clicking event editing nav bar WORKS!
+    const handleNavItemClick = (item) => {
+        setSelectedNavItem(item);
+    };
+
+    // To fetch selected event id whenever the id is changed W/ selectedEvent
+    useEffect(() => {
+        axios
+            .get(`http://localhost:3031/dashboard/${id}`)
+            .then(response => {
+                setEventDetails(response.data)
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }, [id]);
+
+    // To fetch list of all events from the server
+    useEffect(() => {
+        eventListRequest();
+    }, [selectedEvent]);
+
+    useEffect(() => {
+        // Check if the selectedNavItem is "Main Details" and there's a selectedEvent
+        if (selectedNavItem === 'Main Details' && selectedEvent) {
+            // Update the formData state with the selectedEvent data
+            setFormData({
+                eventId: selectedEvent.id,
+                eventName: selectedEvent.eventName,
+                eventDate: selectedEvent.eventDate,
+                eventTime: selectedEvent.eventTime,
+                eventLocation: selectedEvent.eventLocation,
+                guestsCount: selectedEvent.guestsCount,
+                eventTheme: selectedEvent.eventTheme,
+                eventImage: selectedEvent.eventImage,
+            });
         }
-    
-        useEffect(() => {
-            eventListRequest();
-        }, []);
-    
-        if (!events.length) {
-            return<p>Loading...</p>
-        };
+    }, [selectedEvent, selectedNavItem]);
+
+    if (!events.length) {
+        return<p>Loading...</p>
+    };
 
     return (
-        <div className="dashboard-content">
-            <EditEventDetails 
-                event={selectedEvent} 
-                eventId={selectedEvent ? selectedEvent.id : null} 
-                onSave={handleSaveEdit}
-                closeEventDetails={closeEventDetails} 
-            />
+        <div className='dashboard-content'>
+            <div>
+                <h1 className='title'>NAME OF EVENT</h1>
+                <nav>
+                    <ul className='sub-nav-container'>
+                        <li 
+                            className={`sub-nav-text ${selectedNavItem === 'Main Details' ? 'selected' : ''}`}
+                            onClick={() => handleNavItemClick('Main Details')}>
+                            Main Details
+                        </li>
+                        <li 
+                        className={`sub-nav-text' sub-nav-text ${selectedNavItem === 'FoodAndBev' ? 'selected' : ''}`}
+                        onClick={() => handleNavItemClick('FoodAndBev')}>
+                            F & B
+                        </li>
+                        <li 
+                        className={`sub-nav-text' sub-nav-text ${selectedNavItem === 'Theme & Decor' ? 'selected' : ''}`}
+                        onClick={() => handleNavItemClick('Theme & Decor')}>
+                            Theme & Decor
+                        </li>
+                        <li 
+                            className={`sub-nav-text' sub-nav-text ${selectedNavItem === 'Attendee List' ? 'selected' : ''}`}
+                            onClick={() => handleNavItemClick('Attendee List')}>
+                            Attendee List
+                        </li>
+                        <li 
+                        className={`sub-nav-text' sub-nav-text ${selectedNavItem === 'Collaborators' ? 'selected' : ''}`}
+                        onClick={() => handleNavItemClick('Collaborators')}>
+                            Collaborators
+                        </li>
+                        <li 
+                        className={`sub-nav-text' sub-nav-text ${selectedNavItem === 'Media' ? 'selected' : ''}`}
+                        onClick={() => handleNavItemClick('Media')}>
+                            Media
+                        </li>
+                    </ul>
+                </nav>
+
+                <div className='details-container'>
+                    {selectedNavItem === 'Main Details' && (
+                        <MainDetails 
+                            formData={formData}
+                            setFormData={setFormData}
+                            events={events}
+                            setEvents={setEvents}
+                            onUpdateEventData={updateEventData}
+                            eventId={eventDetails.id} 
+                            setEventDetails={setEventDetails}
+                        />
+                    )}
+                    {selectedNavItem === 'FoodAndBev' && (
+                        <FoodAndBev
+                            event={eventDetails} 
+                            eventId={eventDetails.id} 
+                        />
+                    )}
+                    {selectedNavItem === 'Theme & Decor' && (
+                        <ThemeAndDecor
+                            event={eventDetails} 
+                            eventId={eventDetails.id} 
+                        />
+                    )}
+                    {selectedNavItem === 'Attendee List' && (
+                        <AttendeeList 
+                            event={eventDetails} 
+                            eventId={eventDetails.id} 
+                        />
+                    )}
+                    {selectedNavItem === 'Collaborators' && (
+                        <Collaborators 
+                            event={eventDetails} 
+                            eventId={eventDetails.id} 
+                        />
+                    )}
+                    {selectedNavItem === 'Media' && (
+                        <Media 
+                            event={eventDetails} 
+                            eventId={eventDetails.id} 
+                        />
+                    )}
+                </div>
+            </div>
         </div>
     );
 };
 
-export default EditEventDetailsPage;
+export default EventDetailsPage;

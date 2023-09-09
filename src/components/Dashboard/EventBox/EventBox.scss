@@ -2,7 +2,7 @@
 
 .event-box {
     height: auto;
-    width: 180px;
+    width: 100px;
     color: black;
     border-radius: 20px;
     padding: 10px;
@@ -11,6 +11,15 @@
     cursor: pointer;
     display: flex;
     flex-direction: column;
+
+    @include tablet {
+        width: 180px;
+    }
+
+    @include desktop {
+        height: auto;
+        width: 180px;
+    }
 
     &:hover {
         background-color: #FBF4DB;
@@ -72,6 +81,13 @@
 
     h3 {
         margin: 0;
+        font-size: 14px;
+        @include tablet {
+            font-size: 18px;
+        }
+        @include desktop {
+            font-size: 20px;
+        }
     }
     
     p {

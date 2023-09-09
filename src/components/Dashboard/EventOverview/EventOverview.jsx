@@ -1,9 +1,9 @@
-import './EventDetails.scss';
+import './EventOverview.scss';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const EventDetails = ({ event, eventId, closeEventDetails }) => {
+const EventOverview = ({ event, eventId, setSelectedEvent, selectedEvent, eventListRequest, onUpdateEventData, closeEventDetails }) => {
     const [eventDetails, setEventDetails] = useState({});
     const [isEditing, setIsEditing] = useState(false);
     // eslint-disable-next-line 
@@ -11,6 +11,7 @@ const EventDetails = ({ event, eventId, closeEventDetails }) => {
     const [selectedImage, setSelectedImage] = useState(null);
     const navigate = useNavigate();
 
+    // To update the state of event box details after clicking on the EventBox WORKS!
     useEffect(() => {
         if (event) {
             setEventDetails(event)
@@ -33,6 +34,7 @@ const EventDetails = ({ event, eventId, closeEventDetails }) => {
         setIsEditing(true)  // To enable editing mode
     };
 
+    // To fetch form fields
     const handleChange = (e) => {
         const { name, value } = e.target;
         setEventDetails({
@@ -44,22 +46,20 @@ const EventDetails = ({ event, eventId, closeEventDetails }) => {
     const handleImageChange= (e) => {
         const file = e.target.files[0];
         setSelectedImage(file);
+        console.log(setSelectedImage);
     };
 
     // To handle the form submission
     const handleSubmit = () => {
-
-        console.log('Updating ID', eventDetails.id);
-        console.log('Sending data', eventDetails);
-
         const formData = new FormData();
         formData.append('eventDetails', JSON.stringify(eventDetails));
+
         if (selectedImage) {
             formData.append('eventImage', selectedImage)
         }
 
         axios 
-            .put(`http://localhost:3031/dashboard/${eventDetails.id}`, eventDetails, {
+            .put(`http://localhost:3031/dashboard/${eventDetails.eventId}`, eventDetails, {
                 headers: {
                     'Content-Type' : 'application/json',
                 },
@@ -67,6 +67,7 @@ const EventDetails = ({ event, eventId, closeEventDetails }) => {
             .then(response => {
                 setEventDetails(response.data)
                 setIsEditing(false)
+                onUpdateEventData(response.data)
                 closeEventDetails();
             })
             .catch(error => {
@@ -75,7 +76,7 @@ const EventDetails = ({ event, eventId, closeEventDetails }) => {
     };
 
     const navigateToEditEvent = () => {
-        navigate(`/dashboard/edit/${eventId}`)
+        navigate(`/dashboard/edit/${eventDetails.eventId}`)
     };
 
     if(isLoading) {
@@ -93,33 +94,39 @@ const EventDetails = ({ event, eventId, closeEventDetails }) => {
                     X
                 </button>
                 <h2>{eventDetails.eventName}</h2>
-                <div className='img-container'>
-                    <img src={eventDetails.eventImage} alt={eventDetails.eventName}/>
-                    <label className='img-upload-label'>
-                        <input
-                            className='img-upload-input'
-                            type="file"
-                            accept="image/*"
-                            onChange={handleImageChange}
-                        />
-                        Upload Image
-                    </label>
-                </div>
-                
-                <h3>Event Overview</h3>
+
                 {!isEditing ? (
                     <div>
+                        <h3 className='event-overview-title'>Event Overview</h3>
+                        {eventDetails.eventImage && (
+                            <img src={eventDetails.eventImage} alt={eventDetails.eventName}/>
+                        )}
                         <p>Date: {eventDetails.eventDate}</p>
                         <p>Time:  {eventDetails.eventTime}</p>
                         <p>Location: {eventDetails.eventLocation}</p>
-                        <p>Attendee #: {eventDetails.guestsNumber}</p>
-                        <p>Theme & Decor: {eventDetails.eventTheme}</p>
+                        <p>Attendee #: {eventDetails.guestsCount}</p>
+                        <p>Theme: {eventDetails.eventTheme}</p>
                         <button className="edit-btn" onClick={handleEditClick}>
                             Quick Edit
                         </button>
                     </div>
                 ) : ( 
                     <div className='edit-mode'>
+                        <h3 className='quick-edit-title'>Quick Edit</h3>
+                        <div className='img-container'>
+                        {eventDetails.eventImage && (
+                            <img src={eventDetails.eventImage} alt={eventDetails.eventName}/>
+                        )}
+                        <label className='img-upload-label'>
+                            <input
+                                className='img-upload-input'
+                                type="file"
+                                accept="image/*"
+                                onChange={handleImageChange}
+                            />
+                            Upload Image
+                        </label>
+                    </div>
                         <input
                             type='text'
                             placeholder='Event Name'
@@ -149,15 +156,15 @@ const EventDetails = ({ event, eventId, closeEventDetails }) => {
                             onChange={handleChange}
                         />
                         <input
-                            type='text'
+                            type='number'
                             placeholder='Guest Count'
-                            name='guestsNumber'
-                            value={eventDetails.guestsNumber || ''}
+                            name='guestsCount'
+                            value={eventDetails.guestsCount || ''}
                             onChange={handleChange}
                         />
                         <input
                             type='text'
-                            placeholder='Theme & Decor'
+                            placeholder='Theme'
                             name='eventTheme'
                             value={eventDetails.eventTheme || ''}
                             onChange={handleChange}
@@ -175,4 +182,4 @@ const EventDetails = ({ event, eventId, closeEventDetails }) => {
     )
 }
 
-export default EventDetails;
+export default EventOverview;

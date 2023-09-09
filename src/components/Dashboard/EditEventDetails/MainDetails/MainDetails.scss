@@ -1,0 +1,49 @@
+@import "../../../../App.scss";
+
+.sub-header {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding-bottom: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-info-box {
+    padding: 10px 0 10px 0;
+    @include mobile {
+        display:flex;
+        flex-direction: row;
+        justify-content: space-between;
+        font-size: 14px;
+    }
+    @include tablet {
+        display:flex;
+        flex-direction: row;
+        justify-content: space-between;
+        font-size: 14px;
+    }
+
+    // .input-box {
+    //     margin: 5px 0 5px 0;
+    //     padding: 5px 0 5px 0;
+    // }
+}
+
+.btn-container {
+    display: flex;
+    gap: 15px;
+    padding-top: 10px;
+
+    .save-btn, .next-btn {
+        background-color: #FBF4DB;
+        cursor: pointer;
+        border: 1px solid gray;
+        border-radius: 20px;
+        font-weight: 600;
+        padding: 5px;
+    }
+}

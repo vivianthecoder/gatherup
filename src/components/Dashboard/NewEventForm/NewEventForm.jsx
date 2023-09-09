@@ -1,15 +1,15 @@
-import './EventForm.scss';
+import './NewEventForm.scss';
 import { useState } from 'react';
 import axios from 'axios';
 
-const EventForm = ({ addEvent, setShowForm }) => {
+const NewEventForm = ({ addEvent, setShowForm }) => {
     // To create a new event object
     const [event, setEvent] = useState({
         eventName: '',
         eventDate:'',
         eventTime: '',
         eventLocation: '',
-        guestsNumber: '',
+        guestsCount: '',
         eventTheme: ''
     });
 
@@ -30,7 +30,7 @@ const EventForm = ({ addEvent, setShowForm }) => {
             event.eventDate && 
             event.eventTime && 
             event.eventLocation && 
-            event.guestsNumber && 
+            event.guestsCount && 
             event.eventTheme
         ) {
             // To post the data to our server data
@@ -49,7 +49,7 @@ const EventForm = ({ addEvent, setShowForm }) => {
                         eventDate: '',
                         eventTime: '',
                         eventLocation: '',
-                        guestsNumber: '',
+                        guestsCount: '',
                         eventTheme: ''
                     });
                     // To close the form
@@ -95,8 +95,8 @@ const EventForm = ({ addEvent, setShowForm }) => {
                 <input  
                     type='number'
                     placeholder='Guest Count'
-                    name='guestsNumber'
-                    value={event.guestsNumber}
+                    name='guestsCount'
+                    value={event.guestsCount}
                     onChange={handleChange}
                 />
                 <input  
@@ -112,4 +112,4 @@ const EventForm = ({ addEvent, setShowForm }) => {
     )
 }
 
-export default EventForm;
+export default NewEventForm;
