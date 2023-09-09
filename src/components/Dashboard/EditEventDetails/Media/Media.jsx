@@ -1,5 +1,6 @@
 import './Media.scss'
 import AddImageIcon from '../../../../assets/Icons/Img_box.svg';
+import ImageCarousel from './ImageCarousel';
 
 const Media = () => {
     
@@ -14,13 +15,17 @@ const Media = () => {
                 <button className="save-btn">Save</button>
                 </div>
             </div>
-            
-            
 
             <h3>Photos</h3>
+            <ImageCarousel />
+
+            <form>
+                <input type="file" id="img" name="img" accept="image/*"/>
+            </form>
             <h3>Videos</h3>
-
-
+            <form>
+                <input type="file" id="img" name="img" accept="image/*"/>
+            </form>
         </div>
     );
 }

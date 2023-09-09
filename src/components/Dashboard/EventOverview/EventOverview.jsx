@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const EventOverview = ({ event, eventId, setSelectedEvent, selectedEvent, eventListRequest, onUpdateEventData, closeEventDetails }) => {
+const EventOverview = ({ event, eventId, onUpdateEventData, closeEventDetails }) => {
     const [eventDetails, setEventDetails] = useState({});
     const [isEditing, setIsEditing] = useState(false);
     // eslint-disable-next-line 

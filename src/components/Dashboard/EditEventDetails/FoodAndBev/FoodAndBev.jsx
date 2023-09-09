@@ -126,10 +126,6 @@ const FoodAndBev = () => {
                 </div>
                 
             </div>
-                
-            <div className='btn-container'>
-                <button className="save-btn">Save</button>
-            </div>
         </div>
     )
 }

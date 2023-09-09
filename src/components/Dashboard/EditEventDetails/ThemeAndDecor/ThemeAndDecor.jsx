@@ -36,17 +36,9 @@ const ThemeAndDecor = () => {
                     />
                 </label>
             </form>
-
-            <div className='btn-container'>
-                <button className="save-btn">Save</button>
-            </div>
-
             <h3>Explore Nearby For Shopping</h3>
             <Iframe 
                 src="https://storage.googleapis.com/maps-solutions-rnoars92o2/neighborhood-discovery/wg57/neighborhood-discovery.html"
-                width="100%" height="500px"
-                style="border:0;"
-                loading="lazy"
             />   
         </div>
     )
