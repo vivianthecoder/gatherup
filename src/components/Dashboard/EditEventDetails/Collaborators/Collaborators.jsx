@@ -3,10 +3,10 @@ import AddUserIcon from '../../../../assets/Icons/User_add.svg';
 import { useState } from 'react';
 
 const Collaborators = () => {
-
-    // For EMAIL form
     const [isInviteFormVisible, setInviteFormVisible] = useState(false);
     const [inviteEmail, setInviteEmail] = useState('');
+    // Array to store emails
+    const [rsvpList, setRsvpList] = useState([]);
 
     const handleInviteClick = () => {
         setInviteFormVisible(true);
@@ -17,16 +17,17 @@ const Collaborators = () => {
     };
 
     const handleSendInvitation = () => {
+        setRsvpList([...rsvpList, inviteEmail]);
         console.log('Sending invitation to:', inviteEmail);
         setInviteEmail('');
         setInviteFormVisible(false);
     }
-
+    
     return(
         <div className='edit-event-details'>
             <div className='sub-header'>
                 <img src={AddUserIcon} alt='Edit Event Icon' className='navIcon'/> 
-                <h2>Add Co-host</h2>
+                <h2>Invite Collaborators</h2>
             </div>
             
             {isInviteFormVisible ? (
@@ -42,6 +43,15 @@ const Collaborators = () => {
             ) : (
                 <button onClick={handleInviteClick}>Invite</button>
             )}
+
+            <h3>Collaborators List</h3>
+            <ul>
+                {rsvpList.map((email, index) => (
+                    <li key={index}>
+                    {email}
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 }

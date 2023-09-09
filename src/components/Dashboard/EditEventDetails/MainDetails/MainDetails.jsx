@@ -59,54 +59,60 @@ const MainDetails = ({ event, eventId, formData, setFormData, onUpdateEventData 
             </div>
             
             <form>
-                <label>
+                <label className='main-info-box'>
                     Event Name: 
                     <input
+                        className='input-box'
                         type='text'
                         name='eventName'
                         value={formData.eventName || eventDetails.eventName || ''}
                         onChange={handleChange}
-                        />
+                    />
                 </label>
-                <label>
+                <label className='main-info-box'>
                     Event Date:
                     <input
+                        className='input-box'
                         type='text'
                         name='eventDate'
                         value={formData.eventDate || eventDetails.eventDate || ''}
                         onChange={handleChange}
                     />
                 </label>
-                <label>
+                <label className='main-info-box'>
                     Event Time:
                     <input
+                        className='input-box'
                         type='text'
                         name='eventTime'
                         value={formData.eventTime || eventDetails.eventTime || ''}
                         onChange={handleChange}
                     />
                 </label>
-                <label>
+                <label className='main-info-box'>
                     Event Location:
                     <input
+                        className='input-box'
                         type='text'
                         name='eventLocation'
                         value={formData.eventLocation || eventDetails.eventLocation || ''}
                         onChange={handleChange}
                     />
                 </label>
-                <label>
+                <label className='main-info-box'>
                     Anticipated Attendee #:
                     <input
+                        className='input-box'
                         type='text'
                         name='guestsCount'
                         value={formData.guestsCount || eventDetails.guestsCount || ''}
                         onChange={handleChange}
                     />
                 </label>
-                <label>
+                <label className='main-info-box'>
                     Event Theme:
                     <input
+                        className='input-box'
                         type='text'
                         name='eventTheme'
                         value={formData.eventTheme || eventDetails.eventTheme || ''}

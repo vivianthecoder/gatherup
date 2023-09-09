@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: row;
     align-items: flex-start;
+    padding-bottom: 10px;
 }
 
 form {
@@ -11,12 +12,25 @@ form {
     flex-direction: column;
 }
 
-label {
+.main-info-box {
     padding: 10px 0 10px 0;
-
-    input {
-        margin-left: 10px;
+    @include mobile {
+        display:flex;
+        flex-direction: row;
+        justify-content: space-between;
+        font-size: 14px;
     }
+    @include tablet {
+        display:flex;
+        flex-direction: row;
+        justify-content: space-between;
+        font-size: 14px;
+    }
+
+    // .input-box {
+    //     margin: 5px 0 5px 0;
+    //     padding: 5px 0 5px 0;
+    // }
 }
 
 .btn-container {

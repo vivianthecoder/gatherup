@@ -5,8 +5,16 @@
     flex-direction: column;
     padding: 10px 0 0 25px;
     width: 70%;
+    @include mobile {
+        width: 55%;
+    }
+
+    @include tablet {
+        width: 60%;
+    }
 
     @include desktop{
+        width: 70%;
         padding: 15px 50px 50px 50px;
     }
 

@@ -105,7 +105,7 @@ const EventOverview = ({ event, eventId, setSelectedEvent, selectedEvent, eventL
                         <p>Time:  {eventDetails.eventTime}</p>
                         <p>Location: {eventDetails.eventLocation}</p>
                         <p>Attendee #: {eventDetails.guestsCount}</p>
-                        <p>Theme & Decor: {eventDetails.eventTheme}</p>
+                        <p>Theme: {eventDetails.eventTheme}</p>
                         <button className="edit-btn" onClick={handleEditClick}>
                             Quick Edit
                         </button>
@@ -164,7 +164,7 @@ const EventOverview = ({ event, eventId, setSelectedEvent, selectedEvent, eventL
                         />
                         <input
                             type='text'
-                            placeholder='Theme & Decor'
+                            placeholder='Theme'
                             name='eventTheme'
                             value={eventDetails.eventTheme || ''}
                             onChange={handleChange}

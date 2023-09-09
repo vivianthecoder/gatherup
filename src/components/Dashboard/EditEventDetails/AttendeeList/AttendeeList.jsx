@@ -3,10 +3,10 @@ import GroupIcon from '../../../../assets/Icons/Group.svg';
 import { useState } from 'react';
 
 const AttendeeList = ( ) => {
-
-    // For EMAIL form
     const [isInviteFormVisible, setInviteFormVisible] = useState(false);
     const [inviteEmail, setInviteEmail] = useState('');
+    // Array to store emails
+    const [rsvpList, setRsvpList] = useState([]);
 
     const handleInviteClick = () => {
         setInviteFormVisible(true);
@@ -17,6 +17,7 @@ const AttendeeList = ( ) => {
     };
 
     const handleSendInvitation = () => {
+        setRsvpList([...rsvpList, inviteEmail]);
         console.log('Sending invitation to:', inviteEmail);
         setInviteEmail('');
         setInviteFormVisible(false);
@@ -42,6 +43,15 @@ const AttendeeList = ( ) => {
             ) : (
                 <button onClick={handleInviteClick}>Invite</button>
             )}
+
+            <h3>RSVP List</h3>
+            <ul>
+                {rsvpList.map((email, index) => (
+                    <li key={index}>
+                    {email}
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 }

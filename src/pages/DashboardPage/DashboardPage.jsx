@@ -1,4 +1,4 @@
-import './Dashboard.scss';
+import './DashboardPage.scss';
 import EventBox from '../../components/Dashboard/EventBox/EventBox';
 import NewEventForm from '../../components/Dashboard/NewEventForm/NewEventForm';
 import { useState, useEffect } from 'react';
@@ -7,7 +7,7 @@ import axios from 'axios';
 import format from 'date-fns/format';
 import { useParams } from 'react-router-dom';
 
-const Dashboard = () => {
+const DashboardPage = () => {
     // To store state variables
     const [events, setEvents] = useState([]);
     const [selectedEvent, setSelectedEvent] = useState([]);
@@ -120,4 +120,4 @@ const Dashboard = () => {
     );
 };
 
-export default Dashboard;
+export default DashboardPage;

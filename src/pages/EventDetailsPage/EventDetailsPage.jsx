@@ -139,7 +139,7 @@ const EventDetailsPage = () => {
                     </ul>
                 </nav>
 
-                <div className='event-container'>
+                <div className='details-container'>
                     {selectedNavItem === 'Main Details' && (
                         <MainDetails 
                             formData={formData}

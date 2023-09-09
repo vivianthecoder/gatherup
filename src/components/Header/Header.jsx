@@ -2,9 +2,8 @@ import './Header.scss';
 import { Link, NavLink } from 'react-router-dom';
 import Logo from '../../assets/Logo/Logo1.png';
 import DBIcon from '../../assets/Icons/Home.svg';
-import CollabIcon from '../../assets/Icons/User_add.svg';
+import PrevEventsIcon from '../../assets/Icons/File_dock.svg';
 import NotifIcon from '../../assets/Icons/Message.svg';
-import TDIcon from '../../assets/Icons/Music_fill.svg';
 import IAIcon from '../../assets/Icons/Rofl.svg';
 import SettingsIcon from '../../assets/Icons/Setting_line.svg';
 import PrintIcon from '../../assets/Icons/Print.svg';
@@ -16,7 +15,7 @@ const Header = () => {
                 <img className="logo" src={Logo} alt="Logo" />
             </Link>
             <nav>
-                <ul>
+                <ul className='nav-container'>
                     <li>
                         <NavLink to="/dashboard" activeClassName="active">
                             <img src={DBIcon} alt='Dashboard Icon' className='navIcon'/> 
@@ -24,9 +23,9 @@ const Header = () => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/collaborated-events" activeClassName="active">
-                            <img src={CollabIcon} alt='Collaborators Icon' className='navIcon'/> 
-                            <div className='navText'>Collaborated Events</div>
+                        <NavLink to="/previous-events" activeClassName="active">
+                            <img src={PrevEventsIcon} alt='Previous Events Icon' className='navIcon'/> 
+                            <div className='navText'>Previous Events</div>
                         </NavLink>
                     </li>
                     <li>

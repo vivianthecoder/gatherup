@@ -1,6 +1,6 @@
 import './App.scss';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Dashboard from './pages/Dashboard/Dashboard.jsx';
+import DashboardPage from './pages/DashboardPage/DashboardPage.jsx';
 import EventDetailsPage from './pages/EventDetailsPage/EventDetailsPage';
 import NotFound404Page from './pages/NotFound404Page/NotFound404Page.jsx';
 import Header from './components/Header/Header.jsx';
@@ -12,9 +12,9 @@ function App() {
       <BrowserRouter>
         <Header />
           <Routes>
-            <Route path='/' element={<Dashboard />} />
-            <Route path='/dashboard' element={<Dashboard />} />
-            <Route path='/dashboard/:id' element={<Dashboard />} />
+            <Route path='/' element={<DashboardPage />} />
+            <Route path='/dashboard' element={<DashboardPage />} />
+            <Route path='/dashboard/:id' element={<DashboardPage />} />
             <Route path='/dashboard/edit/:id' element={<EventDetailsPage />} />
             <Route path='*' element={<NotFound404Page />} />
           </Routes>
