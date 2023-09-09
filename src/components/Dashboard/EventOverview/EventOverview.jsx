@@ -94,20 +94,7 @@ const EventOverview = ({ event, eventId, setSelectedEvent, selectedEvent, eventL
                     X
                 </button>
                 <h2>{eventDetails.eventName}</h2>
-                {/* <div className='img-container'> */}
-                    {/* <img src={eventDetails.eventImage} alt={eventDetails.eventName}/> */}
-                    {/* <label className='img-upload-label'>
-                        <input
-                            className='img-upload-input'
-                            type="file"
-                            accept="image/*"
-                            onChange={handleImageChange}
-                        />
-                        Upload Image
-                    </label>
-                </div> */}
-                
-                {/* <h3>Event Overview</h3> */}
+
                 {!isEditing ? (
                     <div>
                         <h3 className='event-overview-title'>Event Overview</h3>

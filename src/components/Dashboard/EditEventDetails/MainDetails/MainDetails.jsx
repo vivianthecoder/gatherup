@@ -4,81 +4,51 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import EditIcon from '../../../../assets/Icons/Edit.svg';
 
-const MainDetails = ({ eventId, onSave}) => {
-    const [editedEvent, setEditedEvent] = useState({});
-    const [isEditing, setIsEditing] = useState(false);
+const MainDetails = ({ event, eventId, formData, setFormData, onUpdateEventData }) => {
+    const [eventDetails, setEventDetails] = useState({});
 
+    // To update the state of event box details
     useEffect(() => {
-        if(eventId) {
+        if (event) {
+            setEventDetails(event) 
+        } else if (eventId) {
             axios
                 .get(`http://localhost:3031/dashboard/${eventId}`)
                 .then(response => {
                     const eventWithId = response.data;
-                    setEditedEvent({ ...eventWithId, id: eventId })
+                    setEventDetails({ ...eventWithId, id: eventId });
+                    console.log('Fetched event details:', eventWithId);
                 })
                 .catch(error => {
                     console.error('Error fetching data', error)
                 })
-        }
-    }, [eventId])
+            }
+        }, [eventId, event]);
 
-    // useEffect(() => {
-    //     if (!event) {
-    //         axios
-    //             .get(`http://localhost:3031/dashboard/${eventId}`)
-    //             .then(response => {
-    //                 const eventWithId = { ...response.data, id: eventId }
-    //                 setEditedEvent(eventWithId)
-    //             })
-    //             .catch(error => {
-    //                 console.error('Error fetching data', error)
-    //             })
-    //         }
-    //     }, [eventId, event]);
-
-    // const handleChange = (e) => {
-    //     const { name, value } = e.target;
-    //     setEditedEvent({
-    //         ...editedEvent,
-    //         [name]: value,
-    //     })
-    // };
-
-    // To update the state of event box details after clicking on the EventBox WORKS!
-    // useEffect(() => {
-    //     if (event) {
-    //         setEventDetails(event)
-    //     } else if (eventId) {
-    //         axios
-    //             .get(`http://localhost:3031/dashboard/${eventId}`)
-    //             .then(response => {
-    //                 console.log('response data:', response.data);
-    //                 const eventWithId = response.data;
-    //                 setEventDetails({ ...eventWithId, id: eventId });
-    //             })
-    //             .catch(error => {
-    //                 console.error('Error fetching data', error)
-    //             })
-    //         }
-    //     }, [eventId, event]);
-
+    // To handle form field changes
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setEditedEvent({
-            ...editedEvent,
+        setFormData({
+            ...formData,
             [name]: value,
         })
     };
 
-    // To handle the edit button click
-    const handleEditClick = () => {
-        setIsEditing(true)  // To enable editing mode
-    };
-
+    // To handle the form submission
     const handleSave = () => {
-        setIsEditing(false);
-        onSave(editedEvent);
-        // onSave(editedEvent);
+        axios
+        .put(`http://localhost:3031/dashboard/${formData.eventId}`, formData, {
+            headers: {
+                'Content-Type' : 'application/json',
+            },
+        })
+        .then((response) => {
+            setFormData(response.data)
+            onUpdateEventData(response.data)
+        })
+        .catch((error) => {
+          console.error('Error updating event details', error);
+        });
     };
 
     return (
@@ -94,19 +64,17 @@ const MainDetails = ({ eventId, onSave}) => {
                     <input
                         type='text'
                         name='eventName'
-                        value={editedEvent.eventName || ''}
+                        value={formData.eventName || eventDetails.eventName || ''}
                         onChange={handleChange}
-                        disabled={!isEditing}
-                    />
+                        />
                 </label>
                 <label>
                     Event Date:
                     <input
                         type='text'
                         name='eventDate'
-                        value={editedEvent.eventDate || ''}
+                        value={formData.eventDate || eventDetails.eventDate || ''}
                         onChange={handleChange}
-                        disabled={!isEditing}
                     />
                 </label>
                 <label>
@@ -114,9 +82,8 @@ const MainDetails = ({ eventId, onSave}) => {
                     <input
                         type='text'
                         name='eventTime'
-                        value={editedEvent.eventTime || ''}
+                        value={formData.eventTime || eventDetails.eventTime || ''}
                         onChange={handleChange}
-                        disabled={!isEditing}
                     />
                 </label>
                 <label>
@@ -124,9 +91,8 @@ const MainDetails = ({ eventId, onSave}) => {
                     <input
                         type='text'
                         name='eventLocation'
-                        value={editedEvent.eventLocation || ''}
+                        value={formData.eventLocation || eventDetails.eventLocation || ''}
                         onChange={handleChange}
-                        disabled={!isEditing}
                     />
                 </label>
                 <label>
@@ -134,9 +100,8 @@ const MainDetails = ({ eventId, onSave}) => {
                     <input
                         type='text'
                         name='guestsCount'
-                        value={editedEvent.guestsCount || ''}
+                        value={formData.guestsCount || eventDetails.guestsCount || ''}
                         onChange={handleChange}
-                        disabled={!isEditing}
                     />
                 </label>
                 <label>
@@ -144,20 +109,13 @@ const MainDetails = ({ eventId, onSave}) => {
                     <input
                         type='text'
                         name='eventTheme'
-                        value={editedEvent.eventTheme || ''}
+                        value={formData.eventTheme || eventDetails.eventTheme || ''}
                         onChange={handleChange}
-                        disabled={!isEditing}
                     />
                 </label>
-
-                {isEditing ? (
-                    <button className="save-btn" onClick={handleSave}>Save</button>
-                ) : (
-                    <button className="edit-btn" onClick={handleEditClick}>Edit</button>
-                )}
             </form>
             <div className='btn-container'>
-                
+                <button className="save-btn" onClick={handleSave}>Save</button>
             </div>
         </div>
     )

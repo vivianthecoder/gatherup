@@ -40,22 +40,6 @@ const Dashboard = () => {
             }).catch((error) => console.log(error));
     }
 
-    // const handleSaveEdit =(editedEvent) => {
-    //     axios
-    //         .put(`http://localhost:3031/dashboard/${selectedEvent.id}`, editedEvent, {
-    //             headers: {
-    //                 'Content-Type': 'application.json',
-    //             },
-    //         })
-    //         .then((response) => {
-    //             eventListRequest();        
-    //             setSelectedEvent(editedEvent)
-    //         })
-    //         .catch((error) => {
-    //             console.error('Error updating event data', error)
-    //         })
-    // };
-
     // To push the newEvent object onto the setEvents array with updated fields WORKS!
     const addEvent = (newEvent) => {
         setEvents([...events, {

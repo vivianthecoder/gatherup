@@ -1,6 +1,5 @@
 import './EventDetailsPage.scss';
 import { useState, useEffect } from 'react';
-// import AddEventIcon from '../../assets/Icons/Add_square.svg';
 import axios from 'axios';
 import MainDetails from '../../components/Dashboard/EditEventDetails/MainDetails/MainDetails';
 import FoodAndBev from '../../components/Dashboard/EditEventDetails/FoodAndBev/FoodAndBev';
@@ -8,13 +7,16 @@ import ThemeAndDecor from '../../components/Dashboard/EditEventDetails/ThemeAndD
 import AttendeeList from '../../components/Dashboard/EditEventDetails/AttendeeList/AttendeeList';
 import Collaborators from '../../components/Dashboard/EditEventDetails/Collaborators/Collaborators';
 import Media from '../../components/Dashboard/EditEventDetails/Media/Media';
+import { useParams } from 'react-router-dom';
 
 const EventDetailsPage = () => {
     // To store state variables
     const [events, setEvents] = useState([]);
     const [selectedEvent, setSelectedEvent] = useState(null);
     const [eventDetails, setEventDetails] = useState({});
+    const [formData, setFormData] = useState({});
     const [selectedNavItem, setSelectedNavItem] = useState('Main Details');
+    const { id } = useParams;
 
     // To get event data from all events from the server
     function eventListRequest() {
@@ -36,14 +38,63 @@ const EventDetailsPage = () => {
            }).catch((error) => console.log(error));
    }
 
-    // To handle clicking event editing nav bar
+    // To update new event details to the server WORKS!
+    const updateEventData = (updatedEvent) => {
+        const updatedEvents = events.map((eventItem) => {
+            if (eventItem.id === updatedEvent.id) {
+                return updatedEvent;
+            }
+            return eventItem;
+        })
+        setEvents(updatedEvents)
+
+        axios.put(`http://localhost:3031/dashboard/${updatedEvent.id}`, updatedEvent)
+            .then(response => {
+                console.log('Event data updated on the server', response.data);
+            })
+            .catch(error => {
+                console.error('Error updating event data on the server', error)
+            });
+    };
+
+    // To handle clicking event editing nav bar WORKS!
     const handleNavItemClick = (item) => {
         setSelectedNavItem(item);
     };
 
+    // To fetch selected event id whenever the id is changed W/ selectedEvent
+    useEffect(() => {
+        axios
+            .get(`http://localhost:3031/dashboard/${id}`)
+            .then(response => {
+                setEventDetails(response.data)
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }, [id]);
+
+    // To fetch list of all events from the server
     useEffect(() => {
         eventListRequest();
     }, [selectedEvent]);
+
+    useEffect(() => {
+        // Check if the selectedNavItem is "Main Details" and there's a selectedEvent
+        if (selectedNavItem === 'Main Details' && selectedEvent) {
+            // Update the formData state with the selectedEvent data
+            setFormData({
+                eventId: selectedEvent.id,
+                eventName: selectedEvent.eventName,
+                eventDate: selectedEvent.eventDate,
+                eventTime: selectedEvent.eventTime,
+                eventLocation: selectedEvent.eventLocation,
+                guestsCount: selectedEvent.guestsCount,
+                eventTheme: selectedEvent.eventTheme,
+                eventImage: selectedEvent.eventImage,
+            });
+        }
+    }, [selectedEvent, selectedNavItem]);
 
     if (!events.length) {
         return<p>Loading...</p>
@@ -67,7 +118,7 @@ const EventDetailsPage = () => {
                         </li>
                         <li 
                         className={`sub-nav-text' sub-nav-text ${selectedNavItem === 'Theme & Decor' ? 'selected' : ''}`}
-                        onClick={() => handleNavItemClick('Media')}>
+                        onClick={() => handleNavItemClick('Theme & Decor')}>
                             Theme & Decor
                         </li>
                         <li 
@@ -91,8 +142,13 @@ const EventDetailsPage = () => {
                 <div className='event-container'>
                     {selectedNavItem === 'Main Details' && (
                         <MainDetails 
-                            event={eventDetails} 
+                            formData={formData}
+                            setFormData={setFormData}
+                            events={events}
+                            setEvents={setEvents}
+                            onUpdateEventData={updateEventData}
                             eventId={eventDetails.id} 
+                            setEventDetails={setEventDetails}
                         />
                     )}
                     {selectedNavItem === 'FoodAndBev' && (
