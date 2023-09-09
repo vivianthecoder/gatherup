@@ -26,8 +26,13 @@ const Collaborators = () => {
     return(
         <div className='edit-event-details'>
             <div className='sub-header'>
-                <img src={AddUserIcon} alt='Edit Event Icon' className='navIcon'/> 
-                <h2>Invite Collaborators</h2>
+                <div className='sub-header-title'>
+                    <img src={AddUserIcon} alt='Edit Collaborators Icon' className='navIcon'/> 
+                    <h2>Edit Collaborators</h2>
+                </div>
+                <div className='btn-container'>
+                <button className="save-btn">Save</button>
+                </div>
             </div>
             
             {isInviteFormVisible ? (

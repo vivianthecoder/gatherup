@@ -8,15 +8,15 @@ header {
     flex-direction: column;
     @include mobile {
         width: auto;
-        height: 100vh;
+        height: auto;
     }
     @include tablet {
         width: 30%;
-        height: 100vh;
+        height: auto;
     }
     @include desktop{
         width: 20%;
-        height: 100vh;
+        height: auto;
     }
 }
 

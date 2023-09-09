@@ -1,10 +1,24 @@
 @import "../../../../App.scss";
 
+.main-info-container {
+    @include mobile {
+        width: 400px;
+    }
+}
+
 .sub-header {
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    justify-content: space-between;
+    align-items:flex-start;
     padding-bottom: 10px;
+
+    .sub-header-title{
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        padding-bottom: 10px;
+    }
 }
 
 form {
@@ -23,14 +37,19 @@ form {
     @include tablet {
         display:flex;
         flex-direction: row;
-        justify-content: space-between;
+        // justify-content: space-between;
+        font-size: 14px;
+    }
+    @include desktop {
+        display:flex;
+        flex-direction: row;
+        // justify-content: space-between;
         font-size: 14px;
     }
 
-    // .input-box {
-    //     margin: 5px 0 5px 0;
-    //     padding: 5px 0 5px 0;
-    // }
+    .input-box {
+        width: 100%;
+    }
 }
 
 .btn-container {
@@ -46,4 +65,9 @@ form {
         font-weight: 600;
         padding: 5px;
     }
+}
+
+#map {
+    height: 500px;
+    width: 100%;
 }
