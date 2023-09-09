@@ -6,6 +6,7 @@ import axios from 'axios';
 const EventBox = ({ events, setEvents, eventId, eventName, eventDate, eventTime, eventLocation, guestsCount, eventTheme, eventImage }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [showEventDetails, setShowEventDetails] = useState(false);
+    const [isConfirmDelete, setIsConfirmDelete] = useState(false);
 
     // To drop down the top right nav WORKS!
     const toggleDropDown = () => {
@@ -16,6 +17,15 @@ const EventBox = ({ events, setEvents, eventId, eventName, eventDate, eventTime,
     const handleEventClick = () => {
         setShowEventDetails(!showEventDetails)
     };
+
+    const confirmDelete = () => {
+        setIsConfirmDelete(true);
+    };
+
+    const cancelDelete = () => {
+        setIsConfirmDelete(false);
+        setIsOpen(false);
+    }
 
     // To update new event box details to the server WORKS!
     const updateEventData = (updatedEvent) => {
@@ -45,6 +55,7 @@ const EventBox = ({ events, setEvents, eventId, eventName, eventDate, eventTime,
 
                 const updatedEvents = events.filter(eventItem =>  eventItem.id != eventId);
                 setEvents(updatedEvents);
+                setIsConfirmDelete(false);
             })
             .catch(error => {
                 console.log(error)
@@ -59,9 +70,15 @@ const EventBox = ({ events, setEvents, eventId, eventName, eventDate, eventTime,
             {isOpen && (
                 <div className={`dropdown-btn-menu ${isOpen ? 'active' : ''}`}>
                     <ul>
-                        <li>Email Attendees</li>
                         <li>Archive</li>
-                        <li onClick={deleteEvent}>Delete</li>
+                        {isConfirmDelete ? (
+                            <>
+                                <li onClick={deleteEvent}>Confirm Delete</li>
+                                <li onClick={cancelDelete}>Cancel</li>
+                            </>
+                        ) : (
+                            <li onClick={confirmDelete}>Delete</li>
+                        )}
                     </ul>
                 </div>
             )}
