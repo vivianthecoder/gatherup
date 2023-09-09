@@ -6,6 +6,51 @@
     align-items: center;
 }
 
+.add-attendee-box {
+    border-radius: 20px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    width: 100px;
+
+    &:hover {
+        background-color: #FBF4DB;
+    }
+
+    .first-add-btn {
+        background-color: transparent;
+        border: none;
+        margin: 0;
+        padding: 0;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    
+        &:hover {
+            background-color: transparent;
+        }
+
+        .add-btn {
+            background-color: white;
+            color: black;
+            height: 50px;
+            width: 50px;
+            border-radius: 20px;
+        }
+
+    }
+
+    h3 {
+        margin: 0;
+    }
+
+    .instructions-title{
+        padding-top: 30px;
+    }
+}
+
 form {
     display: flex;
     flex-direction: column;
@@ -25,7 +70,7 @@ label {
     padding-top: 10px;
 
     .save-btn, .next-btn {
-        background-color: #FECD1E;
+        background-color: $GatherUp-Yellow;
         color: black;
         padding: 10px;
         width: 150px;

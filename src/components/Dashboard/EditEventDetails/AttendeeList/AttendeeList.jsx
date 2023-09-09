@@ -1,19 +1,27 @@
 import './AttendeeList.scss'
+import NewAttendeeForm from './NewAttendeeForm';
 import GroupIcon from '../../../../assets/Icons/Group.svg';
+import AddEventIcon from '../../../../assets/Icons/Add_square.svg';
 import { useState } from 'react';
 
-const AttendeeList = ( ) => {
+const AttendeeList = () => {
     const [isInviteFormVisible, setInviteFormVisible] = useState(false);
     const [inviteEmail, setInviteEmail] = useState('');
+    const [showForm, setShowForm] = useState(false);
+    const [name, setName] = useState('');
     // Array to store emails
     const [rsvpList, setRsvpList] = useState([]);
 
-    const handleInviteClick = () => {
+    const handleAddAttendeeClick = () => {
         setInviteFormVisible(true);
     };
 
     const handleEmailChange = (e) => {
         setInviteEmail(e.target.value);
+    };
+
+    const handleNameChange = (e) => {
+        setName(e.target.value);
     };
 
     const handleSendInvitation = () => {
@@ -22,6 +30,12 @@ const AttendeeList = ( ) => {
         setInviteEmail('');
         setInviteFormVisible(false);
     }
+    const handleAddAttendee = () => {
+        setRsvpList([...rsvpList, `${name} (${inviteEmail})`])
+        setName('');
+        setInviteEmail('');
+        setShowForm(false);
+    };
     
     return(
         <div className='edit-event-details'>
@@ -35,25 +49,25 @@ const AttendeeList = ( ) => {
                 </div>
             </div>
             
-            {isInviteFormVisible ? (
-                <div>
-                    <input
-                        type='email'
-                        placeholder='Enter email address here'
-                        value={inviteEmail}
-                        onChange={handleEmailChange}
+            <div className='add-attendee-box'>
+                <button className='first-add-btn' onClick={() => setShowForm(true)}>
+                    <img src={AddEventIcon} alt='Add Event' className='add-btn' />
+                    <h3>Add Attendee</h3>
+                </button>
+                {showForm && 
+                    <NewAttendeeForm 
+                        addAttendee={addAttendee} 
+                        setShowForm={setShowForm} 
                     />
-                    <button onClick={handleSendInvitation}>Send Invitation</button>
-                </div>
-            ) : (
-                <button onClick={handleInviteClick}>Invite</button>
-            )}
+                }
+            </div>
 
             <h3>RSVP List</h3>
             <ul>
-                {rsvpList.map((email, index) => (
+                {rsvpList.map((attendee, index) => (
                     <li key={index}>
-                    {email}
+                    Name: {attendee.name}
+                    Email: {attendee.email}
                     </li>
                 ))}
             </ul>
