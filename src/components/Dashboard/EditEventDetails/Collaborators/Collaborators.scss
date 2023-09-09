@@ -1,0 +1,41 @@
+@import "../../../../App.scss";
+
+.sub-header {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    padding: 10px 0 10px 0;
+
+    input {
+        margin-left: 10px;
+    }
+}
+
+.btn-container {
+    display: flex;
+    gap: 15px;
+    padding-top: 10px;
+
+    .save-btn, .next-btn {
+        background-color: #FECD1E;
+        color: black;
+        padding: 10px;
+        width: 150px;
+        text-align: center;
+        text-decoration: none;
+        overflow: hidden;
+        cursor: pointer;
+        border: none;
+        border-radius: 10px;
+        font-weight: 600;
+        padding: 5px;
+    }
+}

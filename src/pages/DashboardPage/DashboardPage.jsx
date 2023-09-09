@@ -88,6 +88,7 @@ const DashboardPage = () => {
                         event.eventName.toLowerCase().includes(searchQuery.toLowerCase()) && 
                         new Date(event.eventDate) >= today
                         )
+                    .sort((a, b) => new Date(a.eventDate) - new Date(b.eventDate))
                     .map((event, index) => (
                         <EventBox 
                             key={index} 

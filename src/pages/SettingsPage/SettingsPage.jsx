@@ -1,5 +1,3 @@
-import './SettingsPage.scss';
-
 const SettingsPage = () => {
 
     return (

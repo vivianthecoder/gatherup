@@ -21,7 +21,7 @@ const Media = () => {
                     <h2>Media</h2>
                 </div>
                 <div className='btn-container'>
-                <button className="save-btn">Save</button>
+                <button className="save-btn">Share</button>
                 </div>
             </div>
 

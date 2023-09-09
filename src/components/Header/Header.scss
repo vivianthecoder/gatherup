@@ -3,7 +3,8 @@
 header {
     width: 30%;
     height: 100vh;
-    background-color: #FECD1E;
+    background-color: $GatherUp-Yellow;
+    color: black;
     display: flex;
     flex-direction: column;
     @include mobile {
@@ -65,7 +66,7 @@ header {
     }
     
     .navIcon {
-        background-color: white;
+        background-color: $White;
         color: black;
         height: 50px;
         width: 50px;
@@ -78,6 +79,7 @@ header {
 }
 
 ul li a {
+    color: black;
     text-decoration: none;
     display: flex;
     justify-content: center;

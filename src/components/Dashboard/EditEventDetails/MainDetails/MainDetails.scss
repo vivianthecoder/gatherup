@@ -58,10 +58,16 @@ form {
     padding-top: 10px;
 
     .save-btn, .next-btn {
-        background-color: #FBF4DB;
+        background-color: #FECD1E;
+        color: black;
+        padding: 10px;
+        width: 150px;
+        text-align: center;
+        text-decoration: none;
+        overflow: hidden;
         cursor: pointer;
-        border: 1px solid gray;
-        border-radius: 20px;
+        border: none;
+        border-radius: 10px;
         font-weight: 600;
         padding: 5px;
     }

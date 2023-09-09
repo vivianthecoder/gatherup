@@ -1,4 +1,3 @@
-import './PrintPage.scss';
 import PrintBox from '../../components/PrintBox/PrintBox';
 import { useState, useEffect } from 'react';
 import axios from 'axios';

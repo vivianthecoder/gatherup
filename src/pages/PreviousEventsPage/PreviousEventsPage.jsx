@@ -1,4 +1,3 @@
-import './PreviousEventsPage.scss';
 import EventBox from '../../components/Dashboard/EventBox/EventBox';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
