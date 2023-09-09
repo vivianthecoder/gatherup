@@ -54,13 +54,18 @@ const MainDetails = ({ event, eventId, formData, setFormData, onUpdateEventData 
     return (
         <div className='edit-event-details'>
             <div className='sub-header'>
-                <img src={EditIcon} alt='Edit Event Icon' className='navIcon'/> 
-                <h2>Edit Main Details</h2>
+                <div className='sub-header-title'>
+                    <img src={EditIcon} alt='Edit Event Icon' className='navIcon'/> 
+                    <h2>Edit Main Details</h2>
+                </div>
+                <div className='btn-container'>
+                <button className="save-btn" onClick={handleSave}>Save</button>
+                </div>
             </div>
             
-            <form>
+            <div className='main-info-container'>
                 <label className='main-info-box'>
-                    Event Name: 
+                    Name: 
                     <input
                         className='input-box'
                         type='text'
@@ -70,7 +75,7 @@ const MainDetails = ({ event, eventId, formData, setFormData, onUpdateEventData 
                     />
                 </label>
                 <label className='main-info-box'>
-                    Event Date:
+                    Date:
                     <input
                         className='input-box'
                         type='text'
@@ -80,7 +85,7 @@ const MainDetails = ({ event, eventId, formData, setFormData, onUpdateEventData 
                     />
                 </label>
                 <label className='main-info-box'>
-                    Event Time:
+                    Time:
                     <input
                         className='input-box'
                         type='text'
@@ -90,7 +95,7 @@ const MainDetails = ({ event, eventId, formData, setFormData, onUpdateEventData 
                     />
                 </label>
                 <label className='main-info-box'>
-                    Event Location:
+                    Location:
                     <input
                         className='input-box'
                         type='text'
@@ -99,29 +104,6 @@ const MainDetails = ({ event, eventId, formData, setFormData, onUpdateEventData 
                         onChange={handleChange}
                     />
                 </label>
-                <label className='main-info-box'>
-                    Anticipated Attendee #:
-                    <input
-                        className='input-box'
-                        type='text'
-                        name='guestsCount'
-                        value={formData.guestsCount || eventDetails.guestsCount || ''}
-                        onChange={handleChange}
-                    />
-                </label>
-                <label className='main-info-box'>
-                    Event Theme:
-                    <input
-                        className='input-box'
-                        type='text'
-                        name='eventTheme'
-                        value={formData.eventTheme || eventDetails.eventTheme || ''}
-                        onChange={handleChange}
-                    />
-                </label>
-            </form>
-            <div className='btn-container'>
-                <button className="save-btn" onClick={handleSave}>Save</button>
             </div>
         </div>
     )

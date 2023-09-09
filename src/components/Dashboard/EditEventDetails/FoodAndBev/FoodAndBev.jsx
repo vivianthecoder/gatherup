@@ -1,9 +1,18 @@
 import './FoodAndBev.scss';
+import EditIcon from '../../../../assets/Icons/Edit.svg';
 
 const FoodAndBev = () => {
     return(
         <div>
-            <h2 className='sub-header'>Catering</h2>
+            <div className='sub-header'>
+                <div className='sub-header-title'>
+                    <img src={EditIcon} alt='Edit Event Icon' className='navIcon'/> 
+                    <h2>Edit Catering</h2>
+                </div>
+                <div className='btn-container'>
+                <button className="save-btn">Save</button>
+                </div>
+            </div>
             <div className='food-and-bev-info-box'>
                 <div>
                     <h3>Food</h3>
