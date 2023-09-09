@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import './PrintBox.scss';
 import EventOverview from '../Dashboard/EventOverview/EventOverview';
 import axios from 'axios';
 
@@ -55,7 +54,6 @@ const PrintBox = ({ events, setEvents, eventId, eventName, eventDate, eventTime,
             {isOpen && (
                 <div className={`dropdown-btn-menu ${isOpen ? 'active' : ''}`}>
                     <ul>
-                        <li>Archive</li>
                         {isConfirmDelete ? (
                             <>
                                 <li onClick={deleteEvent}>Confirm Delete</li>

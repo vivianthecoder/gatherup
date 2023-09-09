@@ -15,6 +15,8 @@ const DashboardPage = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const { id } = useParams();
 
+    const today = new Date();
+
     // To handle search box
     const handleSearch = (query) => {
         setSearchQuery(query)
@@ -83,8 +85,10 @@ const DashboardPage = () => {
                     {events
                     .filter((event) =>
                         event.eventName && 
-                        event.eventName.toLowerCase().includes(searchQuery.toLowerCase())
+                        event.eventName.toLowerCase().includes(searchQuery.toLowerCase()) && 
+                        new Date(event.eventDate) >= today
                         )
+                    .sort((a, b) => new Date(a.eventDate) - new Date(b.eventDate))
                     .map((event, index) => (
                         <EventBox 
                             key={index} 

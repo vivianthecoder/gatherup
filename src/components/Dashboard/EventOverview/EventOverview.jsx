@@ -124,7 +124,7 @@ const EventOverview = ({ event, eventId, onUpdateEventData, closeEventDetails })
                                 accept="image/*"
                                 onChange={handleImageChange}
                             />
-                            Upload Image
+                            <p className='img-upload-label-text'>Upload Image</p>
                         </label>
                     </div>
                         <input
