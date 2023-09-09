@@ -1,18 +1,12 @@
 .carousel {
     position: relative;
     
-    .image-box {
-        width: 500px;
-        height: 300px;
-        border-radius: 8px;
-      } 
-}
-
-.carousel-slide-box {
+    .carousel-slide-box {
     position: absolute;    
     display: flex;
     align-items: center;
-
+    }
+    
     .slide_direction {
         display: flex;
         justify-content: space-between;
@@ -20,7 +14,16 @@
         height: 300px;
         cursor: pointer;
       }    
-}
+    
+
+    .image-box {
+        width: 500px;
+        height: 300px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      } 
+    }
+
 
   .left, .right {
     background-color: goldenrod;
