@@ -13,6 +13,8 @@ const PreviousEventsPage = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const { id } = useParams();
 
+    const today = new Date();
+
     // To handle search box
     const handleSearch = (query) => {
         setSearchQuery(query)
@@ -61,7 +63,8 @@ const PreviousEventsPage = () => {
                     {events
                     .filter((event) =>
                         event.eventName && 
-                        event.eventName.toLowerCase().includes(searchQuery.toLowerCase())
+                        event.eventName.toLowerCase().includes(searchQuery.toLowerCase()) && 
+                        new Date(event.eventDate) < today
                         )
                     .map((event, index) => (
                         <EventBox 
