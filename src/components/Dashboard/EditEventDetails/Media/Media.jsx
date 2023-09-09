@@ -4,6 +4,15 @@ import ImageCarousel from './ImageCarousel';
 
 const Media = () => {
     
+    const images = [
+        "https://images.pexels.com/photos/2399097/pexels-photo-2399097.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        "https://images.pexels.com/photos/265947/pexels-photo-265947.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        "https://images.pexels.com/photos/2311713/pexels-photo-2311713.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        "https://images.pexels.com/photos/668137/pexels-photo-668137.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        "https://images.pexels.com/photos/2466341/pexels-photo-2466341.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        "https://images.pexels.com/photos/348517/pexels-photo-348517.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    ];
+    
     return(
         <div className='edit-event-details'>
             <div className='sub-header'>
@@ -17,7 +26,7 @@ const Media = () => {
             </div>
 
             <h3>Photos</h3>
-            <ImageCarousel />
+            <ImageCarousel images={images} />
 
             <form>
                 <input type="file" id="img" name="img" accept="image/*"/>
