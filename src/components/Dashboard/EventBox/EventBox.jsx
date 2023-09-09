@@ -70,7 +70,6 @@ const EventBox = ({ events, setEvents, eventId, eventName, eventDate, eventTime,
             {isOpen && (
                 <div className={`dropdown-btn-menu ${isOpen ? 'active' : ''}`}>
                     <ul>
-                        <li>Archive</li>
                         {isConfirmDelete ? (
                             <>
                                 <li onClick={deleteEvent}>Confirm Delete</li>
