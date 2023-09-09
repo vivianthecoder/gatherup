@@ -1,0 +1,61 @@
+@import "../../../../App.scss";
+
+.sub-header {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    padding: 10px 0 10px 0;
+
+    input {
+        margin-left: 10px;
+    }
+}
+
+.carousel-img {
+    width: auto;
+    height: 300px;
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 400px;
+  }
+  
+.carousel {
+    display: flex;
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel-item {
+    transition: transform 0.3s ease-in-out;
+}
+
+.carousel-item.active{
+transform: translate(0);
+}
+
+.btn-container {
+    display: flex;
+    gap: 15px;
+    padding-top: 10px;
+
+    .save-btn, .next-btn {
+        background-color: #FBF4DB;
+        cursor: pointer;
+        border: 1px solid gray;
+        border-radius: 20px;
+        font-weight: 600;
+        padding: 5px;
+    }
+}
