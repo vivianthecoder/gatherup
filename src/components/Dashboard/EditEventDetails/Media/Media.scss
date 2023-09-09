@@ -19,32 +19,6 @@ label {
     }
 }
 
-.carousel-img {
-    width: auto;
-    height: 300px;
-}
-
-.carousel-container {
-    position: relative;
-    width: 100%;
-    height: auto;
-    max-width: 400px;
-  }
-  
-.carousel {
-    display: flex;
-    overflow: hidden;
-    position: relative;
-}
-
-.carousel-item {
-    transition: transform 0.3s ease-in-out;
-}
-
-.carousel-item.active{
-transform: translate(0);
-}
-
 .btn-container {
     display: flex;
     gap: 15px;
