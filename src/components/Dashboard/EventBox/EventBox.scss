@@ -3,10 +3,10 @@
 .event-box {
     height: auto;
     width: 100px;
-    color: black;
+    color: $GatherUp-DarkBlack;
     border-radius: 20px;
-    padding: 10px;
-    background: #f0f0f0;
+    padding: 10px 10px 15px 10px;
+    background: $Silver;
     transition: background-color 0.3s;
     cursor: pointer;
     display: flex;
@@ -42,7 +42,7 @@
         cursor: pointer;
     
         &:hover {
-            color: red;
+            color: $GatherUp-Yellow;
         }
     }
     
@@ -54,7 +54,7 @@
     .dropdown-btn-menu.active {
         display: block;
         position: absolute;
-        background-color: white;
+        background-color: $White;
         border: 1px solid #ccc;
         border-radius: 5px;
         // z-index: 1;
@@ -79,9 +79,10 @@
         }
     }
 
-    h3 {
+    .event-box-event-name {
         margin: 0;
         font-size: 14px;
+        padding: 0 0 10px 10px;
         @include tablet {
             font-size: 18px;
         }
@@ -92,7 +93,7 @@
     
     p {
         margin: 0;
-        padding-top: 5px;
+        padding: 5px 0 0 10px;
         font-size: 14px;
     }
 }
