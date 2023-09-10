@@ -53,16 +53,8 @@ const PrintBox = ({ events, setEvents, eventId, eventName, eventDate, eventTime,
             </button>
             {isOpen && (
                 <div className={`dropdown-btn-menu ${isOpen ? 'active' : ''}`}>
-                    <ul>
-                        {isConfirmDelete ? (
-                            <>
-                                <li onClick={deleteEvent}>Confirm Delete</li>
-                                <li onClick={cancelDelete}>Cancel</li>
-                            </>
-                        ) : (
-                            <li onClick={confirmDelete}>Delete</li>
-                        )}
-                    </ul>
+                    <div>
+                    </div>
                 </div>
             )}
             <div className='event-box-details' onClick={() => handleEventClick(true)}>

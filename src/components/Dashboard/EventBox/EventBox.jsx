@@ -2,11 +2,16 @@ import { useState } from 'react';
 import './EventBox.scss';
 import EventOverview from '../EventOverview/EventOverview';
 import axios from 'axios';
+// import { format, parse } from 'date-fns';
+
 
 const EventBox = ({ events, setEvents, eventId, eventName, eventDate, eventTime, eventLocation, guestsCount, eventTheme, eventImage }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [showEventDetails, setShowEventDetails] = useState(false);
     const [isConfirmDelete, setIsConfirmDelete] = useState(false);
+
+    // eventDate={format(new Date(event.eventDate), 'MMMM d, yyyy')} 
+    // eventTime={format(parse(event.eventTime, 'HH:mm', new Date()), 'h:mm a')}
 
     // To drop down the top right nav WORKS!
     const toggleDropDown = () => {
@@ -84,8 +89,8 @@ const EventBox = ({ events, setEvents, eventId, eventName, eventDate, eventTime,
             <div className='event-box-details' onClick={() => handleEventClick(true)}>
                 <h3>{eventName}</h3>
                 <div>
+                    <p>Location: {eventLocation}</p>
                     <p>Date: {eventDate}</p>
-                    <p>Time: {eventTime}</p>
                 </div>
                 {showEventDetails && (
                     <EventOverview 
