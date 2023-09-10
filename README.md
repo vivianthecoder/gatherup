@@ -1,20 +1,43 @@
-# Getting Started with Create React App
+# GatherUp
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Introducing GatherUp – your ultimate house party/event planning companion. GatherUp is the must-have app that puts excitement back into planning and hosting unforgettable events with your loved ones. Imagine a seamless platform that streamlines every aspect of event planning. With GatherUp, you gain a dynamic tool that transforms your venue into an epic celebration. Empower your creativity with GatherUp as you craft and share incredible ideas that reflect your unique style, all while managing logistics to ensure every moment is cherished. 
 
-## Available Scripts
+From real-time event updates and RSVP tracking, GatherUp ensures that every detail is captured. Collaborate with friends on crafting the perfect music playlists, curating décor themes, and selecting party games, all within the app’s intuitive interface. Our data-driven features keep the energy flowing, whether it’s sharing photos from a bridal party or capturing a chill movie night. GatherUp transforms your space into a vibrant and welcoming party haven. 
 
-In the project directory, you can run:
+## Table of Contents
 
-### `npm start`
+- [Tech Stack](#tech-stack)
+- [Features](#features)
+- [Installation](#installation)
+- [API Reference](#api-reference)
+- [Lessons Learned & Next Steps](#lessons-learned--next-steps)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Tech Stack 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Front-End: HTML, CSS, SASS, React, React Router, and JWT
+Back-End: Node.js, Express.js
+APIs: Google Maps API
 
-### `npm test`
+### Features
+
+1. Creating, editing, and deleting events.
+2. Searching and filtering events.
+3. Integration with Google Maps API.
+4. Responsive design for mobile, tablet, and desktop devices.
+5. Upload photos and videos from events.
+6. Print selected event details.
+
+- Feature 1: set-up-folder-structure
+- header-footer-design
+- event-management
+- contact-page-management
+- print-page-management
+- attendee-list-functionality
+- collaborator-list-functionality
+- google-maps-api
+- added-image-carousel-in-media
+
+### Installation
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
