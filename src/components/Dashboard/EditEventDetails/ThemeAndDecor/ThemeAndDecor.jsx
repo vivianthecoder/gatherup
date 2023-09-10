@@ -20,7 +20,7 @@ const ThemeAndDecor = () => {
                 <label className='themeAndDecor-info-box'>
                     Theme: 
                     <input
-                        className='input-box'
+                        className='themeAndDecor-input-box'
                         type='text'
                         name='eventTheme'
                         value=''
@@ -29,7 +29,7 @@ const ThemeAndDecor = () => {
                 <label className='themeAndDecor-info-box'>
                     Decor: 
                     <input
-                        className='input-box'
+                        className='themeAndDecor-input-box'
                         type='text'
                         name='eventTheme'
                         value=''

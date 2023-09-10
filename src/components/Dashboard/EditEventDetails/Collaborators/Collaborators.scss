@@ -11,21 +11,13 @@ form {
     flex-direction: column;
 }
 
-label {
-    padding: 10px 0 10px 0;
-
-    input {
-        margin-left: 10px;
-    }
-}
-
 .btn-container {
     display: flex;
     gap: 15px;
     padding-top: 10px;
 
     .save-btn, .next-btn {
-        background-color: #FECD1E;
+        background-color: $GatherUp-Yellow;
         color: black;
         padding: 10px;
         width: 150px;

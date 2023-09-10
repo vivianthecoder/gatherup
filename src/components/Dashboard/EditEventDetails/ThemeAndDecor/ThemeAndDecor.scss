@@ -6,17 +6,28 @@
 }
 
 .themeAndDecor-info-box {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
     padding: 10px 0 10px 0;
+    gap: 10px;
     @include mobile {
         display:flex;
         flex-direction: row;
+        justify-content: space-between;
         font-size: 14px;
     }
     @include tablet {
         display:flex;
         flex-direction: row;
+        justify-content: space-between;
         font-size: 14px;
     }
+}
+
+.themeAndDecor-input-box {
+    padding: 5px;
+    width: 100%;
 }
 
 Iframe {
