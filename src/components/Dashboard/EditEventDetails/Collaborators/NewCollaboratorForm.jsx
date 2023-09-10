@@ -67,7 +67,7 @@ const NewCollaboratorForm = ({ setInviteFormOpen }) => {
                 onChange={handleNameChange}
             />
             <input  
-                type='text'
+                type='email'
                 placeholder='Email'
                 name='collaboratorEmail'
                 onChange={handleEmailChange}

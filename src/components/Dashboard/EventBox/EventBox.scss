@@ -5,7 +5,7 @@
     width: 100px;
     color: $GatherUp-DarkBlack;
     border-radius: 20px;
-    padding: 10px 10px 15px 10px;
+    padding: 15px;
     background: $Silver;
     transition: background-color 0.3s;
     cursor: pointer;
@@ -91,9 +91,9 @@
         }
     }
     
-    p {
+    .event-box-text {
         margin: 0;
-        padding: 5px 0 0 10px;
+        padding: 5px 0 5px 10px;
         font-size: 14px;
     }
 }

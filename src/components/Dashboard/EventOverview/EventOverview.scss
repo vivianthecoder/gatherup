@@ -29,6 +29,12 @@
         .event-overview-title {
             font-weight: 500;
             padding-bottom: 15px;
+            margin: 0;
+
+            &__text {
+                margin: 0;
+                padding: 5px;
+            }
         }
 
         .quick-edit-title {
@@ -57,7 +63,7 @@
         }
 
         .submit-btn, .edit-link-btn {
-            background-color: #FECD1E;
+            background-color: $GatherUp-Yellow;
             color: black;
             padding: 10px;
             width: 150px;
@@ -95,7 +101,7 @@
 
             &:hover {
                 background-color: rgba(0, 0, 0, 0.5);
-                color: white;
+                color: $White;
             }
         }
 

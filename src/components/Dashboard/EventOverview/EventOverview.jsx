@@ -101,11 +101,11 @@ const EventOverview = ({ event, eventId, onUpdateEventData, closeEventDetails })
                         {eventDetails.eventImage && (
                             <img src={eventDetails.eventImage} alt={eventDetails.eventName}/>
                         )}
-                        <p>Date: {eventDetails.eventDate}</p>
-                        <p>Time:  {eventDetails.eventTime}</p>
-                        <p>Location: {eventDetails.eventLocation}</p>
-                        <p>Attendee #: {eventDetails.guestsCount}</p>
-                        <p>Theme: {eventDetails.eventTheme}</p>
+                        <p className='event-overview-title__text'>Date: {eventDetails.eventDate}</p>
+                        <p className='event-overview-title__text'>Time:  {eventDetails.eventTime}</p>
+                        <p className='event-overview-title__text'>Location: {eventDetails.eventLocation}</p>
+                        <p className='event-overview-title__text'>Attendee #: {eventDetails.guestsCount}</p>
+                        <p className='event-overview-title__text'>Theme: {eventDetails.eventTheme}</p>
                         <button className="edit-btn" onClick={handleEditClick}>
                             Quick Edit
                         </button>
@@ -169,7 +169,7 @@ const EventOverview = ({ event, eventId, onUpdateEventData, closeEventDetails })
                             value={eventDetails.eventTheme || ''}
                             onChange={handleChange}
                         />
-                        <button className="submit-btn" onClick={handleSubmit}>Submit</button>
+                        <button className="submit-btn" onClick={handleSubmit}>Save & Close</button>
                     </div>
                 )}
                 <button
