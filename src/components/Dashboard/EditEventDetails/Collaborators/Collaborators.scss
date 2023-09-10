@@ -29,5 +29,10 @@ form {
         border-radius: 10px;
         font-weight: 600;
         padding: 5px;
+        font-size: 14px;
+
+        &:hover{
+            opacity: 100%;
+        }
     }
 }
