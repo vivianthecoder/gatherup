@@ -1,33 +1,57 @@
 import './Collaborators.scss'
-import AddUserIcon from '../../../../assets/Icons/User_add.svg';
+import NewCollaboratorForm from './NewCollaboratorForm.jsx';
+import GroupIcon from '../../../../assets/Icons/Group.svg';
+import AddEventIcon from '../../../../assets/Icons/Add_square.svg';
+import axios from 'axios';
 import { useState } from 'react';
+import { useParams } from 'react-router';
+import { useEffect } from 'react';
 
 const Collaborators = () => {
-    const [isInviteFormVisible, setInviteFormVisible] = useState(false);
-    const [inviteEmail, setInviteEmail] = useState('');
-    // Array to store emails
-    const [rsvpList, setRsvpList] = useState([]);
+    const [collaboratorList, setCollaboratorList] = useState([]);
+    const [isInviteFormOpen, setInviteFormOpen] = useState(false);
+    const { id } = useParams();
 
-    const handleInviteClick = () => {
-        setInviteFormVisible(true);
-    };
-
-    const handleEmailChange = (e) => {
-        setInviteEmail(e.target.value);
-    };
-
-    const handleSendInvitation = () => {
-        setRsvpList([...rsvpList, inviteEmail]);
-        console.log('Sending invitation to:', inviteEmail);
-        setInviteEmail('');
-        setInviteFormVisible(false);
+    // To get event data from all events from the server
+    function eventListRequest() {
+        axios
+            .get(`http://localhost:3031/dashboard`)
+            .then(response => {
+                setCollaboratorList(response.data)
+            }).catch((error) => console.log('Failed fetching data', error)
+        );
     }
+
+    // To handle updating attendee list array
+    // const handleUpdateAttendeeList = (eventId, newAttendee) => {
+    //     setAttendeeList(attendees => {
+    //         return attendees.map(event => {
+    //             if (event.id === eventId) {
+    //                 return {
+    //                     ...event,
+    //                     attendees: [...(event.attendees || []), newAttendee]
+    //                 }
+    //             }
+    //             return event;
+    //         })
+    //     })
+    // };
+  
+    // To push the newEvent object onto the setEvents array with updated fields
+    const addCollaborators = (newCollaborator) => {
+        setCollaboratorList([...collaboratorList, newCollaborator])
+    };
     
+    // To fetch list of all events from the server
+    useEffect(() => {
+        eventListRequest();
+    }, []);
+
     return(
         <div className='edit-event-details'>
             <div className='sub-header'>
                 <div className='sub-header-title'>
-                    <img src={AddUserIcon} alt='Edit Collaborators Icon' className='navIcon'/> 
+                    <img src={GroupIcon} alt='Edit Collaborator List Icon' className='navIcon'/> 
                     <h2>Edit Collaborators</h2>
                 </div>
                 <div className='btn-container'>
@@ -35,25 +59,27 @@ const Collaborators = () => {
                 </div>
             </div>
             
-            {isInviteFormVisible ? (
-                <div>
-                    <input
-                        type='email'
-                        placeholder='Enter email address here'
-                        value={inviteEmail}
-                        onChange={handleEmailChange}
+            <div className='add-attendee-box'>
+                <button className='first-add-btn' onClick={() => setInviteFormOpen(true)}>
+                    <img src={AddEventIcon} alt='Add Event' className='add-btn' />
+                    <h3>Add Collaborator</h3>
+                </button>
+                {isInviteFormOpen && 
+                    <NewCollaboratorForm 
+                        setInviteFormOpen={setInviteFormOpen}
+                        addCollaborators={addCollaborators}
+                        // handleUpdateAttendeeList={handleUpdateAttendeeList}
+                        eventId={id}
                     />
-                    <button onClick={handleSendInvitation}>Send Invitation</button>
-                </div>
-            ) : (
-                <button onClick={handleInviteClick}>Invite</button>
-            )}
+                }
+            </div>
 
-            <h3>Collaborators List</h3>
-            <ul>
-                {rsvpList.map((email, index) => (
+            <h3>List</h3>
+            <ul className='attendee-list'>
+                {collaboratorList.map((collaborator, index) => (
                     <li key={index}>
-                    {email}
+                    {collaborator.collaboratorName && <span>Name: {collaborator.collaboratorName}</span>}
+                    {collaborator.collaboratorName && <span>Email: {collaborator.collaboratorEmail}</span>}
                     </li>
                 ))}
             </ul>
