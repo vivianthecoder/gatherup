@@ -124,13 +124,12 @@ const MainDetails = ({ events, eventId, eventDetails, setEventDetails, setEvents
                     />
                 </label>
 
-                <h2>Event Agenda</h2>
+                <h3 className='agenda-title'>Event Agenda</h3>
                 <label className='agenda-box'>
-                    <input
+                    <textarea
                         className='input-box'
                         type='text'
                         name='eventAgenda'
-                        value={formData.eventLocation || eventDetails.eventLocation || ''}
                         onChange={handleChange}
                     />
                 </label>
