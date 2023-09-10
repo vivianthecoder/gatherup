@@ -63,7 +63,7 @@ form {
     padding-top: 10px;
 
     .save-btn, .next-btn {
-        background-color: #FECD1E;
+        background-color: $GatherUp-Yellow;
         color: black;
         padding: 10px;
         width: 150px;
@@ -75,5 +75,10 @@ form {
         border-radius: 10px;
         font-weight: 600;
         padding: 5px;
+        font-size: 14px;
+
+        &:hover{
+            opacity: 100%;
+        }
     }
 }

@@ -5,6 +5,7 @@ import NameIcon from '../../assets/Icons/User.svg';
 
 const ContactPage = () => {
 
+    // To implement functionality on next sprint
     const [formData, setFormData] = useState ({
         name: '',
         email: '',
@@ -19,7 +20,6 @@ const ContactPage = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
     }
-
 
     return(
         <div className='dashboard-content'>
