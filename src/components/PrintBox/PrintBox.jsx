@@ -1,11 +1,17 @@
 import './PrintBox.scss'
 import { useState } from 'react';
 import EventOverview from '../Dashboard/EventOverview/EventOverview';
-import axios from 'axios';
 
 const PrintBox = ({ events, setEvents, eventId, eventName, eventDate, eventTime, eventLocation, guestsCount, eventTheme, eventImage }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [showEventDetails, setShowEventDetails] = useState(false);
+    const [selectAllChecked, setSelectAllChecked] = useState(true);
+    const [mainDetailsChecked, setMainDetailsChecked] = useState(false);
+    const [fbChecked, setFBChecked] = useState(false);
+    const [themeDecorChecked, setThemeDecorChecked] = useState(false);
+    const [attendeeListChecked, setAttendeeListChecked] = useState(false);
+    const [collaboratorsChecked, setCollaboratorsChecked] = useState(false);
+    const [mediaChecked, setMediaChecked] = useState(false);
 
     const handlePrint = () => {
         window.print();
@@ -31,37 +37,73 @@ const PrintBox = ({ events, setEvents, eventId, eventName, eventDate, eventTime,
                     <div className='drop-down-labels'>
                         <label className='print-options-container'>
                             Select All
-                            <input type="checkbox" checked="checked" />
+                            <input 
+                                type="checkbox" 
+                                checked={selectAllChecked} 
+                                onChange={() => {
+                                    setSelectAllChecked(!selectAllChecked)
+                                    setMainDetailsChecked(!selectAllChecked);
+                                    setFBChecked(!selectAllChecked);
+                                    setThemeDecorChecked(!selectAllChecked);
+                                    setAttendeeListChecked(!selectAllChecked);
+                                    setCollaboratorsChecked(!selectAllChecked);
+                                    setMediaChecked(!selectAllChecked);
+                                }}
+                            />
                             <span className="checkmark"></span>
                         </label>
                         <label className='print-options-container'>
                             Main Details
-                            <input type="checkbox" />
+                            <input 
+                                type="checkbox" 
+                                checked={mainDetailsChecked}
+                                onChange={() => setMainDetailsChecked(!mainDetailsChecked)}
+                            />
                             <span className="checkmark"></span>
                         </label>
                         <label className='print-options-container'>
                             F & B
-                            <input type="checkbox" />
+                            <input 
+                                type="checkbox" 
+                                checked={fbChecked}
+                                onChange={() => setFBChecked(!fbChecked)}
+                            />
                             <span className="checkmark"></span>
                         </label>
                         <label className='print-options-container'>
                             Theme & Decor
-                            <input type="checkbox" />
+                            <input 
+                                type="checkbox" 
+                                checked={themeDecorChecked}
+                                onChange={() => setThemeDecorChecked(!themeDecorChecked)}
+                            />
                             <span className="checkmark"></span>
                         </label>
                         <label className='print-options-container'>
                             Attendee List
-                            <input type="checkbox" />
+                            <input 
+                                type="checkbox" 
+                                checked={attendeeListChecked}
+                                onChange={() => setAttendeeListChecked(!attendeeListChecked)}
+                            />
                             <span className="checkmark"></span>
                         </label>
                         <label className='print-options-container'>
                             Collaborators
-                            <input type="checkbox" />
+                            <input 
+                                type="checkbox" 
+                                checked={collaboratorsChecked}
+                                onChange={() => setCollaboratorsChecked(!collaboratorsChecked)}
+                            />
                             <span className="checkmark"></span>
                         </label>
                         <label className='print-options-container'>
                             Media
-                            <input type="checkbox" />
+                            <input 
+                                type="checkbox" 
+                                checked={mediaChecked}
+                                onChange={() => setMediaChecked(!mediaChecked)}
+                            />
                             <span className="checkmark"></span>
                         </label>
                     </div>
