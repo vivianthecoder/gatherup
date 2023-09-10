@@ -4,7 +4,7 @@ import axios from 'axios';
 import format from 'date-fns/format';
 import { useParams } from 'react-router-dom';
 
-const PreviousEventsPage = () => {
+const PastEventsPage = () => {
 
     // To store state variables
     const [events, setEvents] = useState([]);
@@ -98,4 +98,4 @@ const PreviousEventsPage = () => {
     )
 }
 
-export default PreviousEventsPage;
+export default PastEventsPage;

@@ -2,7 +2,7 @@ import './Header.scss';
 import { Link, NavLink } from 'react-router-dom';
 import Logo from '../../assets/Logo/Logo1.png';
 import DBIcon from '../../assets/Icons/Home.svg';
-import PrevEventsIcon from '../../assets/Icons/File_dock.svg';
+import PastEventsIcon from '../../assets/Icons/File_dock.svg';
 import NotifIcon from '../../assets/Icons/Bell.svg';
 // import IAIcon from '../../assets/Icons/Rofl.svg';
 import SettingsIcon from '../../assets/Icons/Setting_line.svg';
@@ -23,9 +23,9 @@ const Header = () => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/previous-events" activeClassName="active">
-                            <img src={PrevEventsIcon} alt='Previous Events Icon' className='navIcon'/> 
-                            <div className='navText'>Previous Events</div>
+                        <NavLink to="/past-events" activeClassName="active">
+                            <img src={PastEventsIcon} alt='Past Events Icon' className='navIcon'/> 
+                            <div className='navText'>Past Events</div>
                         </NavLink>
                     </li>
                     {/* Not functional yet */}
