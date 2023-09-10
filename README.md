@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# GatherUp
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Introducing GatherUp – your ultimate house party/event planning companion. GatherUp is the must-have app that puts excitement back into planning and hosting unforgettable events with your loved ones. Imagine a seamless platform that streamlines every aspect of event planning. With GatherUp, you gain a dynamic tool that transforms your venue into an epic celebration. Empower your creativity with GatherUp as you craft and share incredible ideas that reflect your unique style, all while managing logistics to ensure every moment is cherished. 
 
-## Available Scripts
+From real-time event updates and RSVP tracking, GatherUp ensures that every detail is captured. Collaborate with friends on crafting the perfect music playlists, curating décor themes, and selecting party games, all within the app’s intuitive interface. Our data-driven features keep the energy flowing, whether it’s sharing photos from a bridal party or capturing a chill movie night. GatherUp transforms your space into a vibrant and welcoming party haven. 
 
-In the project directory, you can run:
+## Table of Contents
 
-### `npm start`
+- [Tech Stack](#tech-stack)
+- [Features](#features)
+- [Installation](#installation)
+- [API Reference](#api-reference)
+- [Lessons Learned & Next Steps](#lessons-learned--next-steps)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Tech Stack 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Front-End: HTML, CSS, SASS, React, React Router
+Back-End: Node.js, Express.js
+APIs: Gather Up API, Google Maps API
 
-### `npm test`
+## Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Creating, editing, and deleting events.
+2. Searching and filtering events.
+3. Integration with Google Maps API.
+4. Responsive design for mobile, tablet, and desktop devices.
+5. Upload photos and videos from events.
+6. Print selected event details.
+7. Submit contact form.
 
-### `npm run build`
+## Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To use this project, you need to have Node.js, npm, and npm dependencies installed.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Clone the repository: git clone 'https://github.com/vivianthecoder/gatherup.git'
+2. Change into the directory from Git Bash terminal: 'cd gatherup-vivianyu'
+3. Install dependencies in the Git Bash terminal: 'npm install'
+- 'axios'
+- 'date-fns'
+- 'react'
+- 'react-dom'
+- 'react-iframe'
+- 'react-router-dom'
+- 'sass'
+4. Start the back-end server from: 'https://github.com/vivianthecoder/gatherup-api.git'
+5. Enter into the Git Bash terminal: 'npm start'
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Lessons Learned & Next Steps
+Lessions Learned:
+1. It is crucial to plan the feature schedule, components, and styling beforehand.
+2. It is acceptable to change plans if you acknowledge that it can be done better as you go.
+3. Stay focused on the scheduled features. Do not overthink and add more until completed.
+4. Utilize the window console and Git Bash terminal to track and debug large components and files. 
+5. Keep the naming convention specific to your components and pages. 
+6. Practice committing frequently on Git Bash to keep track of your progress.
+7. Do not compare your project to others! Look for inspiration instead. 
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Next Steps:
+1. Complete the functionality for updating back-end data for editing event details. 
+2. Implement user authentication feature for log-in, log-out, and reigstration.
+3. Implement collaboration feature with co-host permissions.
+4. Implement updates for real-time notifications and emailing event attendees.
+5. Implement interactive chat box for specific events.
+6. Implement attendee access to event details using e-invite link.
+7. Complete Notifications and Settings pages.
