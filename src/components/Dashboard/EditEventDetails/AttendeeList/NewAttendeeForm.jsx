@@ -67,7 +67,7 @@ const NewAttendeeForm = ({ setInviteFormOpen }) => {
                 onChange={handleNameChange}
             />
             <input  
-                type='text'
+                type='email'
                 placeholder='Email'
                 name='attendeeEmail'
                 onChange={handleEmailChange}

@@ -112,8 +112,8 @@ const PrintBox = ({ events, setEvents, eventId, eventName, eventDate, eventTime,
             <div className='event-box-details' onClick={() => handleEventClick(true)}>
                 <h3 className='event-box-event-name'>{eventName}</h3>
                 <div>
-                    <p>Location: {eventLocation}</p>
-                    <p>Date: {eventDate}</p>
+                    <p className='event-box-text'>Location: {eventLocation}</p>
+                    <p className='event-box-text'>Date: {eventDate}</p>
                 </div>
                 {showEventDetails && (
                     <EventOverview 

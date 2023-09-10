@@ -25,7 +25,7 @@
         }
 
         .submit-btn {
-            background-color: #FECD1E;
+            background-color: $GatherUp-Yellow;
             color: black;
             padding: 10px;
             width: 150px;
@@ -45,14 +45,14 @@
         border: none;
         color: inherit;
         cursor: pointer;
-        padding: 10px 0 0px 0;
+        padding: 20px 0 0 0;
         font-weight: 800;
         outline: 0;
         display: flex;
         justify-content: flex-end;
 
         &:hover {
-            color: red;
+            color: $GatherUp-Yellow;
         }
     }
 }
