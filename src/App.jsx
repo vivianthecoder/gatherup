@@ -2,7 +2,7 @@ import './App.scss';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import DashboardPage from './pages/DashboardPage/DashboardPage.jsx';
 import EventDetailsPage from './pages/EventDetailsPage/EventDetailsPage';
-import PreviousEventsPage from './pages/PreviousEventsPage/PreviousEventsPage';
+import PastEventsPage from './pages/PastEventsPage/PastEventsPage';
 import NotificationsPage from './pages/NotificationsPage/NotificationsPage';
 import SettingsPage from './pages/SettingsPage/SettingsPage';
 import PrintPage from './pages/PrintPage/PrintPage';
@@ -20,7 +20,7 @@ function App() {
             <Route path='/dashboard' element={<DashboardPage />} />
             <Route path='/dashboard/:id' element={<DashboardPage />} />
             <Route path='/dashboard/edit/:id' element={<EventDetailsPage />} />
-            <Route path='/previous-events' element={<PreviousEventsPage />} />
+            <Route path='/past-events' element={<PastEventsPage />} />
             <Route path='/notifications' element={<NotificationsPage />} />
             <Route path='/settings' element={<SettingsPage />} />
             <Route path='/print' element={<PrintPage />} />

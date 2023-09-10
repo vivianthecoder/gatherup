@@ -1,3 +1,4 @@
+import './PrintBox.scss'
 import { useState } from 'react';
 import EventOverview from '../Dashboard/EventOverview/EventOverview';
 import axios from 'axios';
@@ -5,7 +6,6 @@ import axios from 'axios';
 const PrintBox = ({ events, setEvents, eventId, eventName, eventDate, eventTime, eventLocation, guestsCount, eventTheme, eventImage }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [showEventDetails, setShowEventDetails] = useState(false);
-    const [isConfirmDelete, setIsConfirmDelete] = useState(false);
 
     const handlePrint = () => {
         window.print();
@@ -21,31 +21,6 @@ const PrintBox = ({ events, setEvents, eventId, eventName, eventDate, eventTime,
         handlePrint();
     };
 
-    const confirmDelete = () => {
-        setIsConfirmDelete(true);
-    };
-
-    const cancelDelete = () => {
-        setIsConfirmDelete(false);
-        setIsOpen(false);
-    }
-    
-    // To handle deleting an event from the right nav WORKS!
-    const deleteEvent = () => {
-        axios
-            .delete(`http://localhost:3031/dashboard/${eventId}`)
-            .then(response => {
-                console.log(response.data.message)
-
-                const updatedEvents = events.filter(eventItem =>  eventItem.id !== eventId);
-                setEvents(updatedEvents);
-                setIsConfirmDelete(false);
-            })
-            .catch(error => {
-                console.log(error)
-            });
-    }
-
     return (
         <div className='event-box'>
             <button onClick={toggleDropDown} className='dropdown-btn'>
@@ -53,15 +28,50 @@ const PrintBox = ({ events, setEvents, eventId, eventName, eventDate, eventTime,
             </button>
             {isOpen && (
                 <div className={`dropdown-btn-menu ${isOpen ? 'active' : ''}`}>
-                    <div>
+                    <div className='drop-down-labels'>
+                        <label className='print-options-container'>
+                            Select All
+                            <input type="checkbox" checked="checked" />
+                            <span className="checkmark"></span>
+                        </label>
+                        <label className='print-options-container'>
+                            Main Details
+                            <input type="checkbox" />
+                            <span className="checkmark"></span>
+                        </label>
+                        <label className='print-options-container'>
+                            F & B
+                            <input type="checkbox" />
+                            <span className="checkmark"></span>
+                        </label>
+                        <label className='print-options-container'>
+                            Theme & Decor
+                            <input type="checkbox" />
+                            <span className="checkmark"></span>
+                        </label>
+                        <label className='print-options-container'>
+                            Attendee List
+                            <input type="checkbox" />
+                            <span className="checkmark"></span>
+                        </label>
+                        <label className='print-options-container'>
+                            Collaborators
+                            <input type="checkbox" />
+                            <span className="checkmark"></span>
+                        </label>
+                        <label className='print-options-container'>
+                            Media
+                            <input type="checkbox" />
+                            <span className="checkmark"></span>
+                        </label>
                     </div>
                 </div>
             )}
             <div className='event-box-details' onClick={() => handleEventClick(true)}>
                 <h3>{eventName}</h3>
                 <div>
+                    <p>Location: {eventLocation}</p>
                     <p>Date: {eventDate}</p>
-                    <p>Time: {eventTime}</p>
                 </div>
                 {showEventDetails && (
                     <EventOverview 

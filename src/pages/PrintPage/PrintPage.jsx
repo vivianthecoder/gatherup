@@ -60,8 +60,8 @@ const PrintPage = () => {
                     .filter((event) =>
                         event.eventName && 
                         event.eventName.toLowerCase().includes(searchQuery.toLowerCase())
-                        )
-                    .sort((a, b) => new Date(a.eventDate) - new Date(b.eventDate))
+                    )
+                    .sort((a, b) => new Date(b.eventDate) - new Date(a.eventDate))
                     .map((event, index) => (
                         <PrintBox 
                             key={index} 
@@ -80,7 +80,7 @@ const PrintPage = () => {
                 </div>
                 <div>
                 <h3 className='instructions-title'>Print Instructions:</h3>
-                    <p>1. Select from the drop down checkbox on the add or remove details (Optional).</p>
+                    <p>1. Select from the drop down checkbox to add or remove details.</p>
                     <p>2. Click on the event box to print.</p>
                 </div>
             </div>
