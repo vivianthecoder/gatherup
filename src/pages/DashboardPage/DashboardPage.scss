@@ -57,6 +57,10 @@
     padding: 10px;
     background-color: #f0f0f0;
 
+    @include mobile {
+        width: 160px;
+    }
+
     &:hover {
         background-color: #FBF4DB;
     }
@@ -65,13 +69,17 @@
         background-color: transparent;
         border: none;
         margin: 0;
-        padding: 20px 0 0 0;
+        padding: 20px;
         cursor: pointer;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         gap: 10px;
+
+        @include mobile {
+            margin: auto;
+        }
     
         &:hover {
             background-color: transparent;
