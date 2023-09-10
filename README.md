@@ -14,11 +14,11 @@ From real-time event updates and RSVP tracking, GatherUp ensures that every deta
 
 ## Tech Stack 
 
-Front-End: HTML, CSS, SASS, React, React Router, and JWT
+Front-End: HTML, CSS, SASS, React, React Router
 Back-End: Node.js, Express.js
 APIs: Google Maps API
 
-### Features
+## Features
 
 1. Creating, editing, and deleting events.
 2. Searching and filtering events.
@@ -26,68 +26,42 @@ APIs: Google Maps API
 4. Responsive design for mobile, tablet, and desktop devices.
 5. Upload photos and videos from events.
 6. Print selected event details.
+7. Submit contact form.
 
-- Feature 1: set-up-folder-structure
-- header-footer-design
-- event-management
-- contact-page-management
-- print-page-management
-- attendee-list-functionality
-- collaborator-list-functionality
-- google-maps-api
-- added-image-carousel-in-media
+## Installation
 
-### Installation
+To use this project, you need to have Node.js, npm, and npm dependencies installed.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone the repository:
+git clone https://github.com/vivianthecoder/gatherup.git
+2. Change into the directory from Git Bash terminal:
+cd gatherup-vivianyu
+3. Install dependencies in the Git Bash terminal: 'npm install'
+- 'axios'
+- 'date-fns'
+- 'react'
+- 'react-dom'
+- 'react-iframe'
+- 'react-router-dom'
+- 'sass'
+4. Start the back-end server from: https://github.com/vivianthecoder/gatherup-api.git
+5. Enter into the Git Bash terminal: 'npm start'
 
-### `npm run build`
+## Lessons Learned & Next Steps
+Lessions Learned:
+1. It is crucial to plan the feature schedule, components, and styling beforehand.
+2. It is acceptable to change plans if you acknowledge that it can be done better as you go.
+3. Stay focused on the scheduled features. Do not overthink and add more until completed.
+4. Utilize the window console and Git Bash terminal to track and debug large components and files. 
+5. Keep the naming convention specific to your components and pages. 
+6. Practice committing frequently on Git Bash to keep track of your progress.
+7. Do not compare your project to others! Look for inspiration instead. 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Next Steps:
+1. Complete the functionality for updating back-end data for editiing event details. 
+2. Implement user authentication feature for log-in, log-out, and reigstration.
+3. Implement collaboration feature with co-host permissions.
+4. Implement updates for real-time notifications and emailing event attendees.
+5. Implement interactive chat box for specific events.
+6. Implement attendee access to event details using e-invite link.
+7. Complete Notifications and Settings pages.
