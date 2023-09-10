@@ -182,6 +182,7 @@ const EventDetailsPage = () => {
                         <AttendeeList 
                             event={eventDetails} 
                             eventId={eventDetails.id} 
+                            events={events}
                         />
                     )}
                     {selectedNavItem === 'Collaborators' && (

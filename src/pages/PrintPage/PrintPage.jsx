@@ -61,6 +61,7 @@ const PrintPage = () => {
                         event.eventName && 
                         event.eventName.toLowerCase().includes(searchQuery.toLowerCase())
                         )
+                    .sort((a, b) => new Date(a.eventDate) - new Date(b.eventDate))
                     .map((event, index) => (
                         <PrintBox 
                             key={index} 
