@@ -1,0 +1,80 @@
+@import "../../App.scss";
+
+.details-container {
+    width:70%;
+    gap: 15px;
+}
+
+.sub-nav-container {
+    @include mobile {
+        padding-inline-start: 0;
+        border-bottom: rgb(0,0,0,0.5) solid 2px;
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+    @include tablet {
+        padding-inline-start: 0;
+        border-bottom: rgb(0,0,0,0.5) solid 2px;
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+    @include desktop {
+        padding-inline-start: 0;
+        border-bottom: rgb(0,0,0,0.5) solid 2px;
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+    }
+
+    .sub-nav-text {
+    color: rgb(0,0,0,0.5);
+    font-size: 18px;
+    height: 45px;
+    padding: 10px 16px 10px 16px;
+    @include mobile {
+        font-size: 14px;
+        padding: 0 0 0 12px;
+        display: flex;
+        align-items: center;
+    }
+    @include tablet {
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        padding: 0 0 0 12px;
+    }
+    @include desktop {
+        color: rgb(0,0,0,0.5);
+        font-size: 18px;
+        height: 45px;
+        padding: 10px 16px 10px 16px;
+    }
+        &:hover {
+            font-weight: 700;
+            cursor: pointer;
+        }
+    }
+}
+
+.selected {
+    font-weight: 700;
+    background-color: #f2f2f2;
+
+    @include mobile {
+        width: 100%;
+        font-size: 14px;
+    }
+    @include tablet {
+        width: 100%;
+        font-size: 18px;
+    }
+    @include desktop {
+        width: auto;
+        font-size: 18px;
+    }
+}

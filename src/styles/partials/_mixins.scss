@@ -1,0 +1,21 @@
+@mixin mobile {
+    @media only screen and (max-width: 766px) {
+        @content;
+    }
+}
+
+// For styling tablet-sized screens
+// Applies only when screen width is between 767px and 1279px
+@mixin tablet {
+    @media only screen and (min-width: 767px) {
+        @content;
+    }
+}
+
+// For styling desktop-sized screens
+// Applies only when screen width is 1280px or larger
+@mixin desktop {
+    @media only screen and (min-width: 1280px) {
+        @content;
+    }
+}

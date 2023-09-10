@@ -1,0 +1,94 @@
+@import "../../../../App.scss";
+
+.main-info-container {
+    @include mobile {
+        width: 400px;
+    }
+
+    .main-info-box {
+        display: flex;
+        gap: 10px;
+        padding: 10px 0 10px 0;
+        width: 100%;
+        @include mobile {
+            display:flex;
+            flex-direction: row;
+            justify-content: space-between;
+            font-size: 14px;
+        }
+        @include tablet {
+            display:flex;
+            flex-direction: row;
+            font-size: 14px;
+        }
+        @include desktop {
+            display:flex;
+            flex-direction: row;
+            font-size: 14px;
+        }
+    }
+
+    & input, textarea {
+        padding: 5px 0 5px 12px;
+        margin-left: 5px;
+        width: 100%;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+    & textarea {
+        margin: 0;
+        width: 100%;
+        height: 280px;
+    }
+}
+
+.sub-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items:flex-start;
+    padding-bottom: 10px;
+
+    .sub-header-title{
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        padding-bottom: 10px;
+    }
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-container {
+    display: flex;
+    gap: 15px;
+    padding-top: 10px;
+
+    .save-btn, .next-btn {
+        background-color: $GatherUp-Yellow;
+        color: black;
+        padding: 10px;
+        width: 150px;
+        text-align: center;
+        text-decoration: none;
+        overflow: hidden;
+        cursor: pointer;
+        border: none;
+        border-radius: 10px;
+        font-weight: 600;
+        padding: 5px;
+        font-size: 14px;
+
+        &:hover{
+            opacity: 100%;
+        }
+    }
+}
+
+.agenda-title {
+    margin: 10px 0 10px 0;
+}
