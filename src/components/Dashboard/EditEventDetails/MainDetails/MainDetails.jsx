@@ -86,7 +86,6 @@ const MainDetails = ({ events, eventId, eventDetails, setEventDetails, setEvents
                 <label className='main-info-box'>
                     Name: 
                     <input
-                        className='input-box'
                         type='text'
                         name='eventName'
                         value={formData.eventName || eventDetails.eventName || ''}
@@ -96,7 +95,6 @@ const MainDetails = ({ events, eventId, eventDetails, setEventDetails, setEvents
                 <label className='main-info-box'>
                     Date:
                     <input
-                        className='input-box'
                         type='text'
                         name='eventDate'
                         value={formData.eventDate || eventDetails.eventDate || ''}
@@ -106,7 +104,6 @@ const MainDetails = ({ events, eventId, eventDetails, setEventDetails, setEvents
                 <label className='main-info-box'>
                     Time:
                     <input
-                        className='input-box'
                         type='text'
                         name='eventTime'
                         value={formData.eventTime || eventDetails.eventTime || ''}
@@ -116,7 +113,6 @@ const MainDetails = ({ events, eventId, eventDetails, setEventDetails, setEvents
                 <label className='main-info-box'>
                     Location:
                     <input
-                        className='input-box'
                         type='text'
                         name='eventLocation'
                         value={formData.eventLocation || eventDetails.eventLocation || ''}
@@ -127,7 +123,6 @@ const MainDetails = ({ events, eventId, eventDetails, setEventDetails, setEvents
                 <h3 className='agenda-title'>Event Agenda</h3>
                 <label className='agenda-box'>
                     <textarea
-                        className='input-box'
                         type='text'
                         name='eventAgenda'
                         onChange={handleChange}

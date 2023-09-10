@@ -28,10 +28,24 @@
             flex-direction: row;
 
             input {
-                padding: 5px;
+                padding: 12px 20px 12px 12px;
                 margin-left: 5px;
                 width: 200px;
+                border: 2px solid #ccc;
+                border-radius: 5px;
+                font-size: 16px;
             }
+        }
+    }
+
+    &__message {
+        textarea {
+            padding: 12px 0 0 12px;
+            margin-left: 5px;
+            width: 200px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
         }
     }
 }    

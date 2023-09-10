@@ -3,6 +3,15 @@
 .content-box {
     display: flex;
     flex-direction: column;
+
+    & input {
+        padding: 5px 0 5px 12px;
+        margin-left: 5px;
+        width: 100%;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
 }
 
 .themeAndDecor-info-box {

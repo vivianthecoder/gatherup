@@ -1,6 +1,7 @@
 import './Media.scss'
 import AddImageIcon from '../../../../assets/Icons/Img_box.svg';
 import ImageCarousel from './ImageCarousel';
+import UploadIcon from '../../../../assets/Icons/Import.svg'
 
 const Media = () => {
     
@@ -22,20 +23,26 @@ const Media = () => {
                     <h2>Media</h2>
                 </div>
                 <div className='btn-container'>
-                <button className="save-btn">Share</button>
+                <button className="share-btn">Share</button>
                 </div>
             </div>
 
-            <h3>Photos</h3>
+            <h3 className='sub-header-sub-title'>Photos</h3>
             <ImageCarousel images={images} />
 
-            <form>
-                <input type="file" id="img" name="img" accept="image/*"/>
-            </form>
-            <h3>Videos</h3>
-            <form>
-                <input type="file" id="img" name="img" accept="image/*"/>
-            </form>
+            <div>
+                <form>
+                    <label className='file-upload-btn'>
+                        <img src={UploadIcon} alt='Media Icon' className='navIcon'/> 
+                        <input type="file" id="img" name="img" accept="image/*"/>
+                    </label>
+                <h3>Videos</h3>
+                    <label className='file-upload-btn'>
+                        <img src={UploadIcon} alt='Media Icon' className='navIcon'/> 
+                        <input type="file" id="img" name="img" accept="image/*"/>
+                    </label>
+                </form>
+            </div>
         </div>
     );
 }
