@@ -5,8 +5,6 @@ import format from 'date-fns/format';
 import { useParams } from 'react-router-dom';
 
 const PastEventsPage = () => {
-
-    // To store state variables
     const [events, setEvents] = useState([]);
     const [selectedEvent, setSelectedEvent] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
@@ -83,7 +81,7 @@ const PastEventsPage = () => {
                     ))}
                 </div>
             </div>
-            <div>
+            <div className='instructions-container'>
                 <h3 className='instructions-title'>Interested in past events?</h3>
                     <p>Look through your details to relive the planning!</p>
                 </div>

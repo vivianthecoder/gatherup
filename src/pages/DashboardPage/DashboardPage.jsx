@@ -106,8 +106,8 @@ const DashboardPage = () => {
                         />
                     ))}
                 </div>
-                <div>
-                <h3 className='instructions-title'>How To Get Started!</h3>
+                <div className='instructions-container'>
+                    <h3 className='instructions-title'>How To Get Started!</h3>
                     <p>1. Dashboard: Click on "Create Event" to start.</p>
                     <p>2. Event Details: Fill in basic event information.</p>
                     <p>3. Add an Image (Optional).</p>

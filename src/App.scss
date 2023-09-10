@@ -5,9 +5,17 @@
 .screen-div {
     display: flex;
     flex-direction: row;
+    min-height: 100vh;
+    position: relative;
 }
 
 .wip-img {
     width: 200px;
     height: auto;
+}
+
+.footer-div {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
 }

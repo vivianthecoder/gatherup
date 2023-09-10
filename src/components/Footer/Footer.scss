@@ -1,0 +1,37 @@
+@import "../../App.scss";
+
+footer {
+    display: flex;
+    justify-content: center;
+    top: 0;
+    flex-shrink: 3;
+}
+
+.footer-menu {
+    ul.f-menu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+        gap: 30px;
+
+        li {
+            display: inline;
+            margin: 0 10px;
+
+            a {
+                text-decoration: none;
+                color: $GatherUp-Black;
+                padding-bottom: 5px;
+                font-size: 16px;
+                font-weight: 500;
+                &:hover {
+                    color: $GatherUp-Yellow;
+                }
+            }
+        }
+    }
+}
