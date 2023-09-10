@@ -78,7 +78,7 @@ const PrintPage = () => {
                         />
                     ))}
                 </div>
-                <div>
+                <div className='instructions-container'>
                 <h3 className='instructions-title'>Print Instructions:</h3>
                     <p>1. Select from the drop down checkbox to add or remove details.</p>
                     <p>2. Click on the event box to print.</p>
