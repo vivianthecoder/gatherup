@@ -22,33 +22,22 @@ const AttendeeList = () => {
         );
     }
 
-    const handleUpdateAttendeeList = (eventId, newAttendee) => {
-        setAttendeeList(attendees => {
-            return attendees.map(event => {
-                if (event.id === eventId) {
-                    return {
-                        ...event,
-                        attendees: [...AddEventIcon(event.attendees || []), newAttendee]
-                    }
-                }
-                return event;
-            })
-        })
-    };
-
-    // To display invite form after clicking into box
-    const handleAddAttendeeClick = () => {
-        setInviteFormOpen(true);
-    };
-
-    // const handleSendInvitation = () => {
-    //     setRsvpList([...rsvpList, inviteEmail]);
-    //     console.log('Sending invitation to:', inviteEmail);
-    //     setInviteEmail('');
-    //     setInviteFormOpen(false);
-    // }
+    // To handle updating attendee list array
+    // const handleUpdateAttendeeList = (eventId, newAttendee) => {
+    //     setAttendeeList(attendees => {
+    //         return attendees.map(event => {
+    //             if (event.id === eventId) {
+    //                 return {
+    //                     ...event,
+    //                     attendees: [...(event.attendees || []), newAttendee]
+    //                 }
+    //             }
+    //             return event;
+    //         })
+    //     })
+    // };
   
-    // To push the newEvent object onto the setEvents array with updated fields WORKS!
+    // To push the newEvent object onto the setEvents array with updated fields
     const addAttendees = (newAttendee) => {
         setAttendeeList([...attendeeList, newAttendee])
     };
@@ -79,7 +68,7 @@ const AttendeeList = () => {
                     <NewAttendeeForm 
                         setInviteFormOpen={setInviteFormOpen}
                         addAttendees={addAttendees}
-                        handleUpdateAttendeeList={handleUpdateAttendeeList}
+                        // handleUpdateAttendeeList={handleUpdateAttendeeList}
                         eventId={id}
                     />
                 }

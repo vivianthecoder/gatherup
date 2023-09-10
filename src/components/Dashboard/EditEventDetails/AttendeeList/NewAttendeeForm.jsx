@@ -1,22 +1,24 @@
 import { useState } from "react";
-import axios from "axios";
 
-const NewAttendeeForm = ({ addAttendees, setInviteFormOpen}) => {
+const NewAttendeeForm = ({ setInviteFormOpen }) => {
     // To create a new attendee list object
     const [list, setList] = useState({
         attendeeName: '',
         attendeeEmail:''
     });
 
+    // To handle name change in form field
     const handleNameChange = (e) => {
-        const { name, value } = e.target.value;
+        const { name, value } = e.target;
         setList({
             ...list,
             [name]: value
         })
     };
+
+    // To handle email change in form field
     const handleEmailChange = (e) => {
-        const { name, value } = e.target.value;
+        const { name, value } = e.target;
         setList({
             ...list,
             [name]: value
@@ -53,7 +55,6 @@ const NewAttendeeForm = ({ addAttendees, setInviteFormOpen}) => {
         }
     };
     
-
     return(
         <div className='overlay'>
         <div className='event-form'>
@@ -63,14 +64,12 @@ const NewAttendeeForm = ({ addAttendees, setInviteFormOpen}) => {
                 type='text'
                 placeholder='Name'
                 name='attendeeName'
-                value={list.attendeeEmail}
                 onChange={handleNameChange}
             />
             <input  
                 type='text'
                 placeholder='Email'
                 name='attendeeEmail'
-                value={list.attendeeEmail}
                 onChange={handleEmailChange}
             />
             <button className='submit-btn' onClick={handleSubmit}>Save and Continue</button>
