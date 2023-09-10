@@ -20,6 +20,14 @@
         border: transparent;
         border-radius: 20px;
 
+        & input {
+            padding: 8px 20px 8px 12px;
+            width: 200px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
         h2 {
             margin: -10px 0 0 0;
         }

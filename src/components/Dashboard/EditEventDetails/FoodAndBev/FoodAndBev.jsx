@@ -3,7 +3,7 @@ import EditIcon from '../../../../assets/Icons/Edit.svg';
 
 const FoodAndBev = () => {
     return(
-        <div>
+        <div className='food-and-bev-main'>
             <div className='sub-header'>
                 <div className='sub-header-title'>
                     <img src={EditIcon} alt='Edit Event Icon' className='navIcon'/> 
