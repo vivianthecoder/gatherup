@@ -52,7 +52,8 @@ const DashboardPage = () => {
             guestsCount: newEvent.guestsCount,
             eventTheme: newEvent.eventTheme,
             eventImage: newEvent.eventImage
-        }])
+        }]);
+        setSelectedEvent(newEvent);
     };
 
     // To fetch selected event id whenever the id is changed W/ selectedEvent

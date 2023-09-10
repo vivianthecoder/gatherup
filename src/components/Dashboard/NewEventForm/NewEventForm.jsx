@@ -53,6 +53,7 @@ const NewEventForm = ({ addEvent, setShowForm }) => {
                         eventTheme: ''
                     });
                     // To close the form
+                    alert('Event Successfully Added!');
                     setShowForm(false);
                 })
                 .catch(error => {
