@@ -16,7 +16,7 @@ From real-time event updates and RSVP tracking, GatherUp ensures that every deta
 
 Front-End: HTML, CSS, SASS, React, React Router
 Back-End: Node.js, Express.js
-APIs: Google Maps API
+APIs: Gather Up API, Google Maps API
 
 ## Features
 
@@ -32,10 +32,8 @@ APIs: Google Maps API
 
 To use this project, you need to have Node.js, npm, and npm dependencies installed.
 
-1. Clone the repository:
-git clone https://github.com/vivianthecoder/gatherup.git
-2. Change into the directory from Git Bash terminal:
-cd gatherup-vivianyu
+1. Clone the repository: git clone 'https://github.com/vivianthecoder/gatherup.git'
+2. Change into the directory from Git Bash terminal: 'cd gatherup-vivianyu'
 3. Install dependencies in the Git Bash terminal: 'npm install'
 - 'axios'
 - 'date-fns'
@@ -44,7 +42,7 @@ cd gatherup-vivianyu
 - 'react-iframe'
 - 'react-router-dom'
 - 'sass'
-4. Start the back-end server from: https://github.com/vivianthecoder/gatherup-api.git
+4. Start the back-end server from: 'https://github.com/vivianthecoder/gatherup-api.git'
 5. Enter into the Git Bash terminal: 'npm start'
 
 ## Lessons Learned & Next Steps
@@ -58,7 +56,7 @@ Lessions Learned:
 7. Do not compare your project to others! Look for inspiration instead. 
 
 Next Steps:
-1. Complete the functionality for updating back-end data for editiing event details. 
+1. Complete the functionality for updating back-end data for editing event details. 
 2. Implement user authentication feature for log-in, log-out, and reigstration.
 3. Implement collaboration feature with co-host permissions.
 4. Implement updates for real-time notifications and emailing event attendees.
