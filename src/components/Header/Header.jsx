@@ -28,7 +28,7 @@ const Header = () => {
                             <div className='navText'>Past Events</div>
                         </NavLink>
                     </li>
-                    {/* Not functional yet */}
+                    {/* To be added on in next feature */}
                     {/* <li>
                         <NavLink to="/interactiveactivities" activeClassName="active">
                             <img src={IAIcon} alt='Interactive Activities' className='navIcon'/> 

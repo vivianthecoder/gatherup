@@ -4,6 +4,7 @@ import ImageCarousel from './ImageCarousel';
 
 const Media = () => {
     
+    // To replace later on and link to json file
     const images = [
         "https://images.pexels.com/photos/2399097/pexels-photo-2399097.jpeg?auto=compress&cs=tinysrgb&w=1600",
         "https://images.pexels.com/photos/265947/pexels-photo-265947.jpeg?auto=compress&cs=tinysrgb&w=1600",
