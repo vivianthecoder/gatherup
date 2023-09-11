@@ -14,9 +14,19 @@ const EventDetailsPage = () => {
     const [events, setEvents] = useState([]);
     const [selectedEvent, setSelectedEvent] = useState(null);
     const [eventDetails, setEventDetails] = useState({});
-    const [formData, setFormData] = useState({});
+    const [formData, setFormData] = useState({
+        eventId: '',
+        eventName: '',
+        eventDate: '',
+        eventTime: '',
+        eventLocation: '',
+        guestsCount: 0,
+        eventTheme: '',
+        eventImage: '',
+        eventAgenda: '',
+    });
     const [selectedNavItem, setSelectedNavItem] = useState('Main Details');
-    const { id } = useParams;
+    const { id } = useParams();
 
     // To get event data from all events from the server
     function eventListRequest() {
@@ -34,10 +44,8 @@ const EventDetailsPage = () => {
            .get(`http://localhost:3031/dashboard/${eventId}`)
            .then(response => {
                setSelectedEvent(response.data)
-               console.log(response.data)
                const eventData = response.data;
                setFormData(eventData);
-            //    console.log(response.data)
            }).catch((error) => console.log(error));
    }
 
@@ -60,12 +68,12 @@ const EventDetailsPage = () => {
             });
     };
 
-    // To handle clicking event editing nav bar WORKS!
+    // To handle clicking event editing nav bar
     const handleNavItemClick = (item) => {
         setSelectedNavItem(item);
     };
 
-    // To fetch selected event id whenever the id is changed W/ selectedEvent
+    // To fetch selected event id whenever the id is changed with selectedEvent
     useEffect(() => {
         selectedEventRequest(id);
     }, [id]);
@@ -81,18 +89,16 @@ const EventDetailsPage = () => {
             // Update the formData state with the selectedEvent data
             setFormData({
                 eventId: selectedEvent.id,
-                eventName: selectedEvent.eventName,
-                eventDate: selectedEvent.eventDate,
-                eventTime: selectedEvent.eventTime,
-                eventLocation: selectedEvent.eventLocation,
-                guestsCount: selectedEvent.guestsCount,
-                eventTheme: selectedEvent.eventTheme,
-                eventImage: selectedEvent.eventImage,
-            });
-        }
-    }, [selectedEvent, selectedNavItem]);
-
-    console.log('formData:',formData);
+                eventName: selectedEvent.eventName || '',
+                eventDate: selectedEvent.eventDate || '',
+                eventTime: selectedEvent.eventTime || '',
+                eventLocation: selectedEvent.eventLocation || '',
+                guestsCount: selectedEvent.guestsCount || 0,
+                eventTheme: selectedEvent.eventTheme || '',
+                eventImage: selectedEvent.eventImage || '',
+              });
+            }
+          }, [selectedEvent, selectedNavItem]);
 
     // To fetch selected event id whenever the id is changed W/ selectedEvent
     useEffect(() => {

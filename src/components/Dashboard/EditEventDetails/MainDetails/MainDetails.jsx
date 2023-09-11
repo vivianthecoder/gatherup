@@ -1,56 +1,18 @@
 import './MainDetails.scss';
-// import { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import EditIcon from '../../../../assets/Icons/Edit.svg';
 
-const MainDetails = ({ events, eventId, eventDetails, setEventDetails, setEvents, formData, setFormData, onUpdateEventData }) => {
-    // const [eventDetails, setEventDetails] = useState({});
-    // const [showEventDetails, setShowEventDetails] = useState(false);
-
-    // To update new event box details to the server WORKS!
-    // const updateEventData = (updatedEvent) => {
-    //     const updatedEvents = events.map((eventItem) => {
-    //         if (eventItem.id === updatedEvent.id) {
-    //             return updatedEvent;
-    //         }
-    //         return eventItem;
-    //     })
-    //     setEvents(updatedEvents)
-
-    //     axios.put(`http://localhost:3031/dashboard/${updatedEvent.id}`, updatedEvent)
-    //         .then(response => {
-    //             console.log('Event data updated on the server', response.data);
-    //         })
-    //         .catch(error => {
-    //             console.error('Error updating event data on the server', error)
-    //         });
-    // };
-
-    // To update the state of event box details
-    // useEffect(() => {
-    //     if (event) {
-    //         setEventDetails(event) 
-    //     } else if (eventId) {
-    //         axios
-    //             .get(`http://localhost:3031/dashboard/${eventId}`)
-    //             .then(response => {
-    //                 const eventWithId = response.data;
-    //                 setEventDetails({ ...eventWithId, id: eventId });
-    //                 console.log('Fetched event details:', eventWithId);
-    //             })
-    //             .catch(error => {
-    //                 console.error('Error fetching data', error)
-    //             })
-    //         }
-    //     }, [eventId, event]);
+const MainDetails = ({ eventDetails, setEventDetails, formData, onUpdateEventData }) => {
+    const [updatedEventData, setUpdatedEventData] = useState({});
 
     // To handle form field changes
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setEventDetails({
-            ...eventDetails,
+        setUpdatedEventData((prevData) => ({
+            ...prevData,
             [name]: value,
-        })
+        }))
     };
 
     // To handle the form submission
@@ -63,7 +25,7 @@ const MainDetails = ({ events, eventId, eventDetails, setEventDetails, setEvents
         })
         .then((response) => {
             setEventDetails(response.data)
-            onUpdateEventData(response.data)
+            onUpdateEventData(updatedEventData);
         })
         .catch((error) => {
           console.error('Error updating event details', error);
