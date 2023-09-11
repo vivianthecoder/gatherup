@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const NewAttendeeForm = ({ setInviteFormOpen }) => {
+const NewAttendeeForm = ({ setInviteFormOpen, addAttendeeToList }) => {
     // To create a new attendee list object
     const [list, setList] = useState({
         attendeeName: '',
@@ -32,6 +32,14 @@ const NewAttendeeForm = ({ setInviteFormOpen }) => {
             list.attendeeName &&
             list.attendeeEmail
         ) {
+            addAttendeeToList(list);
+
+            setList({
+                attendeeName: '',
+                attendeeEmail: '',
+            });
+
+            setInviteFormOpen(false);
             // To post the data to our server data
             // axios
             //     .post(`http://localhost:3031/dashboard`, list, {
@@ -54,6 +62,23 @@ const NewAttendeeForm = ({ setInviteFormOpen }) => {
             //     })
         }
     };
+
+    const handleSaveAndContinue = () => {
+        // To check if all form fields are filled
+        if (
+            list.attendeeName &&
+            list.attendeeEmail
+        ) {
+            addAttendeeToList(list);
+
+            setList({
+                attendeeName: '',
+                attendeeEmail: '',
+            });
+
+            setInviteFormOpen(true);
+        }
+    };
     
     return(
         <div className='overlay'>
@@ -72,7 +97,7 @@ const NewAttendeeForm = ({ setInviteFormOpen }) => {
                 name='attendeeEmail'
                 onChange={handleEmailChange}
             />
-            <button className='submit-btn' onClick={handleSubmit}>Save and Continue</button>
+            <button className='submit-btn' onClick={handleSaveAndContinue}>Save and Continue</button>
             <button className='submit-btn' onClick={handleSubmit}>Submit</button>
         </div>
     </div>
