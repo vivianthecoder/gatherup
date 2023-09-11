@@ -2,7 +2,7 @@ import './MainDetails.scss';
 import EditIcon from '../../../../assets/Icons/Edit.svg';
 import { useState } from 'react';
 
-const MainDetails = ({ onSave, formData, setFormData }) => {
+const MainDetails = ({ onSave, formData }) => {
     const [updatedMainDetails, setUpdatedMainDetails] = useState(formData);
 
     // To handle form field changes
@@ -17,6 +17,7 @@ const MainDetails = ({ onSave, formData, setFormData }) => {
     // To handle the form submission
     const handleSave = () => {
         onSave(updatedMainDetails);
+        alert('Saved!')
     };
 
     return (
