@@ -62,6 +62,23 @@ const NewAttendeeForm = ({ setInviteFormOpen, addAttendeeToList }) => {
             //     })
         }
     };
+
+    const handleSaveAndContinue = () => {
+        // To check if all form fields are filled
+        if (
+            list.attendeeName &&
+            list.attendeeEmail
+        ) {
+            addAttendeeToList(list);
+
+            setList({
+                attendeeName: '',
+                attendeeEmail: '',
+            });
+
+            setInviteFormOpen(true);
+        }
+    };
     
     return(
         <div className='overlay'>
@@ -80,7 +97,7 @@ const NewAttendeeForm = ({ setInviteFormOpen, addAttendeeToList }) => {
                 name='attendeeEmail'
                 onChange={handleEmailChange}
             />
-            <button className='submit-btn' onClick={handleSubmit}>Save and Continue</button>
+            <button className='submit-btn' onClick={handleSaveAndContinue}>Save and Continue</button>
             <button className='submit-btn' onClick={handleSubmit}>Submit</button>
         </div>
     </div>

@@ -46,7 +46,7 @@ const AttendeeList = ({ onSave,  formData }) => {
             <div className='add-attendee-box'>
                 <button className='first-add-btn' onClick={() => setInviteFormOpen(true)}>
                     <img src={AddEventIcon} alt='Add Event' className='add-btn' />
-                    <h3>Add Attendee</h3>
+                    <h3>Add</h3>
                 </button>
                 {isInviteFormOpen && 
                     <NewAttendeeForm 
@@ -59,7 +59,6 @@ const AttendeeList = ({ onSave,  formData }) => {
                 }
             </div>
 
-            <h3>List</h3>
             <ul className='attendee-list'>
                 {attendeeList.slice().reverse().map((attendee, index) => (
                     <li key={index}>
