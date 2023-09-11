@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const NewCollaboratorForm = ({ setInviteFormOpen }) => {
+const NewCollaboratorForm = ({ setInviteFormOpen, addCollaboratorToList }) => {
     // To create a new attendee list object
     const [list, setList] = useState({
         collaboratorName: '',
@@ -32,6 +32,15 @@ const NewCollaboratorForm = ({ setInviteFormOpen }) => {
             list.collaboratorName &&
             list.collaboratorEmail
         ) {
+
+            addCollaboratorToList(list);
+
+            setList({
+                collaboratorName: '',
+                collaboratorEmail: '',
+            });
+
+            setInviteFormOpen(false);
             // To post the data to our server data
             // axios
             //     .post(`http://localhost:3031/dashboard`, list, {
@@ -54,12 +63,29 @@ const NewCollaboratorForm = ({ setInviteFormOpen }) => {
             //     })
         }
     };
+
+    const handleSaveAndContinue = () => {
+        // To check if all form fields are filled
+        if (
+            list.collaboratorName &&
+            list.collaboratorEmail
+        ) {
+            addCollaboratorToList(list);
+
+            setList({
+                collaboratorName: '',
+                collaboratorEmail: '',
+            });
+
+            setInviteFormOpen(true);
+        }
+    };
     
     return(
         <div className='overlay'>
         <div className='event-form'>
             <button className='exit-btn' onClick={() => setInviteFormOpen(false)}>X</button>
-            <h2>Enter Form Fields</h2>
+            <h2>Enter Form</h2>
             <input
                 type='text'
                 placeholder='Name'
@@ -72,7 +98,7 @@ const NewCollaboratorForm = ({ setInviteFormOpen }) => {
                 name='collaboratorEmail'
                 onChange={handleEmailChange}
             />
-            <button className='submit-btn' onClick={handleSubmit}>Save and Continue</button>
+            <button className='submit-btn' onClick={handleSaveAndContinue}>Save and Continue</button>
             <button className='submit-btn' onClick={handleSubmit}>Submit</button>
         </div>
     </div>
