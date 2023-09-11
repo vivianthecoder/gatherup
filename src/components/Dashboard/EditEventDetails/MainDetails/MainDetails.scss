@@ -45,11 +45,24 @@
 
 .sub-header {
     display: flex;
-    flex-direction: row;
+    align-items: flex-start;
+    padding-bottom: 20px;
     justify-content: space-between;
-    align-items:flex-start;
-    padding-bottom: 10px;
 
+    @include mobile {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+    @include tablet {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+    @include desktop {
+        display: flex;
+        flex-direction: row;
+    }
     .sub-header-title{
         display: flex;
         flex-direction: row;
