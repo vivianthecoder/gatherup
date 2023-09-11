@@ -2,7 +2,6 @@
 
 .food-and-bev-main {
     width: 100%;
-
 }
 
 .food-and-bev-info-box {
@@ -60,6 +59,10 @@ h2 {
     margin: 0;
 }
 
+.catering-title {
+    padding-left: 10px;
+}
+
 h3 {
     @include mobile {
         margin: 10px 0 5px 0;
@@ -68,8 +71,24 @@ h3 {
 
 .sub-header {
     display: flex;
-    flex-direction: row;
     align-items: flex-start;
+    padding-bottom: 20px;
+    justify-content: space-between;
+
+    @include mobile {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+    @include tablet {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+    @include desktop {
+        display: flex;
+        flex-direction: row;
+    }
 }
 
 form {
