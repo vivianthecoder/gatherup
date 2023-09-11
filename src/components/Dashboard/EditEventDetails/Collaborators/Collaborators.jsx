@@ -52,7 +52,7 @@ const Collaborators = () => {
             <div className='sub-header'>
                 <div className='sub-header-title'>
                     <img src={GroupIcon} alt='Edit Collaborator List Icon' className='navIcon'/> 
-                    <h2>Edit Collaborators</h2>
+                    <h2 className='edit-menu-title'>Edit Collaborators</h2>
                 </div>
                 <div className='btn-container'>
                 <button className="save-btn">Save</button>

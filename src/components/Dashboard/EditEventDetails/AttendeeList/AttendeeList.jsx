@@ -52,7 +52,7 @@ const AttendeeList = () => {
             <div className='sub-header'>
                 <div className='sub-header-title'>
                     <img src={GroupIcon} alt='Edit Attendee List Icon' className='navIcon'/> 
-                    <h2>Edit Attendees</h2>
+                    <h2 className='edit-menu-title'>Edit Attendees</h2>
                 </div>
                 <div className='btn-container'>
                 <button className="save-btn">Save</button>

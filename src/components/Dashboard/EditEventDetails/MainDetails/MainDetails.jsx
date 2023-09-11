@@ -37,7 +37,7 @@ const MainDetails = ({ eventDetails, setEventDetails, formData, onUpdateEventDat
             <div className='sub-header'>
                 <div className='sub-header-title'>
                     <img src={EditIcon} alt='Edit Event Icon' className='navIcon'/> 
-                    <h2>Edit Main Details</h2>
+                    <h2 className='edit-menu-title'>Edit Main Details</h2>
                 </div>
                 <div className='btn-container'>
                 <button className="save-btn" onClick={handleSave}>Save</button>
