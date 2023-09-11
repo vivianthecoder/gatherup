@@ -14,9 +14,19 @@ const EventDetailsPage = () => {
     const [events, setEvents] = useState([]);
     const [selectedEvent, setSelectedEvent] = useState(null);
     const [eventDetails, setEventDetails] = useState({});
-    const [formData, setFormData] = useState({});
+    const [formData, setFormData] = useState({
+        eventId: '',
+        eventName: '',
+        eventDate: '',
+        eventTime: '',
+        eventLocation: '',
+        guestsCount: '',
+        eventTheme: '',
+        eventImage: '',
+        eventAgenda: '',
+    });
     const [selectedNavItem, setSelectedNavItem] = useState('Main Details');
-    const { id } = useParams;
+    const { id } = useParams();
 
     // To get event data from all events from the server
     function eventListRequest() {
@@ -34,25 +44,43 @@ const EventDetailsPage = () => {
            .get(`http://localhost:3031/dashboard/${eventId}`)
            .then(response => {
                setSelectedEvent(response.data)
-               console.log(response.data)
                const eventData = response.data;
-               setFormData(eventData);
-            //    console.log(response.data)
+               setFormData({
+                eventId: eventData.id,
+                eventName: eventData.eventName || '',
+                eventDate: eventData.eventDate || '',
+                eventTime: eventData.eventTime || '',
+                eventLocation: eventData.eventLocation || '',
+                guestsCount: eventData.guestsCount || '',
+                eventTheme: eventData.eventTheme || '',
+                eventImage: eventData.eventImage || '',
+                eventAgenda: eventData.eventAgenda || '',
+               });
            }).catch((error) => console.log(error));
    }
 
-    // To update new event details to the server WORKS!
-    const updateEventData = (updatedEvent) => {
-        const updatedEvents = events.map((eventItem) => {
-            if (eventItem.id === updatedEvent.id) {
-                return updatedEvent;
-            }
-            return eventItem;
-        })
-        setEvents(updatedEvents)
+    // To update new event details to the server
+    const updateMainDetailsData = (updatedMainDetails) => {
+        const updatedFormData = {
+            ...formData,
+            eventId: updatedMainDetails.eventId,
+            eventName: updatedMainDetails.eventName,
+            eventDate: updatedMainDetails.eventDate,
+            eventTime: updatedMainDetails.eventTime,
+            eventLocation: updatedMainDetails.eventLocation,
+            guestsCount: updatedMainDetails.guestsCount,
+            eventTheme: updatedMainDetails.eventTheme,
+            eventImage: updatedMainDetails.eventImage,
+            eventAgenda: updatedMainDetails.eventAgenda,
+        };
 
-        axios.put(`http://localhost:3031/dashboard/${updatedEvent.id}`, updatedEvent)
+        axios.put(`http://localhost:3031/dashboard/${formData.eventId}`, updatedFormData, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
             .then(response => {
+                setEventDetails(response.data);
                 console.log('Event data updated on the server', response.data);
             })
             .catch(error => {
@@ -60,12 +88,12 @@ const EventDetailsPage = () => {
             });
     };
 
-    // To handle clicking event editing nav bar WORKS!
+    // To handle clicking event editing nav bar
     const handleNavItemClick = (item) => {
         setSelectedNavItem(item);
     };
 
-    // To fetch selected event id whenever the id is changed W/ selectedEvent
+    // To fetch selected event id whenever the id is changed with selectedEvent
     useEffect(() => {
         selectedEventRequest(id);
     }, [id]);
@@ -81,18 +109,17 @@ const EventDetailsPage = () => {
             // Update the formData state with the selectedEvent data
             setFormData({
                 eventId: selectedEvent.id,
-                eventName: selectedEvent.eventName,
-                eventDate: selectedEvent.eventDate,
-                eventTime: selectedEvent.eventTime,
-                eventLocation: selectedEvent.eventLocation,
-                guestsCount: selectedEvent.guestsCount,
-                eventTheme: selectedEvent.eventTheme,
-                eventImage: selectedEvent.eventImage,
-            });
-        }
-    }, [selectedEvent, selectedNavItem]);
-
-    console.log('formData:',formData);
+                eventName: selectedEvent.eventName || '',
+                eventDate: selectedEvent.eventDate || '',
+                eventTime: selectedEvent.eventTime || '',
+                eventLocation: selectedEvent.eventLocation || '',
+                guestsCount: selectedEvent.guestsCount || '',
+                eventTheme: selectedEvent.eventTheme || '',
+                eventImage: selectedEvent.eventImage || '',
+                eventAgenda: selectedEvent.eventAgenda || '',
+              });
+            }
+          }, [selectedEvent, selectedNavItem]);
 
     // To fetch selected event id whenever the id is changed W/ selectedEvent
     useEffect(() => {
@@ -160,8 +187,8 @@ const EventDetailsPage = () => {
                             setFormData={setFormData}
                             events={events}
                             setEvents={setEvents}
-                            onUpdateEventData={updateEventData}
-                            eventId={eventDetails.id} 
+                            onSave={updateMainDetailsData}
+                            eventId={formData.id} 
                             setEventDetails={setEventDetails}
                             eventDetails={eventDetails}
                         />
