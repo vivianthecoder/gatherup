@@ -7,7 +7,7 @@ import { useState } from 'react';
 // import { useParams } from 'react-router';
 // import { useEffect } from 'react';
 
-const AttendeeList = ({ onSave,  formData }) => {
+const AttendeeList = () => {
     // const [updatedAttendeeDetails, setUpdatedAttendeeDetails] = useState(formData);
     const [isInviteFormOpen, setInviteFormOpen] = useState(false);
     const [attendeeList, setAttendeeList] = useState([]);
@@ -25,12 +25,6 @@ const AttendeeList = ({ onSave,  formData }) => {
     //     }))
     // };
 
-    // To handle the form submission
-    const handleSave = () => {
-        // onSave(updatedAttendeeDetails);
-        alert('Added!')
-    };
-
     return(
         <div className='edit-event-details'>
             <div className='sub-header'>
@@ -39,7 +33,8 @@ const AttendeeList = ({ onSave,  formData }) => {
                     <h2 className='edit-menu-title'>Edit Attendees</h2>
                 </div>
                 <div className='btn-container'>
-                <button className="save-btn" onClick={handleSave}>Save</button>
+                {/* Button to be changed to edit mode om next sprint */}
+                <button className="save-btn">Edit</button>
                 </div>
             </div>
             
