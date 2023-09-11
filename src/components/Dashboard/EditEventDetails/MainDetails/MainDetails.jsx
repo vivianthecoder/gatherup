@@ -1,35 +1,22 @@
 import './MainDetails.scss';
-import { useState } from 'react';
-import axios from 'axios';
 import EditIcon from '../../../../assets/Icons/Edit.svg';
+import { useState } from 'react';
 
-const MainDetails = ({ eventDetails, setEventDetails, formData, onUpdateEventData }) => {
-    const [updatedEventData, setUpdatedEventData] = useState({});
+const MainDetails = ({ onSave, formData, setFormData }) => {
+    const [updatedMainDetails, setUpdatedMainDetails] = useState(formData);
 
     // To handle form field changes
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setUpdatedEventData((prevData) => ({
-            ...prevData,
+        setUpdatedMainDetails((prevDetails) => ({
+            ...prevDetails,
             [name]: value,
         }))
     };
 
     // To handle the form submission
     const handleSave = () => {
-        axios
-        .put(`http://localhost:3031/dashboard/${eventDetails.eventId}`, eventDetails, {
-            headers: {
-                'Content-Type' : 'application/json',
-            },
-        })
-        .then((response) => {
-            setEventDetails(response.data)
-            onUpdateEventData(updatedEventData);
-        })
-        .catch((error) => {
-          console.error('Error updating event details', error);
-        });
+        onSave(updatedMainDetails);
     };
 
     return (
@@ -50,7 +37,7 @@ const MainDetails = ({ eventDetails, setEventDetails, formData, onUpdateEventDat
                     <input
                         type='text'
                         name='eventName'
-                        value={formData.eventName || eventDetails.eventName || ''}
+                        value={updatedMainDetails.eventName || ''}
                         onChange={handleChange}
                     />
                 </label>
@@ -59,7 +46,7 @@ const MainDetails = ({ eventDetails, setEventDetails, formData, onUpdateEventDat
                     <input
                         type='text'
                         name='eventDate'
-                        value={formData.eventDate || eventDetails.eventDate || ''}
+                        value={updatedMainDetails.eventDate || ''}
                         onChange={handleChange}
                     />
                 </label>
@@ -68,7 +55,7 @@ const MainDetails = ({ eventDetails, setEventDetails, formData, onUpdateEventDat
                     <input
                         type='text'
                         name='eventTime'
-                        value={formData.eventTime || eventDetails.eventTime || ''}
+                        value={updatedMainDetails.eventTime || ''}
                         onChange={handleChange}
                     />
                 </label>
@@ -77,7 +64,7 @@ const MainDetails = ({ eventDetails, setEventDetails, formData, onUpdateEventDat
                     <input
                         type='text'
                         name='eventLocation'
-                        value={formData.eventLocation || eventDetails.eventLocation || ''}
+                        value={updatedMainDetails.eventLocation || ''}
                         onChange={handleChange}
                     />
                 </label>
@@ -87,6 +74,7 @@ const MainDetails = ({ eventDetails, setEventDetails, formData, onUpdateEventDat
                     <textarea
                         type='text'
                         name='eventAgenda'
+                        value={updatedMainDetails.eventAgenda || ''}
                         onChange={handleChange}
                     />
                 </label>
