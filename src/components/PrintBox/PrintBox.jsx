@@ -2,7 +2,7 @@ import './PrintBox.scss'
 import { useState } from 'react';
 import EventOverview from '../Dashboard/EventOverview/EventOverview';
 
-const PrintBox = ({ eventId, eventName, eventDate, eventTime, eventLocation, guestsCount, eventTheme, eventImage }) => {
+const PrintBox = ({ eventId, eventName, eventDate, eventTime, eventLocation, guestsCount, eventTheme, eventImage, eventAgenda }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [showEventDetails, setShowEventDetails] = useState(false);
 
@@ -25,6 +25,7 @@ const PrintBox = ({ eventId, eventName, eventDate, eventTime, eventLocation, gue
                     <p>Event Location: ${eventLocation}</p>
                     <p>Guests Count: ${guestsCount}</p>
                     <p>Event Theme: ${eventTheme}</p>
+                    <p>Event Agenda: ${eventAgenda}</p>
                     <img src="${eventImage}" alt="${eventName}" />
                 </body>
             </html>

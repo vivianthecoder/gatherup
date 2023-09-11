@@ -2,14 +2,18 @@
 
 .sub-header {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    padding-bottom: 20px;
+    justify-content: space-between;
 
     @include mobile {
         display: flex;
+        align-items: flex-start;
         flex-direction: column;
     }
     @include tablet {
         display: flex;
+        align-items: flex-start;
         flex-direction: column;
     }
     @include desktop {
