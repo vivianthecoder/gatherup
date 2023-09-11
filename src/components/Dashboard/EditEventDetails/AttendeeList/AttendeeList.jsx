@@ -2,50 +2,34 @@ import './AttendeeList.scss'
 import NewAttendeeForm from './NewAttendeeForm';
 import GroupIcon from '../../../../assets/Icons/Group.svg';
 import AddEventIcon from '../../../../assets/Icons/Add_square.svg';
-import axios from 'axios';
+// import axios from 'axios';
 import { useState } from 'react';
-import { useParams } from 'react-router';
-import { useEffect } from 'react';
+// import { useParams } from 'react-router';
+// import { useEffect } from 'react';
 
-const AttendeeList = () => {
-    const [attendeeList, setAttendeeList] = useState([]);
+const AttendeeList = ({ onSave,  formData }) => {
+    // const [updatedAttendeeDetails, setUpdatedAttendeeDetails] = useState(formData);
     const [isInviteFormOpen, setInviteFormOpen] = useState(false);
-    const { id } = useParams();
+    const [attendeeList, setAttendeeList] = useState([]);
 
-    // To get event data from all events from the server
-    function eventListRequest() {
-        axios
-            .get(`http://localhost:3031/dashboard`)
-            .then(response => {
-                setAttendeeList(response.data)
-            }).catch((error) => console.log('Failed fetching data', error)
-        );
-    }
-
-    // To handle updating attendee list array
-    // const handleUpdateAttendeeList = (eventId, newAttendee) => {
-    //     setAttendeeList(attendees => {
-    //         return attendees.map(event => {
-    //             if (event.id === eventId) {
-    //                 return {
-    //                     ...event,
-    //                     attendees: [...(event.attendees || []), newAttendee]
-    //                 }
-    //             }
-    //             return event;
-    //         })
-    //     })
-    // };
-  
-    // To push the newEvent object onto the setEvents array with updated fields
-    const addAttendees = (newAttendee) => {
-        setAttendeeList([...attendeeList, newAttendee])
+    const addAttendeeToList = (newAttendee) => {
+        setAttendeeList((prevList) => [...prevList, newAttendee])
     };
-    
-    // To fetch list of all events from the server
-    useEffect(() => {
-        eventListRequest();
-    }, []);
+
+    // // To handle form field changes
+    // const handleChange = (e) => {
+    //     const { name, value } = e.target;
+    //     setUpdatedAttendeeDetails((prevDetails) => ({
+    //         ...prevDetails,
+    //         [name]: value,
+    //     }))
+    // };
+
+    // To handle the form submission
+    const handleSave = () => {
+        // onSave(updatedAttendeeDetails);
+        alert('Added!')
+    };
 
     return(
         <div className='edit-event-details'>
@@ -55,7 +39,7 @@ const AttendeeList = () => {
                     <h2 className='edit-menu-title'>Edit Attendees</h2>
                 </div>
                 <div className='btn-container'>
-                <button className="save-btn">Save</button>
+                <button className="save-btn" onClick={handleSave}>Save</button>
                 </div>
             </div>
             
@@ -67,19 +51,24 @@ const AttendeeList = () => {
                 {isInviteFormOpen && 
                     <NewAttendeeForm 
                         setInviteFormOpen={setInviteFormOpen}
-                        addAttendees={addAttendees}
+                        // addAttendees={addAttendees}
                         // handleUpdateAttendeeList={handleUpdateAttendeeList}
-                        eventId={id}
+                        // eventId={id}
+                        addAttendeeToList={addAttendeeToList}
                     />
                 }
             </div>
 
-            <h3>RSVP List</h3>
+            <h3>List</h3>
             <ul className='attendee-list'>
-                {attendeeList.map((attendee, index) => (
+                {attendeeList.slice().reverse().map((attendee, index) => (
                     <li key={index}>
-                    {attendee.attendeeName && <span>Name: {attendee.attendeeName}</span>}
-                    {attendee.attendeeName && <span>Email: {attendee.attendeeEmail}</span>}
+                        <div className='attendee-name'>
+                            {attendee.attendeeName && <span>{attendee.attendeeName}</span>}
+                        </div>
+                        <div className='attendee-email'>
+                            {attendee.attendeeName && <span>{attendee.attendeeEmail}</span>}
+                        </div>
                     </li>
                 ))}
             </ul>
