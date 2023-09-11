@@ -73,6 +73,7 @@ const PrintPage = () => {
                             guestsCount={event.guestsCount}
                             eventTheme={event.eventTheme}
                             eventImage={event.eventImage}
+                            eventAgenda={event.eventAgenda}
                             events={events}
                             setEvents={setEvents}
                         />
