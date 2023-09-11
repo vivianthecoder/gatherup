@@ -2,8 +2,20 @@
 
 .sub-header {
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
+
+    @include mobile {
+        display: flex;
+        flex-direction: column;
+    }
+    @include tablet {
+        display: flex;
+        flex-direction: column;
+    }
+    @include desktop {
+        display: flex;
+        flex-direction: row;
+    }
 }
 
 form {

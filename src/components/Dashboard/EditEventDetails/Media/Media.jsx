@@ -20,7 +20,7 @@ const Media = () => {
             <div className='sub-header'>
                 <div className='sub-header-title'>
                     <img src={AddImageIcon} alt='Media Icon' className='navIcon'/> 
-                    <h2>Media</h2>
+                    <h2 className='edit-menu-title'>Media</h2>
                 </div>
                 <div className='btn-container'>
                 <button className="share-btn">Share</button>
