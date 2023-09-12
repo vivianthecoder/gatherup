@@ -84,7 +84,7 @@ const NewAttendeeForm = ({ setInviteFormOpen, addAttendeeToList }) => {
         <div className='overlay'>
         <div className='event-form'>
             <button className='exit-btn' onClick={() => setInviteFormOpen(false)}>X</button>
-            <h2>Enter Form Fields</h2>
+            <h2>Enter Form</h2>
             <input
                 type='text'
                 placeholder='Name'

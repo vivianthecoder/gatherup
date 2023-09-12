@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 const NewCollaboratorForm = ({ setInviteFormOpen, addCollaboratorToList }) => {
+    const [resetForm, setResetForm] = useState(false);
     // To create a new attendee list object
     const [list, setList] = useState({
         collaboratorName: '',
@@ -32,15 +33,20 @@ const NewCollaboratorForm = ({ setInviteFormOpen, addCollaboratorToList }) => {
             list.collaboratorName &&
             list.collaboratorEmail
         ) {
-
             addCollaboratorToList(list);
-
+            if (resetForm) {
             setList({
                 collaboratorName: '',
                 collaboratorEmail: '',
             });
-
+            // Open the form again
+            setInviteFormOpen(false); 
+            // Reset form state
+            setResetForm(false); 
+        } else {
+            // Close the form
             setInviteFormOpen(false);
+        }
             // To post the data to our server data
             // axios
             //     .post(`http://localhost:3031/dashboard`, list, {
@@ -76,8 +82,7 @@ const NewCollaboratorForm = ({ setInviteFormOpen, addCollaboratorToList }) => {
                 collaboratorName: '',
                 collaboratorEmail: '',
             });
-
-            setInviteFormOpen(true);
+            setResetForm(true);
         }
     };
     
